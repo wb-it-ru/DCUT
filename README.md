@@ -1,6 +1,14 @@
 # HTTP-services Personal аccount
 
----
+## Общее
+
+Во всех сервисах:
+
+**_TransactionID_** - уникальный GUID для каждого обращения. Используется для логирования.
+
+**_SourceID_** - уникальный GUID системы, которая обращается к сервису. Необходим, для идентификации источника запроса и не должен часто меняться.
+
+
 ## Ping
 ### Описание
 Предназначен для проверки доступности сервиса
@@ -33,19 +41,57 @@ https://<domen>.ru/<base>/hs/PersAcc/ping/
 ### Описание шаблона
 **_URL_**: 
 ```html
-https://<domen>.ru/<base>/hs/PersAcc/repairs/approval/{guid}
+https://<server>/PersAcc/repairs/approval/{guid}
 ```
 где guid уникальный идентификатор заказ-наряда (строка 36 знаков)
 
+**Тело запроса в формате _JSON_**:
+```json
+{
+    "TransactionID": "Строка (36 знаков)", // см. Общее
+    "SourceID": "Строка (36 знаков)", // см. Общее
+    "Approval": "Булево" // Признак действия - согласовать документ или отменить согласование
+}
+```
+
+**Ответ в формате _JSON_**: 
+```json
+{
+    "response": {
+        "TransactionID": "Строка (36 знаков)", // см. Общее
+        "SourceID": "Строка (36 знаков)", // см. Общее
+        "OrderStatus": "Строка", // статус заказ-наряда после согласования или отмены согласования
+        "NewOrderGUIDDocument": "Строка (36 знаков)" // GUID заказ наряда на диагностику (создается при отмене согласования)
+    },
+    "error": null, // либо строка с текстом ошибки,
+    "errorCode": null // либо строка с кодом ошибки
+}
+```
+
+### Пример
+
+**_URL_**: 
+```html
+https://<server>/PersAcc/repairs/approval/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304  
+```
+
+**Тело запроса в формате _JSON_**:
+```json
+{
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Approval": true
+}
+```
 
 **Ответ в формате _JSON_**: 
 ```json
 {
     "response": {
         "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c70",
         "OrderStatus": "Ожидает оплаты",
-        "NewOrderGUIDDocument": ""
+        "NewOrderGUIDDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c80"
     },
     "error": null,
     "errorCode": null
