@@ -1,5 +1,14 @@
 # HTTP-services Personal аccount (1.1.3.5)
 
+## Оглавление
+- [Общее](#общее)
+
+- [Ping](#ping)
+
+- [Approval of repairs](#approval-of-repairs)
+
+---
+
 ## Общее
 
 Во всех сервисах:
