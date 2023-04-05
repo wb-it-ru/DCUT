@@ -1,4 +1,4 @@
-# HTTP-services Personal аccount (1.1.3.5)
+# HTTP-services Personal аccount (1.1.4.1)
 
 ## Оглавление
 
@@ -9,9 +9,9 @@
   - [Approval of repairs](#approval-of-repairs)
 
   - [Push](#push)
-  
+
 - [Личный кабинет клиента](#личный-кабинет-клиента)
-  
+
   - [Indicatorsinfo](#indicatorsinfo)
 
   - [CustomerObjects](#customerobjects)
@@ -23,29 +23,29 @@
   - [priceconditions](#priceconditions)
 
 - [Товары](#товары)
-  
+
   - [Product](#product)
-  
+
   - [Image](#image)
-  
+
   - [Price](#price)
 
   - [Stock](#stock)
 
 - [ProParck](#proparck)
-  
+
   - [ProParckRefund](#proparckrefund)
 
   - [ProParckReplacement](#proparckreplacement)
-  
+
   - [ProParckNew](#proparcknew)
-  
+
   - [ProParckMoving](#proparckmoving)
 
   - [ProParckRequest](#proparckrequest)
 
 - [Documents](#documents)
-      
+
   - [DataBySalesAll](#databysalesall)
 
   - [DataBySalesAllForPeriod](#databysalesallforperiod)
@@ -53,24 +53,25 @@
   - [DataBySalesByGuid](#databysalesbyguid)
 
   - [DataByOrdersAll](#databyordersall)
-  
+
   - [DataByOrdersAllForPeriod](#databyordersallforperiod)
 
   - [DataByOrdersByGuid](#databyordersbyguid)
-  
+
   - [DataByRepairsAll](#databyrepairsall)
-  
+
   - [DataByRepairsAllForPeriod](#databyrepairsallforperiod)
 
   - [DataByRepairsByGuid](#databyrepairsbyguid)
 
   - [Orders](#orders)
-  
+
   - [Repairs](#repairs)
 
   - [Sales](#sales)
 
   - [CustomerOrders](#customerorders)
+
 ---
 
 ## Общее
@@ -94,7 +95,7 @@
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/ping/
+https://<server>/PersAcc/ping/</server>
 ```
 
 Возвращает _JSON_ с следующими параметрами элемента _response_:
@@ -132,7 +133,7 @@ https://<server>/PersAcc/ping/
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/approval/{guid}
+https://<server>/PersAcc/repairs/approval/{guid}</server>
 ```
 
 где guid уникальный идентификатор заказ-наряда (строка 36 знаков)
@@ -159,7 +160,9 @@ https://<server>/PersAcc/repairs/approval/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/approval/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
+https://<server
+  >/PersAcc/repairs/approval/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -202,7 +205,7 @@ https://<server>/PersAcc/repairs/approval/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/files/{type}/{guid}
+https://<server>/PersAcc/files/{type}/{guid}</server>
 ```
 
 где guid уникальный идентификатор заказ-наряда (строка 36 знаков)
@@ -227,7 +230,9 @@ https://<server>/PersAcc/files/{type}/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df43007
+https://<server
+  >/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df43007</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -270,22 +275,27 @@ https://<server>/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df43007
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры         |  Тип   | Обязательный | Описание                                                                                                                                                                                                                                               |
-| ----------------- | :----: | :----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Type              | Строка |      Да      | Тип (Может быть: DataByRepairs - заказ наряды, DataByOrders - заказ клиента, DataBySales - реализация, proParck/new - подписка на инструмент, proParck/refund - возврат инструмента из подписки, proParck/replacement) - замена инструмента в подписке |
-| Event             | Строка |      Да      | Событие (Сейчас только Update, в будущем могут быть New, Delete)                                                                                                                                                                                       |
+| Параметры          |  Тип   | Обязательный | Описание                                                                                                                                                                                                                                               |
+| ------------------ | :----: | :----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type               | Строка |      Да      | Тип (Может быть: DataByRepairs - заказ наряды, DataByOrders - заказ клиента, DataBySales - реализация, proParck/new - подписка на инструмент, proParck/refund - возврат инструмента из подписки, proParck/replacement) - замена инструмента в подписке |
+| Event              | Строка |      Да      | Событие (Сейчас только Update, в будущем могут быть New, Delete)                                                                                                                                                                                       |
 | [Data](#data-push) | Массив |      Да      | Данные для обработки                                                                                                                                                                                                                                   |
 
 #### **Data (push):**
 
-| Параметры |  Тип   | Обязательный | Описание                      |
-| --------- | :----: | :----------: | :---------------------------- |
-| DataType  | Строка |      Да      | Тип данных (пока только GUID) |
-| GUID      | Строка |      Да      | Идентификатор документа       |
+| Параметры           |             Тип             | Обязательный | Описание                                             |
+| ------------------- | :-------------------------: | :----------: | :--------------------------------------------------- |
+| DataType            |           Строка            |      Да      | Тип данных (Может быть: GUID, ALL, Periods)          |
+| GUID                |           Строка            |     Нет      | Идентификатор документа (только для DataType = GUID) |
+| PersonalAccountGUID |         Строка (36)         |     Нет      | Идентификатор личного кабинета                       |
+| BeginningOfPeriod   | Дата (строка в формате UTC) |     Нет      | Дата начала (только для DataType = Periods)          |
+| EndOfPeriod         | Дата (строка в формате UTC) |     Нет      | Дата окончания (только для DataType = Periods)       |
 
 ### Пример
 
 **Тело запроса в формате _JSON_**:
+
+Вариант 1:
 
 ```json
 [
@@ -301,6 +311,77 @@ https://<server>/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df43007
   }
 ]
 ```
+
+Вариант 2:
+
+```json
+[
+  {
+    "Type": "DataByRepairs",
+    "Event": "Update",
+    "Data": [
+      {
+        "DataType": "Periods",
+        "BeginningOfPeriod": "2022-01-01T00:00:00+03:00",
+        "EndOfPeriod": "2022-01-02T00:00:00+03:00",
+        "PersonalAccountGUID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c22"
+      }
+    ]
+  }
+]
+```
+
+Вариант 3:
+
+```json
+[
+  {
+    "Type": "DataByRepairs",
+    "Event": "Update",
+    "Data": [
+      {
+        "DataType": "Periods",
+        "BeginningOfPeriod": "2022-01-01T00:00:00+03:00",
+        "EndOfPeriod": "2022-01-02T00:00:00+03:00"
+      }
+    ]
+  }
+]
+```
+
+Вариант 4:
+
+```json
+[
+  {
+    "Type": "DataByRepairs",
+    "Event": "Update",
+    "Data": [
+      {
+        "DataType": "ALL"
+      }
+    ]
+  }
+]
+```
+
+Вариант 5:
+
+```json
+[
+  {
+    "Type": "DataByRepairs",
+    "Event": "Update",
+    "Data": [
+      {
+        "DataType": "ALL",
+        "PersonalAccountGUID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c22"
+      }
+    ]
+  }
+]
+```
+
 ---
 
 ## Личный кабинет клиента
@@ -320,7 +401,7 @@ https://<server>/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df43007
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/IndicatorsInfo
+https://<server>/PersAcc/IndicatorsInfo</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -340,11 +421,11 @@ https://<server>/PersAcc/IndicatorsInfo
 
 **response:**
 
-| Параметры     |     Тип     | Обязательный | Описание              |
-| ------------- | :---------: | :----------: | :-------------------- |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее)   |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее)   |
-| [Indicators](#indicators-indicatorsinfo)    |   Массив    |      Да      | Массив с показателями |
+| Параметры                                |     Тип     | Обязательный | Описание              |
+| ---------------------------------------- | :---------: | :----------: | :-------------------- |
+| TransactionID                            | Строка (36) |     Нет      | [См. общее](#общее)   |
+| SourceID                                 | Строка (36) |      Да      | [См. общее](#общее)   |
+| [Indicators](#indicators-indicatorsinfo) |   Массив    |      Да      | Массив с показателями |
 
 #### **Indicators (Indicatorsinfo):**
 
@@ -361,15 +442,15 @@ https://<server>/PersAcc/IndicatorsInfo
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/IndicatorsInfo
+https://<server>/PersAcc/IndicatorsInfo</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64"
 }
 ```
 
@@ -377,28 +458,28 @@ https://<server>/PersAcc/IndicatorsInfo
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Indicators": [
-            {
-                "GUID": "fb37c489-13f1-11ec-b9ac-04d9f5ae0305",
-                "Name": "Выдано подмен",
-                "Availability": true,
-                "Category": "Ремонт",
-                "TypeValue": "Значение"
-            },
-            {
-                "GUID": "fb37c48a-13f1-11ec-b9ac-04d9f5ae0305",
-                "Name": "Дата первого заказа",
-                "Availability": true,
-                "Category": "Покупки",
-                "TypeValue": "Массив"
-            }
-        ]
-    },
-    "error": null,
-    "errorCode": null
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Indicators": [
+      {
+        "GUID": "fb37c489-13f1-11ec-b9ac-04d9f5ae0305",
+        "Name": "Выдано подмен",
+        "Availability": true,
+        "Category": "Ремонт",
+        "TypeValue": "Значение"
+      },
+      {
+        "GUID": "fb37c48a-13f1-11ec-b9ac-04d9f5ae0305",
+        "Name": "Дата первого заказа",
+        "Availability": true,
+        "Category": "Покупки",
+        "TypeValue": "Массив"
+      }
+    ]
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -417,18 +498,19 @@ https://<server>/PersAcc/IndicatorsInfo
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/customer/objects/{guid}
+https://<server>/PersAcc/customer/objects/{guid}</server>
 ```
+
 где guid - уникальный идентификатор клиента
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры     |     Тип      | Обязательный | Описание                           |
-| ------------- | :----------: | :----------: | :--------------------------------- |
-| TransactionID | Строка (36)  |     Нет      | [См. общее](#общее)                |
-| SourceID      | Строка (36)  |      Да      | [См. общее](#общее)                |
-| Name          | Строка (150) |      Да      | Наименование объекта клиента       |
-| Adress        | Строка (500) |      Да      | Адрес объекта клиента              |
+| Параметры                                       |     Тип      | Обязательный | Описание                           |
+| ----------------------------------------------- | :----------: | :----------: | :--------------------------------- |
+| TransactionID                                   | Строка (36)  |     Нет      | [См. общее](#общее)                |
+| SourceID                                        | Строка (36)  |      Да      | [См. общее](#общее)                |
+| Name                                            | Строка (150) |      Да      | Наименование объекта клиента       |
+| Adress                                          | Строка (500) |      Да      | Адрес объекта клиента              |
 | [ContactPerson](#contactperson-customerobjects) |    Объект    |      Да      | Контактное лицо по объекту клиента |
 
 #### **ContactPerson (CustomerObjects):**
@@ -461,23 +543,25 @@ https://<server>/PersAcc/customer/objects/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/customer/objects/49eafec7-9772-11e9-80d7-0050569133d8
+https://<server
+  >/PersAcc/customer/objects/49eafec7-9772-11e9-80d7-0050569133d8</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
-    "Name": "Объект на Арбате",
-    "Adress": "Москва, ул. Арбат ...",
-    "ContactPerson": {
-        "Name": "Иванов Иван Иванович",
-        "Post": "Директор",
-        "Phone": "+7(***)-**-**",
-        "Email": "mail@mail.com"
-    }
+  "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+  "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
+  "Name": "Объект на Арбате",
+  "Adress": "Москва, ул. Арбат ...",
+  "ContactPerson": {
+    "Name": "Иванов Иван Иванович",
+    "Post": "Директор",
+    "Phone": "+7(***)-**-**",
+    "Email": "mail@mail.com"
+  }
 }
 ```
 
@@ -485,13 +569,13 @@ https://<server>/PersAcc/customer/objects/49eafec7-9772-11e9-80d7-0050569133d8
 
 ```json
 {
-    "response": {
-        "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-        "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
-        "ClientObjectGUID": "f33e3bce-8136-11ed-81b1-00155df43005"
-    },
-    "error": null,
-    "errorCode": null
+  "response": {
+    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
+    "ClientObjectGUID": "f33e3bce-8136-11ed-81b1-00155df43005"
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -510,8 +594,9 @@ https://<server>/PersAcc/customer/objects/49eafec7-9772-11e9-80d7-0050569133d8
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/indicators/{guid}
+https://<server>/PersAcc/indicators/{guid}</server>
 ```
+
 где guid - уникальный идентификатор личного кабинета, строка (36)
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -533,12 +618,12 @@ https://<server>/PersAcc/indicators/{guid}
 
 **response:**
 
-| Параметры                    |     Тип     | Обязательный | Описание                     |
-| ---------------------------- | :---------: | :----------: | :--------------------------- |
-| TransactionID                | Строка (36) |     Нет      | [См. общее](#общее)          |
-| SourceID                     | Строка (36) |      Да      | [См. общее](#общее)          |
-| ИдентификаторЛичногоКабинета | Строка (36) |      Да      | Возвращаются из тела запроса |
-| [IndicatorsValues](#indicatorsvalues-indicators)             |   Массив    |      Да      | Массив данных показателей    |
+| Параметры                                        |     Тип     | Обязательный | Описание                     |
+| ------------------------------------------------ | :---------: | :----------: | :--------------------------- |
+| TransactionID                                    | Строка (36) |     Нет      | [См. общее](#общее)          |
+| SourceID                                         | Строка (36) |      Да      | [См. общее](#общее)          |
+| ИдентификаторЛичногоКабинета                     | Строка (36) |      Да      | Возвращаются из тела запроса |
+| [IndicatorsValues](#indicatorsvalues-indicators) |   Массив    |      Да      | Массив данных показателей    |
 
 #### **IndicatorsValues (Indicators):**
 
@@ -552,17 +637,19 @@ https://<server>/PersAcc/indicators/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d
+https://<server
+  >/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "ИдентификаторЛичногоКабинета": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "Indicators": []
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "ИдентификаторЛичногоКабинета": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "Indicators": []
 }
 ```
 
@@ -570,39 +657,39 @@ https://<server>/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "ИдентификаторЛичногоКабинета": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "IndicatorsValues": [
-            {
-                "GUIDIndicator": "fb37c489-13f1-11ec-b9ac-04d9f5ae0304",
-                "Value": 82
-            },
-            {
-                "GUIDIndicator": "fb37c48a-13f1-11ec-b9ac-04d9f5ae0304",
-                "Value": "2020-08-13T15:32:52+03:00"
-            },
-            {
-                "GUIDIndicator": "fb37c48d-13f1-11ec-b9ac-04d9f5ae0304",
-                "Value": 7
-            },
-            {
-                "GUIDIndicator": "fb37c48b-13f1-11ec-b9ac-04d9f5ae0304",
-                "Value": "2021-10-21T14:44:00+03:00"
-            },
-            {
-                "GUIDIndicator": "fb37c48c-13f1-11ec-b9ac-04d9f5ae0304",
-                "Value": 3907941.74
-            },
-            {
-                "GUIDIndicator": "fb37c48e-13f1-11ec-b9ac-04d9f5ae0304",
-                "Value": 27
-            }
-        ]
-    },
-    "error": null,
-    "errorCode": null
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "ИдентификаторЛичногоКабинета": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "IndicatorsValues": [
+      {
+        "GUIDIndicator": "fb37c489-13f1-11ec-b9ac-04d9f5ae0304",
+        "Value": 82
+      },
+      {
+        "GUIDIndicator": "fb37c48a-13f1-11ec-b9ac-04d9f5ae0304",
+        "Value": "2020-08-13T15:32:52+03:00"
+      },
+      {
+        "GUIDIndicator": "fb37c48d-13f1-11ec-b9ac-04d9f5ae0304",
+        "Value": 7
+      },
+      {
+        "GUIDIndicator": "fb37c48b-13f1-11ec-b9ac-04d9f5ae0304",
+        "Value": "2021-10-21T14:44:00+03:00"
+      },
+      {
+        "GUIDIndicator": "fb37c48c-13f1-11ec-b9ac-04d9f5ae0304",
+        "Value": 3907941.74
+      },
+      {
+        "GUIDIndicator": "fb37c48e-13f1-11ec-b9ac-04d9f5ae0304",
+        "Value": 27
+      }
+    ]
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -618,10 +705,10 @@ https://<server>/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры |  Тип   | Обязательный | Описание                  |
-| --------- | :----: | :----------: | :------------------------ |
-| [Header](#header-personalacc)    | Объект |      Да      | Общие данные сообщения    |
-| [Body](#body-personalacc)      | Объект |      Да      | Основные данные сообщения |
+| Параметры                     |  Тип   | Обязательный | Описание                  |
+| ----------------------------- | :----: | :----------: | :------------------------ |
+| [Header](#header-personalacc) | Объект |      Да      | Общие данные сообщения    |
+| [Body](#body-personalacc)     | Объект |      Да      | Основные данные сообщения |
 
 #### **Header (PersonalAcc):**
 
@@ -633,31 +720,31 @@ https://<server>/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d
 
 #### **Body (PersonalAcc):**
 
-| Параметры        |  Тип   | Обязательный | Описание                       |
-| ---------------- | :----: | :----------: | :----------------------------- |
+| Параметры                                         |  Тип   | Обязательный | Описание                       |
+| ------------------------------------------------- | :----: | :----------: | :----------------------------- |
 | [PersonalAccounts](#personalaccounts-personalacc) | Массив |      Да      | Массив данных личного кабинета |
 
 #### **PersonalAccounts (PersonalAcc):**
 
-| Параметры       |     Тип     | Обязательный | Описание                                        |
-| --------------- | :---------: | :----------: | :---------------------------------------------- |
-| GUID            | Строка (36) |      Да      | Идентификатор ЛК                                |
-| Name            |   Строка    |      Да      | Наименование ЛК                                 |
-| [ContactPerson](#maincontactperson-personalacc)   |   Объект    |      Да      | Данные контактного лица                         |
-| FreeShipping    |   Булево    |      Да      | Признак бесплатной доставки                     |
-| FieldOfActivity |   Строка    |      Да      | Сфера деятельности                              |
-| CompanySize     |    Число    |      Да      | Размер компании (кол-во сотрудников)            |
-| Address         |   Строка    |      Да      | Адрес компании                                  |
-| PostalCode      |   Строка    |      Да      | Пустая строка (на данный момент не заполняется) |
-| Website         |   Строка    |      Да      | Адрес веб-сайта                                 |
-| email           |   Строка    |      Да      | Адрес электронной почты                         |
-| Phone           |   Строка    |      Да      | Номер телефона                                  |
-| INN             |   Строка    |      Да      | ИНН                                             |
-| KPP             |   Строка    |      Да      | КПП                                             |
-| OGRN            |   Строка    |      Да      | ОГРН                                            |
-| [BankAccount](#bankaccount-personalacc)     |   Объект    |      Да      | Данные счета                                    |
-| [Customers](#customers-personalacc)       |   Массив    |      Да      | Связанные клиенты                               |
-| [Indicators](#indicators-personalacc)      |   Массив    |      Да      | Данные показателей                              |
+| Параметры                                       |     Тип     | Обязательный | Описание                                        |
+| ----------------------------------------------- | :---------: | :----------: | :---------------------------------------------- |
+| GUID                                            | Строка (36) |      Да      | Идентификатор ЛК                                |
+| Name                                            |   Строка    |      Да      | Наименование ЛК                                 |
+| [ContactPerson](#maincontactperson-personalacc) |   Объект    |      Да      | Данные контактного лица                         |
+| FreeShipping                                    |   Булево    |      Да      | Признак бесплатной доставки                     |
+| FieldOfActivity                                 |   Строка    |      Да      | Сфера деятельности                              |
+| CompanySize                                     |    Число    |      Да      | Размер компании (кол-во сотрудников)            |
+| Address                                         |   Строка    |      Да      | Адрес компании                                  |
+| PostalCode                                      |   Строка    |      Да      | Пустая строка (на данный момент не заполняется) |
+| Website                                         |   Строка    |      Да      | Адрес веб-сайта                                 |
+| email                                           |   Строка    |      Да      | Адрес электронной почты                         |
+| Phone                                           |   Строка    |      Да      | Номер телефона                                  |
+| INN                                             |   Строка    |      Да      | ИНН                                             |
+| KPP                                             |   Строка    |      Да      | КПП                                             |
+| OGRN                                            |   Строка    |      Да      | ОГРН                                            |
+| [BankAccount](#bankaccount-personalacc)         |   Объект    |      Да      | Данные счета                                    |
+| [Customers](#customers-personalacc)             |   Массив    |      Да      | Связанные клиенты                               |
+| [Indicators](#indicators-personalacc)           |   Массив    |      Да      | Данные показателей                              |
 
 #### **MainContactPerson (PersonalAcc):**
 
@@ -677,15 +764,15 @@ https://<server>/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d
 
 #### **Customers (PersonalAcc):**
 
-| Параметры     |     Тип     | Обязательный | Описание                   |
-| ------------- | :---------: | :----------: | :------------------------- |
-| GUID          | Строка (36) |      Да      | Идентификатор контрагента  |
-| Name          |   Строка    |      Да      | Наименование               |
-| INN           |   Строка    |      Да      | ИНН                        |
-| KPP           |   Строка    |      Да      | КПП                        |
-| MAIN          |   Булево    |      Да      | Признак основного клиента  |
-| [Manager](#manager-personalacc)       |   Объект    |      Да      | Данные по менеджеру        |
-| [ClientObject](#clientobject-personalacc)  |   Массив    |      Да      | Данные по объектам         |
+| Параметры                                   |     Тип     | Обязательный | Описание                   |
+| ------------------------------------------- | :---------: | :----------: | :------------------------- |
+| GUID                                        | Строка (36) |      Да      | Идентификатор контрагента  |
+| Name                                        |   Строка    |      Да      | Наименование               |
+| INN                                         |   Строка    |      Да      | ИНН                        |
+| KPP                                         |   Строка    |      Да      | КПП                        |
+| MAIN                                        |   Булево    |      Да      | Признак основного клиента  |
+| [Manager](#manager-personalacc)             |   Объект    |      Да      | Данные по менеджеру        |
+| [ClientObject](#clientobject-personalacc)   |   Массив    |      Да      | Данные по объектам         |
 | [ContactPerson](#contactperson-personalacc) |   Объект    |      Да      | Данные по контактному лицу |
 
 #### **Manager (PersonalAcc):**
@@ -699,13 +786,13 @@ https://<server>/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d
 
 #### **ClientObject (PersonalAcc):**
 
-| Параметры      |     Тип     | Обязательный | Описание                      |
-| -------------- | :---------: | :----------: | :---------------------------- |
-| GUID           | Строка (36) |      Да      | Идентификатор объекта         |
-| Name           |   Строка    |      Да      | Наименование объекта          |
-| Adress         |   Строка    |      Да      | Адрес объекта                 |
+| Параметры                                    |     Тип     | Обязательный | Описание                      |
+| -------------------------------------------- | :---------: | :----------: | :---------------------------- |
+| GUID                                         | Строка (36) |      Да      | Идентификатор объекта         |
+| Name                                         |   Строка    |      Да      | Наименование объекта          |
+| Adress                                       |   Строка    |      Да      | Адрес объекта                 |
 | [ContactPersons](#contactperson-personalacc) |   Массив    |      Да      | Массив контактов объекта      |
-| [Files](#files-personalacc)          |   Массив    |      Да      | Массив изображений по объекту |
+| [Files](#files-personalacc)                  |   Массив    |      Да      | Массив изображений по объекту |
 
 #### **ContactPersons (PersonalAcc):**
 
@@ -736,96 +823,96 @@ https://<server>/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d
 
 ```json
 {
-    "Header": {
-        "Request_ID": "db76551d-5a02-489d-85e9-1b6c45b516f1",
-        "Data_Type": "PersonalAccount",
-        "Count_Master_Data": 1
-    },
-    "Body": {
-        "PersonalAccounts": [
-            {
-                "GUID": "9eb6e451-a000-4c40-b346-5615e0856e2d",
-                "Name": "БАРС ООО",
-                "ContactPerson": {
-                    "GUID": "de2fa533-3ad9-11eb-b990-04d9f5ae0304",
-                    "Name": "Ольга",
-                    "Post": "",
-                    "Birthday": "0001-01-01T00:00:00+00:00"
-                },
-                "FreeShipping": "false",
-                "FieldOfActivity": "Продажа инструментов",
-                "CompanySize": 1000,
-                "Address": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом xx",
-                "PostalCode": "",
-                "Website": "",
-                "email": "xxx@xxx.xxx",
-                "Phone": "(3519) 40-69-xx",
-                "INN": "74550185xx",
-                "KPP": "7455010xx",
-                "OGRN": "",
-                "BankAccount": {
-                    "BIK": "047501602",
-                    "Account": "40702810972000006200"
-                },
-                "Customers": [
-                    {
-                        "GUID": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                        "Name": "БАРС ООО",
-                        "INN": "74550185xx",
-                        "KPP": "7455010xx",
-                        "MAIN": true,
-                        "Manager": {
-                            "GUID": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                            "name": "Комаров Иван",
-                            "email": "xxx@xxx.xxx",
-                            "phone": ""
-                        },
-                        "ClientObject": [
-                            {
-                                "GUID": "de2fa533-3ad9-11eb-b990-04d9f5ae0304",
-                                "Name": "ЖК Императорские Мытищи",
-                                "Adress": "Тенистый бульвар 19",
-                                "ContactPersons": [
-                                    {
-                                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                                        "Name": "Комаров Иван",
-                                        "Phone": "911",
-                                        "Email": "xxx@xxx.xxx"
-                                    }
-                                ],
-                                "Files": [
-                                    {
-                                        "Name": "ЖК Императорские Мытищи (фото)",
-                                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304"
-                                    }
-                                ]
-                            }
-                        ],
-                        "ContactPerson": {
-                            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",                            
-                            "Name": "Комаров Иван",
-                            "Phone": "911",
-                            "Email": "xxx@xxx.xxx"
-                        }
-                    }
+  "Header": {
+    "Request_ID": "db76551d-5a02-489d-85e9-1b6c45b516f1",
+    "Data_Type": "PersonalAccount",
+    "Count_Master_Data": 1
+  },
+  "Body": {
+    "PersonalAccounts": [
+      {
+        "GUID": "9eb6e451-a000-4c40-b346-5615e0856e2d",
+        "Name": "БАРС ООО",
+        "ContactPerson": {
+          "GUID": "de2fa533-3ad9-11eb-b990-04d9f5ae0304",
+          "Name": "Ольга",
+          "Post": "",
+          "Birthday": "0001-01-01T00:00:00+00:00"
+        },
+        "FreeShipping": "false",
+        "FieldOfActivity": "Продажа инструментов",
+        "CompanySize": 1000,
+        "Address": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом xx",
+        "PostalCode": "",
+        "Website": "",
+        "email": "xxx@xxx.xxx",
+        "Phone": "(3519) 40-69-xx",
+        "INN": "74550185xx",
+        "KPP": "7455010xx",
+        "OGRN": "",
+        "BankAccount": {
+          "BIK": "047501602",
+          "Account": "40702810972000006200"
+        },
+        "Customers": [
+          {
+            "GUID": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+            "Name": "БАРС ООО",
+            "INN": "74550185xx",
+            "KPP": "7455010xx",
+            "MAIN": true,
+            "Manager": {
+              "GUID": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+              "name": "Комаров Иван",
+              "email": "xxx@xxx.xxx",
+              "phone": ""
+            },
+            "ClientObject": [
+              {
+                "GUID": "de2fa533-3ad9-11eb-b990-04d9f5ae0304",
+                "Name": "ЖК Императорские Мытищи",
+                "Adress": "Тенистый бульвар 19",
+                "ContactPersons": [
+                  {
+                    "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+                    "Name": "Комаров Иван",
+                    "Phone": "911",
+                    "Email": "xxx@xxx.xxx"
+                  }
                 ],
-                "Indicators": [
-                    {
-                        "Name": "Выдано подмен",
-                        "GUID": "fb37c489-13f1-11ec-b9ac-04d9f5ae0304"
-                    },
-                    {
-                        "Name": "Дата первого заказа",
-                        "GUID": "fb37c48a-13f1-11ec-b9ac-04d9f5ae0304"
-                    },
-                    {
-                        "Name": "Доля инструментов",
-                        "GUID": "967b4e54-489c-11ec-b9b5-04d9f5ae0304"
-                    }
+                "Files": [
+                  {
+                    "Name": "ЖК Императорские Мытищи (фото)",
+                    "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304"
+                  }
                 ]
+              }
+            ],
+            "ContactPerson": {
+              "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+              "Name": "Комаров Иван",
+              "Phone": "911",
+              "Email": "xxx@xxx.xxx"
             }
+          }
+        ],
+        "Indicators": [
+          {
+            "Name": "Выдано подмен",
+            "GUID": "fb37c489-13f1-11ec-b9ac-04d9f5ae0304"
+          },
+          {
+            "Name": "Дата первого заказа",
+            "GUID": "fb37c48a-13f1-11ec-b9ac-04d9f5ae0304"
+          },
+          {
+            "Name": "Доля инструментов",
+            "GUID": "967b4e54-489c-11ec-b9b5-04d9f5ae0304"
+          }
         ]
-    }
+      }
+    ]
+  }
 }
 ```
 
@@ -844,8 +931,9 @@ https://<server>/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/priceconditions
+https://<server>/PersAcc/priceconditions</server>
 ```
+
 Тело запроса содержит _JSON_ с следующими параметрами:
 
 | Параметры           |             Тип             | Обязательный | Описание                              |
@@ -865,20 +953,20 @@ https://<server>/PersAcc/priceconditions
 
 **response:**
 
-| Параметры            |             Тип             | Обязательный | Описание                          |
-| -------------------- | :-------------------------: | :----------: | :-------------------------------- |
-| TransactionID        |         Строка (36)         |     Нет      | [См. общее](#общее)               |
-| SourceID             |         Строка (36)         |      Да      | [См. общее](#общее)               |
-| GUIDPersonalAccount  |         Строка (36)         |      Да      | Возвращается из тела запроса      |
-| Period               | Дата (строка в формате UTC) |      Да      | Возвращается из тела запроса      |
+| Параметры                                                     |             Тип             | Обязательный | Описание                          |
+| ------------------------------------------------------------- | :-------------------------: | :----------: | :-------------------------------- |
+| TransactionID                                                 |         Строка (36)         |     Нет      | [См. общее](#общее)               |
+| SourceID                                                      |         Строка (36)         |      Да      | [См. общее](#общее)               |
+| GUIDPersonalAccount                                           |         Строка (36)         |      Да      | Возвращается из тела запроса      |
+| Period                                                        | Дата (строка в формате UTC) |      Да      | Возвращается из тела запроса      |
 | [PersonalAccountsData](#personalaccountsdata-priceconditions) |           Массив            |      Да      | Массив данных по личному кабинету |
 
 #### **PersonalAccountsData (PriceConditions):**
 
-| Параметры           |     Тип     | Обязательный | Описание                      |
-| ------------------- | :---------: | :----------: | :---------------------------- |
-| GUIDPersonalAccount | Строка (36) |      Да      | GUID личного кабинета клиента |
-| [Discounts](#discounts-priceconditions)           |   Массив    |      Да      | Массив скидок                 |
+| Параметры                               |     Тип     | Обязательный | Описание                      |
+| --------------------------------------- | :---------: | :----------: | :---------------------------- |
+| GUIDPersonalAccount                     | Строка (36) |      Да      | GUID личного кабинета клиента |
+| [Discounts](#discounts-priceconditions) |   Массив    |      Да      | Массив скидок                 |
 
 #### **Discounts (PriceConditions):**
 
@@ -893,17 +981,20 @@ https://<server>/PersAcc/priceconditions
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/priceconditions
+https://<server>/PersAcc/priceconditions</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": ["0d2fd304-07ef-4f32-9a76-2b7d820e2c64", "af121775-4d15-44c5-9e49-2565777c52ff"],
-    "Period": "2021-10-01T00:00:00+03:00" 
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": [
+    "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "af121775-4d15-44c5-9e49-2565777c52ff"
+  ],
+  "Period": "2021-10-01T00:00:00+03:00"
 }
 ```
 
@@ -911,49 +1002,49 @@ https://<server>/PersAcc/priceconditions
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "GUIDPersonalAccount": [
-            "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-            "af121775-4d15-44c5-9e49-2565777c52ff"
-        ],
-        "Period": "2021-10-01T00:00:00+03:00",
-        "PersonalAccountsData": [
-            {
-                "GUIDPersonalAccount": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-                "Discounts": [
-                    {
-                        "DiscountType": "Номенклатура",
-                        "DiscountSubject": "96aa282b-09c1-11ec-b9a9-04d9f5ae0304",
-                        "Value": 1
-                    },
-                    {
-                        "DiscountType": "ЦеноваяГруппа",
-                        "DiscountSubject": "Электро DW",
-                        "Value": 5
-                    }
-                ]
-            },
-            {
-                "GUIDPersonalAccount": "af121775-4d15-44c5-9e49-2565777c52ff",
-                "Discounts": [
-                    {
-                        "DiscountType": "ЦеноваяГруппа",
-                        "DiscountSubject": "Крепеж DEWALT",
-                        "Value": 20
-                    },
-                    {
-                        "DiscountType": "ЦеноваяГруппа",
-                        "DiscountSubject": "Электро DW SP",
-                        "Value": 5
-                    }
-                ]
-            }
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "GUIDPersonalAccount": [
+      "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+      "af121775-4d15-44c5-9e49-2565777c52ff"
+    ],
+    "Period": "2021-10-01T00:00:00+03:00",
+    "PersonalAccountsData": [
+      {
+        "GUIDPersonalAccount": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+        "Discounts": [
+          {
+            "DiscountType": "Номенклатура",
+            "DiscountSubject": "96aa282b-09c1-11ec-b9a9-04d9f5ae0304",
+            "Value": 1
+          },
+          {
+            "DiscountType": "ЦеноваяГруппа",
+            "DiscountSubject": "Электро DW",
+            "Value": 5
+          }
         ]
-    },
-    "error": null,
-    "errorCode": null
+      },
+      {
+        "GUIDPersonalAccount": "af121775-4d15-44c5-9e49-2565777c52ff",
+        "Discounts": [
+          {
+            "DiscountType": "ЦеноваяГруппа",
+            "DiscountSubject": "Крепеж DEWALT",
+            "Value": 20
+          },
+          {
+            "DiscountType": "ЦеноваяГруппа",
+            "DiscountSubject": "Электро DW SP",
+            "Value": 5
+          }
+        ]
+      }
+    ]
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -973,10 +1064,10 @@ https://<server>/PersAcc/priceconditions
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры |  Тип   | Обязательный | Описание                  |
-| --------- | :----: | :----------: | :------------------------ |
-| [Header](#header-product)    | Объект |      Да      | Общие данные сообщения    |
-| [Body](#body-product)      | Объект |      Да      | Основные данные сообщения |
+| Параметры                 |  Тип   | Обязательный | Описание                  |
+| ------------------------- | :----: | :----------: | :------------------------ |
+| [Header](#header-product) | Объект |      Да      | Общие данные сообщения    |
+| [Body](#body-product)     | Объект |      Да      | Основные данные сообщения |
 
 #### **Header (Product):**
 
@@ -988,29 +1079,29 @@ https://<server>/PersAcc/priceconditions
 
 #### **Body (Product):**
 
-| Параметры        |  Тип   | Обязательный | Описание               |
-| ---------------- | :----: | :----------: | :--------------------- |
-| [Products](#products-product)         | Массив |      Да      | Массив номенклатур     |
+| Параметры                                     |  Тип   | Обязательный | Описание               |
+| --------------------------------------------- | :----: | :----------: | :--------------------- |
+| [Products](#products-product)                 | Массив |      Да      | Массив номенклатур     |
 | [Products_Section](#products_section-product) | Массив |      Да      | Массив данных каталога |
-| [Categories](#categories-product)       | Массив |      Да      | Массив категорий       |
+| [Categories](#categories-product)             | Массив |      Да      | Массив категорий       |
 
 #### **Products (Product):**
 
-| Параметры      |     Тип     | Обязательный | Описание                           |
-| -------------- | :---------: | :----------: | :--------------------------------- |
-| GUID           | Строка (36) |      Да      | Массив номенклатур                 |
-| IsGroup        |   Булево    |      Да      | Признак группы                     |
-| Article_Number |   Строка    |      Да      | Артикул                            |
-| Code           |   Строка    |      Да      | Код номенклатуры                   |
-| Name           |   Строка    |      Да      | Наименование номенклатуры          |
-| Full_Name      |   Строка    |      Да      | Полное наименование номенклатуры   |
-| Description    |   Строка    |      Да      | Описание номенклатуры              |
-| Section_GUID   |   Массив    |      Да      | Массив идентификаторов Каталогов   |
-| Category_GUID  | Строка (36) |      Да      | Идентификатор категории            |
-| Price_Group    |   Строка    |      Да      | Ценовая группа                     |
-| IsNew          |   Булево    |      Да      | признак *Это новинка* номенклатуры |
-| [ProParck](#proparck-product)       |   Объект    |     Нет      | Данные подписки ProParck           |
-| [Properties](#properties-product)     |   Объект    |      Да      | Свойства номенклатуры              |
+| Параметры                         |     Тип     | Обязательный | Описание                           |
+| --------------------------------- | :---------: | :----------: | :--------------------------------- |
+| GUID                              | Строка (36) |      Да      | Массив номенклатур                 |
+| IsGroup                           |   Булево    |      Да      | Признак группы                     |
+| Article_Number                    |   Строка    |      Да      | Артикул                            |
+| Code                              |   Строка    |      Да      | Код номенклатуры                   |
+| Name                              |   Строка    |      Да      | Наименование номенклатуры          |
+| Full_Name                         |   Строка    |      Да      | Полное наименование номенклатуры   |
+| Description                       |   Строка    |      Да      | Описание номенклатуры              |
+| Section_GUID                      |   Массив    |      Да      | Массив идентификаторов Каталогов   |
+| Category_GUID                     | Строка (36) |      Да      | Идентификатор категории            |
+| Price_Group                       |   Строка    |      Да      | Ценовая группа                     |
+| IsNew                             |   Булево    |      Да      | признак _Это новинка_ номенклатуры |
+| [ProParck](#proparck-product)     |   Объект    |     Нет      | Данные подписки ProParck           |
+| [Properties](#properties-product) |   Объект    |      Да      | Свойства номенклатуры              |
 
 #### **ProParck (Product):**
 
@@ -1058,103 +1149,102 @@ https://<server>/PersAcc/priceconditions
 
 ```json
 {
-    "Header": {
-        "Request_ID": "1d534e84-0c30-492e-8dcd-0e51bfe095cd",
-        "Data_Type": "Products",
-        "Count_Master_Data": 2
-    },
-    "Body": {
-        "Products": [{
-                "GUID": "300465dd-7de8-11ec-b9bc-001b21b3a70e",
-                "IsGroup": false,
-                "Article_Number": "DW100DR-PL",
-                "Code": "НФ-00239628",
-                "Name": "Алмазная шлифовальная чашка. Размером 100MM X B 16/20X5X8 MM DCUT",
-                "Full_Name": "Алмазная шлифовальная чашка. Размером 100MM X B 16/20X5X8 MM DCUT",
-                "Description": "",
-                "Section_GUID": [
-                    "3f56822f-ebe6-11ec-81a0-00155df43005"
-                ],
-                "Category_GUID": "6df736fa-51c4-11ec-b9ba-001b21b3a70e",
-                "Price_Group": "Оснастка DCUT",
-                "IsNew": true,
-                "ProParck": {
-                    "Phase": ["3", "5"]
-                 },
-                "Properties": {
-                    "Brand": "",
-                    "ExclusiveB2B": false,
-                    "NewProduct": false,
-                    "Popular": true,
-                    "Sales": false,
-                    "Seasonal": true,
-                    "Price": 500,
-                    "PriceDate": "2022-07-12T19:13:19+03:00",
-                    "SecondPrice": 500,
-                    "QuantityOfStock": 10,
-                    "PathFTPImageFile": "11291255_e1c8_11ec_81a0_00155df43005__f85eab3c_ec12_11ec_81a0_00155df43005.jpg"
-                }
-            },
-            {
-                "GUID": "f3b8ad1f-e1cb-11ec-81a0-00155df43005",
-                "IsGroup": false,
-                "Article_Number": "CD14100075055",
-                "Code": "НФ-00250312",
-                "Name": "Сверло по металлу HSS DRILL BIT - D5.2XL86XWL52 WHITE COLOR 10PC/TUB DCUT",
-                "Full_Name": "Сверло по металлу HSS DRILL BIT - D5.2XL86XWL52 WHITE COLOR 10PC/TUB DCUT",
-                "Description": "Сверло по металлу HSS DRILL BIT - D5.2XL86XWL52 WHITE COLOR 10PC/TUB",
-                "Section_GUID": [
-                    "3f56822f-ebe6-11ec-81a0-00155df43005"
-                ],
-                "Category_GUID": "6df736fa-51c4-11ec-b9ba-001b21b3a70e",
-                "Price_Group": "Оснастка DCUT",
-                "Properties": {
-                    "Brand": "",
-                    "ExclusiveB2B": false,
-                    "NewProduct": false,
-                    "Popular": false,
-                    "Sales": false,
-                    "Seasonal": false
-                }
-            }
-        ],
-        "Products_Section": [{
-                "GUID": "3f56822f-ebe6-11ec-81a0-00155df43005",
-                "IsGroup": true,
-                "Code": "638bcff3-851f-41b1-be2c-47c756d11c12",
-                "Name": "Расходные материалы DCUT",
-                "Parent_GUID": ""
-            },
-            {
-                "GUID": "b6d43157-e8dc-11ec-81a0-00155df43005",
-                "IsGroup": true,
-                "Code": "7c76ced0-3bb2-4d73-af34-30a40d7213ac",
-                "Name": "Эксклюзив \"до 2х лет без затрат\"",
-                "Parent_GUID": ""
-            }
-        ],
-        "Categories": [{
-                "GUID": "6df736fa-51c4-11ec-b9ba-001b21b3a70e",
-                "Code": "НФ-000056",
-                "Name": "Оснастка DCUT"
-            },
-            {
-                "GUID": "22041809-7d7f-11e9-80d3-0050569133d8",
-                "Code": "НФ-000026",
-                "Name": "Оснастка"
-            },
-            {
-                "GUID": "aab88747-13c7-11eb-b98c-04d9f5ae0304",
-                "Code": "НФ-000050",
-                "Name": "Инструменты"
-            },
-            {
-                "GUID": "987b2c6e-524b-11e5-9810-3085a93ddca2",
-                "Code": "БУ-000001",
-                "Name": "Основная номенклатурная группа"
-            }
-        ]
-    }
+  "Header": {
+    "Request_ID": "1d534e84-0c30-492e-8dcd-0e51bfe095cd",
+    "Data_Type": "Products",
+    "Count_Master_Data": 2
+  },
+  "Body": {
+    "Products": [
+      {
+        "GUID": "300465dd-7de8-11ec-b9bc-001b21b3a70e",
+        "IsGroup": false,
+        "Article_Number": "DW100DR-PL",
+        "Code": "НФ-00239628",
+        "Name": "Алмазная шлифовальная чашка. Размером 100MM X B 16/20X5X8 MM DCUT",
+        "Full_Name": "Алмазная шлифовальная чашка. Размером 100MM X B 16/20X5X8 MM DCUT",
+        "Description": "",
+        "Section_GUID": ["3f56822f-ebe6-11ec-81a0-00155df43005"],
+        "Category_GUID": "6df736fa-51c4-11ec-b9ba-001b21b3a70e",
+        "Price_Group": "Оснастка DCUT",
+        "IsNew": true,
+        "ProParck": {
+          "Phase": ["3", "5"]
+        },
+        "Properties": {
+          "Brand": "",
+          "ExclusiveB2B": false,
+          "NewProduct": false,
+          "Popular": true,
+          "Sales": false,
+          "Seasonal": true,
+          "Price": 500,
+          "PriceDate": "2022-07-12T19:13:19+03:00",
+          "SecondPrice": 500,
+          "QuantityOfStock": 10,
+          "PathFTPImageFile": "11291255_e1c8_11ec_81a0_00155df43005__f85eab3c_ec12_11ec_81a0_00155df43005.jpg"
+        }
+      },
+      {
+        "GUID": "f3b8ad1f-e1cb-11ec-81a0-00155df43005",
+        "IsGroup": false,
+        "Article_Number": "CD14100075055",
+        "Code": "НФ-00250312",
+        "Name": "Сверло по металлу HSS DRILL BIT - D5.2XL86XWL52 WHITE COLOR 10PC/TUB DCUT",
+        "Full_Name": "Сверло по металлу HSS DRILL BIT - D5.2XL86XWL52 WHITE COLOR 10PC/TUB DCUT",
+        "Description": "Сверло по металлу HSS DRILL BIT - D5.2XL86XWL52 WHITE COLOR 10PC/TUB",
+        "Section_GUID": ["3f56822f-ebe6-11ec-81a0-00155df43005"],
+        "Category_GUID": "6df736fa-51c4-11ec-b9ba-001b21b3a70e",
+        "Price_Group": "Оснастка DCUT",
+        "Properties": {
+          "Brand": "",
+          "ExclusiveB2B": false,
+          "NewProduct": false,
+          "Popular": false,
+          "Sales": false,
+          "Seasonal": false
+        }
+      }
+    ],
+    "Products_Section": [
+      {
+        "GUID": "3f56822f-ebe6-11ec-81a0-00155df43005",
+        "IsGroup": true,
+        "Code": "638bcff3-851f-41b1-be2c-47c756d11c12",
+        "Name": "Расходные материалы DCUT",
+        "Parent_GUID": ""
+      },
+      {
+        "GUID": "b6d43157-e8dc-11ec-81a0-00155df43005",
+        "IsGroup": true,
+        "Code": "7c76ced0-3bb2-4d73-af34-30a40d7213ac",
+        "Name": "Эксклюзив \"до 2х лет без затрат\"",
+        "Parent_GUID": ""
+      }
+    ],
+    "Categories": [
+      {
+        "GUID": "6df736fa-51c4-11ec-b9ba-001b21b3a70e",
+        "Code": "НФ-000056",
+        "Name": "Оснастка DCUT"
+      },
+      {
+        "GUID": "22041809-7d7f-11e9-80d3-0050569133d8",
+        "Code": "НФ-000026",
+        "Name": "Оснастка"
+      },
+      {
+        "GUID": "aab88747-13c7-11eb-b98c-04d9f5ae0304",
+        "Code": "НФ-000050",
+        "Name": "Инструменты"
+      },
+      {
+        "GUID": "987b2c6e-524b-11e5-9810-3085a93ddca2",
+        "Code": "БУ-000001",
+        "Name": "Основная номенклатурная группа"
+      }
+    ]
+  }
 }
 ```
 
@@ -1170,10 +1260,10 @@ https://<server>/PersAcc/priceconditions
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры |  Тип   | Обязательный | Описание                  |
-| --------- | :----: | :----------: | :------------------------ |
-| [Header](#header-image)    | Объект |      Да      | Общие данные сообщения    |
-| [Body](#body-image)      | Объект |      Да      | Основные данные сообщения |
+| Параметры               |  Тип   | Обязательный | Описание                  |
+| ----------------------- | :----: | :----------: | :------------------------ |
+| [Header](#header-image) | Объект |      Да      | Общие данные сообщения    |
+| [Body](#body-image)     | Объект |      Да      | Основные данные сообщения |
 
 #### **Header (Image):**
 
@@ -1185,15 +1275,15 @@ https://<server>/PersAcc/priceconditions
 
 #### **Body (Image):**
 
-| Параметры |  Тип   | Обязательный | Описание           |
-| --------- | :----: | :----------: | :----------------- |
-| [Products](#products-image)  | Массив |      Да      | Массив номенклатур |
+| Параметры                   |  Тип   | Обязательный | Описание           |
+| --------------------------- | :----: | :----------: | :----------------- |
+| [Products](#products-image) | Массив |      Да      | Массив номенклатур |
 
 #### **Products (Image):**
 
-| Параметры  |     Тип     | Обязательный | Описание                   |
-| ---------- | :---------: | :----------: | :------------------------- |
-| GUID       | Строка (36) |      Да      | Идентификатор номенклатуры |
+| Параметры                       |     Тип     | Обязательный | Описание                   |
+| ------------------------------- | :---------: | :----------: | :------------------------- |
+| GUID                            | Строка (36) |      Да      | Идентификатор номенклатуры |
 | [Properties](#properties-image) |   Объект    |      Да      | Свойства                   |
 
 #### **Properties (Image):**
@@ -1208,32 +1298,33 @@ https://<server>/PersAcc/priceconditions
 
 ```json
 {
-    "Header": {
-        "Request_ID": "d1984ebc-a642-405b-8514-a98c07d90ac4",
-        "Data_Type": "updatePictures",
-        "Count_Master_Data": 3
-    },
-    "Body": {
-        "Products": [{
-                "GUID": "300465dd-7de8-11ec-b9bc-001b21b3a70e",
-                "Properties": {
-                    "PathFTPImageFile": "300465dd_7de8_11ec_b9bc_001b21b3a70e__f0894933_ec0f_11ec_81a0_00155df43005.jpg"
-                }
-            },
-            {
-                "GUID": "cc43494a-db3d-11ec-81a0-00155df43005",
-                "Properties": {
-                    "PathFTPImageFile": "cc43494a_db3d_11ec_81a0_00155df43005__a8681ed4_e0e1_11ec_81a0_00155df43005.jpg"
-                }
-            },
-            {
-                "GUID": "11291255-e1c8-11ec-81a0-00155df43005",
-                "Properties": {
-                    "PathFTPImageFile": "11291255_e1c8_11ec_81a0_00155df43005__f85eab3c_ec12_11ec_81a0_00155df43005.jpg"
-                }
-            }
-        ]
-    }
+  "Header": {
+    "Request_ID": "d1984ebc-a642-405b-8514-a98c07d90ac4",
+    "Data_Type": "updatePictures",
+    "Count_Master_Data": 3
+  },
+  "Body": {
+    "Products": [
+      {
+        "GUID": "300465dd-7de8-11ec-b9bc-001b21b3a70e",
+        "Properties": {
+          "PathFTPImageFile": "300465dd_7de8_11ec_b9bc_001b21b3a70e__f0894933_ec0f_11ec_81a0_00155df43005.jpg"
+        }
+      },
+      {
+        "GUID": "cc43494a-db3d-11ec-81a0-00155df43005",
+        "Properties": {
+          "PathFTPImageFile": "cc43494a_db3d_11ec_81a0_00155df43005__a8681ed4_e0e1_11ec_81a0_00155df43005.jpg"
+        }
+      },
+      {
+        "GUID": "11291255-e1c8-11ec-81a0-00155df43005",
+        "Properties": {
+          "PathFTPImageFile": "11291255_e1c8_11ec_81a0_00155df43005__f85eab3c_ec12_11ec_81a0_00155df43005.jpg"
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -1249,10 +1340,10 @@ https://<server>/PersAcc/priceconditions
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры |  Тип   | Обязательный | Описание                  |
-| --------- | :----: | :----------: | :------------------------ |
-| [Header](#header-price)    | Объект |      Да      | Общие данные сообщения    |
-| [Body](#body-price)      | Объект |      Да      | Основные данные сообщения |
+| Параметры               |  Тип   | Обязательный | Описание                  |
+| ----------------------- | :----: | :----------: | :------------------------ |
+| [Header](#header-price) | Объект |      Да      | Общие данные сообщения    |
+| [Body](#body-price)     | Объект |      Да      | Основные данные сообщения |
 
 #### **Header (Price):**
 
@@ -1264,15 +1355,15 @@ https://<server>/PersAcc/priceconditions
 
 #### **Body (Price):**
 
-| Параметры |  Тип   | Обязательный | Описание           |
-| --------- | :----: | :----------: | :----------------- |
-| [Products](#products-price)  | Массив |      Да      | Массив номенклатур |
+| Параметры                   |  Тип   | Обязательный | Описание           |
+| --------------------------- | :----: | :----------: | :----------------- |
+| [Products](#products-price) | Массив |      Да      | Массив номенклатур |
 
 #### **Products (Price):**
 
-| Параметры  |     Тип     | Обязательный | Описание                   |
-| ---------- | :---------: | :----------: | :------------------------- |
-| GUID       | Строка (36) |      Да      | Идентификатор номенклатуры |
+| Параметры                       |     Тип     | Обязательный | Описание                   |
+| ------------------------------- | :---------: | :----------: | :------------------------- |
+| GUID                            | Строка (36) |      Да      | Идентификатор номенклатуры |
 | [Properties](#properties-price) |   Объект    |      Да      | Свойства                   |
 
 #### **Properties (Price):**
@@ -1289,30 +1380,31 @@ https://<server>/PersAcc/priceconditions
 
 ```json
 {
-    "Header": {
-        "Request_ID": "cfcdaea0-2361-4e96-b06c-87405e380aeb",
-        "Data_Type": "Price",
-        "Count_Master_Data": 2
-    },
-    "Body": {
-        "Products": [{
-                "GUID": "470d847b-ebf4-11ec-81a0-00155df43005",
-                "Properties": {
-                    "Price": 22607,
-                    "PriceDate": "2022-07-12T19:13:19+03:00",
-                    "SecondPrice": 22607
-                }
-            },
-            {
-                "GUID": "4894d920-ebe7-11ec-81a0-00155df43005",
-                "Properties": {
-                    "Price": 17927,
-                    "PriceDate": "2022-07-12T19:13:19+03:00",
-                    "SecondPrice": 17927
-                }
-            }
-        ]
-    }
+  "Header": {
+    "Request_ID": "cfcdaea0-2361-4e96-b06c-87405e380aeb",
+    "Data_Type": "Price",
+    "Count_Master_Data": 2
+  },
+  "Body": {
+    "Products": [
+      {
+        "GUID": "470d847b-ebf4-11ec-81a0-00155df43005",
+        "Properties": {
+          "Price": 22607,
+          "PriceDate": "2022-07-12T19:13:19+03:00",
+          "SecondPrice": 22607
+        }
+      },
+      {
+        "GUID": "4894d920-ebe7-11ec-81a0-00155df43005",
+        "Properties": {
+          "Price": 17927,
+          "PriceDate": "2022-07-12T19:13:19+03:00",
+          "SecondPrice": 17927
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -1328,10 +1420,10 @@ https://<server>/PersAcc/priceconditions
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры |  Тип   | Обязательный | Описание                  |
-| --------- | :----: | :----------: | :------------------------ |
-| [Header](#header-stock)    | Объект |      Да      | Общие данные сообщения    |
-| [Body](#body-stock)      | Объект |      Да      | Основные данные сообщения |
+| Параметры               |  Тип   | Обязательный | Описание                  |
+| ----------------------- | :----: | :----------: | :------------------------ |
+| [Header](#header-stock) | Объект |      Да      | Общие данные сообщения    |
+| [Body](#body-stock)     | Объект |      Да      | Основные данные сообщения |
 
 #### **Header (Stock):**
 
@@ -1343,15 +1435,15 @@ https://<server>/PersAcc/priceconditions
 
 #### **Body (Stock):**
 
-| Параметры |  Тип   | Обязательный | Описание           |
-| --------- | :----: | :----------: | :----------------- |
-| [Products](#products-stock)  | Массив |      Да      | Массив номенклатур |
+| Параметры                   |  Тип   | Обязательный | Описание           |
+| --------------------------- | :----: | :----------: | :----------------- |
+| [Products](#products-stock) | Массив |      Да      | Массив номенклатур |
 
 #### **Products (Stock):**
 
-| Параметры  |     Тип     | Обязательный | Описание                   |
-| ---------- | :---------: | :----------: | :------------------------- |
-| GUID       | Строка (36) |      Да      | Идентификатор номенклатуры |
+| Параметры                       |     Тип     | Обязательный | Описание                   |
+| ------------------------------- | :---------: | :----------: | :------------------------- |
+| GUID                            | Строка (36) |      Да      | Идентификатор номенклатуры |
 | [Properties](#properties-stock) |   Объект    |      Да      | Свойства                   |
 
 #### **Properties (Stock):**
@@ -1367,35 +1459,36 @@ https://<server>/PersAcc/priceconditions
 
 ```json
 {
-    "Header": {
-        "Request_ID": "ff104b78-6b25-45dc-a5df-f696c9d104c3",
-        "Data_Type": "QuantityOfStock",
-        "Count_Master_Data": 3
-    },
-    "Body": {
-        "Products": [{
-                "GUID": "1e503ac1-7de0-11ec-b9bc-001b21b3a70e",
-                "Properties": {
-                    "QuantityOfStock": 1,
-                    "QuantityOfStockSupplier": ""
-                }
-            },
-            {
-                "GUID": "19625c3d-c654-11e9-80db-0050569133d8",
-                "Properties": {
-                    "QuantityOfStock": 0,
-                    "QuantityOfStockSupplier": ">500"
-                }
-            },
-            {
-                "GUID": "e417ee1b-ee88-11e8-80d9-005056913ce7",
-                "Properties": {
-                    "QuantityOfStock": 2,
-                    "QuantityOfStockSupplier": "21135"
-                }
-            }
-        ]
-    }
+  "Header": {
+    "Request_ID": "ff104b78-6b25-45dc-a5df-f696c9d104c3",
+    "Data_Type": "QuantityOfStock",
+    "Count_Master_Data": 3
+  },
+  "Body": {
+    "Products": [
+      {
+        "GUID": "1e503ac1-7de0-11ec-b9bc-001b21b3a70e",
+        "Properties": {
+          "QuantityOfStock": 1,
+          "QuantityOfStockSupplier": ""
+        }
+      },
+      {
+        "GUID": "19625c3d-c654-11e9-80db-0050569133d8",
+        "Properties": {
+          "QuantityOfStock": 0,
+          "QuantityOfStockSupplier": ">500"
+        }
+      },
+      {
+        "GUID": "e417ee1b-ee88-11e8-80d9-005056913ce7",
+        "Properties": {
+          "QuantityOfStock": 2,
+          "QuantityOfStockSupplier": "21135"
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -1418,7 +1511,7 @@ https://<server>/PersAcc/priceconditions
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/refund/{guid}
+https://<server>/PersAcc/proParck/refund/{guid}</server>
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1440,30 +1533,30 @@ https://<server>/PersAcc/proParck/refund/{guid}
 
 #### **response (ProParckRefund):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-proparckrefund)     |   Объект    |      Да      | Данные документа    |
+| Параметры                              |     Тип     | Обязательный | Описание            |
+| -------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                          | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                               | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-proparckrefund) |   Объект    |      Да      | Данные документа    |
 
 #### **Documents (ProParckRefund):**
 
-| Параметры           |  Тип   |     | Обязательный | Описание                                               |
-| ------------------- | :----: | --- | :----------: | ------------------------------------------------------ |
+| Параметры                                        |  Тип   |     | Обязательный | Описание                                                 |
+| ------------------------------------------------ | :----: | --- | :----------: | -------------------------------------------------------- |
 | [ProParckRefund](#proparckrefund-proparckrefund) | Массив |     |      Да      | Массив данных документов Возврат инструмента из подписки |
-|                     |        |     |              |                                                        |
+|                                                  |        |     |              |                                                          |
 
 #### **ProParckRefund (ProParckRefund):**
 
-| Параметры        |             Тип             | Обязательный | Описание                                   |
-| ---------------- | :-------------------------: | :----------: | :----------------------------------------- |
-| GUIDDocument     |         Строка (36)         |      Да      | Уникальный GUID документа                  |
-| GUIDCustomer     |         Строка (36)         |      Да      | Уникальный GUID контрагента                |
-| ClientObjectGUID |         Строка (36)         |      Да      | Уникальный GUID объекта контрагента        |
-| Number           |           Строка            |      Да      | Номер документа                            |
-| Date             | Дата (строка в формате UTC) |      Да      | Дата документа                             |
-| GUIDRequest      |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
-| [Products](#products-proparckrefund)         |           Массив            |      Да      | Данные табличной части                     |
+| Параметры                            |             Тип             | Обязательный | Описание                                   |
+| ------------------------------------ | :-------------------------: | :----------: | :----------------------------------------- |
+| GUIDDocument                         |         Строка (36)         |      Да      | Уникальный GUID документа                  |
+| GUIDCustomer                         |         Строка (36)         |      Да      | Уникальный GUID контрагента                |
+| ClientObjectGUID                     |         Строка (36)         |      Да      | Уникальный GUID объекта контрагента        |
+| Number                               |           Строка            |      Да      | Номер документа                            |
+| Date                                 | Дата (строка в формате UTC) |      Да      | Дата документа                             |
+| GUIDRequest                          |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
+| [Products](#products-proparckrefund) |           Массив            |      Да      | Данные табличной части                     |
 
 #### **Products (ProParckRefund):**
 
@@ -1481,15 +1574,17 @@ https://<server>/PersAcc/proParck/refund/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005
+https://<server
+  >/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
-{    
-    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c"
+{
+  "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+  "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c"
 }
 ```
 
@@ -1497,34 +1592,34 @@ https://<server>/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005
 
 ```json
 {
-    "response": {
-        "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-        "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
-        "Documents": {
-            "ProParckRefund": [
-                {
-                    "GUIDDocument": "6ae193de-c4b4-11ed-81b7-00155df43005",
-                    "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
-                    "ClientObjectGUID": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
-                    "Number": "РР-00000001",
-                    "Date": "2023-03-17T14:11:09+03:00",
-                    "GUIDRequest": "639d65d9-c4b4-11ed-81b7-00155df43005",
-                    "Products": [
-                        {
-                            "GUIDProParck": "6444c088-bd12-11ed-81b6-00155df43005",
-                            "NumberSub": "РР-00000001",
-                            "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
-                            "Article": "D25153K-KS",
-                            "Serial": "000025",
-                            "Quantity": 1
-                        }
-                    ]
-                }
-            ]
+  "response": {
+    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
+    "Documents": {
+      "ProParckRefund": [
+        {
+          "GUIDDocument": "6ae193de-c4b4-11ed-81b7-00155df43005",
+          "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
+          "ClientObjectGUID": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
+          "Number": "РР-00000001",
+          "Date": "2023-03-17T14:11:09+03:00",
+          "GUIDRequest": "639d65d9-c4b4-11ed-81b7-00155df43005",
+          "Products": [
+            {
+              "GUIDProParck": "6444c088-bd12-11ed-81b6-00155df43005",
+              "NumberSub": "РР-00000001",
+              "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
+              "Article": "D25153K-KS",
+              "Serial": "000025",
+              "Quantity": 1
+            }
+          ]
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -1543,7 +1638,7 @@ https://<server>/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/replacement/{guid}
+https://<server>/PersAcc/proParck/replacement/{guid}</server>
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1557,38 +1652,38 @@ https://<server>/PersAcc/proParck/replacement/{guid}
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-proparckreplacement)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                                 |           Тип            | Обязательный | Описание                       |
+| ----------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-proparckreplacement) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                     |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                                 |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (ProParckReplacement):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-proparckreplacement)     |   Объект    |      Да      | Данные документа    |
+| Параметры                                   |     Тип     | Обязательный | Описание            |
+| ------------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                               | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                    | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-proparckreplacement) |   Объект    |      Да      | Данные документа    |
 
 #### **Documents (ProParckReplacement):**
 
-| Параметры           |  Тип   |     | Обязательный | Описание                                               |
-| ------------------- | :----: | --- | :----------: | ------------------------------------------------------ |
+| Параметры                                                       |  Тип   |     | Обязательный | Описание                                               |
+| --------------------------------------------------------------- | :----: | --- | :----------: | ------------------------------------------------------ |
 | [ProParckReplacement](#proparckreplacement-proparckreplacement) | Массив |     |      Да      | Массив данных документов Замена инструмента в подписке |
-|                     |        |     |              |                                                        |
+|                                                                 |        |     |              |                                                        |
 
 #### **ProParckReplacement (ProParckReplacement):**
 
-| Параметры        |             Тип             | Обязательный | Описание                                   |
-| ---------------- | :-------------------------: | :----------: | :----------------------------------------- |
-| GUIDDocument     |         Строка (36)         |      Да      | Уникальный GUID документа                  |
-| GUIDCustomer     |         Строка (36)         |      Да      | Уникальный GUID контрагента                |
-| ClientObjectGUID |         Строка (36)         |      Да      | Уникальный GUID объекта контрагента        |
-| Number           |           Строка            |      Да      | Номер документа                            |
-| Date             | Дата (строка в формате UTC) |      Да      | Дата документа                             |
-| GUIDRequest      |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
-| [Products](#products-proparckreplacement)         |           Массив            |      Да      | Данные табличной части                     |
+| Параметры                                 |             Тип             | Обязательный | Описание                                   |
+| ----------------------------------------- | :-------------------------: | :----------: | :----------------------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа                  |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента                |
+| ClientObjectGUID                          |         Строка (36)         |      Да      | Уникальный GUID объекта контрагента        |
+| Number                                    |           Строка            |      Да      | Номер документа                            |
+| Date                                      | Дата (строка в формате UTC) |      Да      | Дата документа                             |
+| GUIDRequest                               |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
+| [Products](#products-proparckreplacement) |           Массив            |      Да      | Данные табличной части                     |
 
 #### **Products (ProParckReplacement):**
 
@@ -1609,15 +1704,17 @@ https://<server>/PersAcc/proParck/replacement/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43005
+https://<server
+  >/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43005</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
-{    
-    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c"
+{
+  "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+  "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c"
 }
 ```
 
@@ -1625,37 +1722,37 @@ https://<server>/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df430
 
 ```json
 {
-    "response": {
-        "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-        "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
-        "Documents": {
-            "ProParckReplacement": [
-                {
-                    "GUIDDocument": "41ffdaf4-c4b4-11ed-81b7-00155df43005",
-                    "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
-                    "ClientObjectGUID": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
-                    "Number": "РР-00000001",
-                    "Date": "2023-03-17T14:10:00+03:00",
-                    "GUIDRequest": "b681d4af-c4b3-11ed-81b7-00155df43005",
-                    "Products": [
-                        {
-                            "GUIDProParck": "6444c088-bd12-11ed-81b6-00155df43005",
-                            "NumberSub": "РР-00000001",
-                            "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
-                            "Article": "D25153K-KS",
-                            "Serial": "000007",
-                            "ItemGUIDTo": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
-                            "ArticleTo": "D25153K-KS",
-                            "SerialTo": "000025",
-                            "Quantity": 1
-                        }
-                    ]
-                }
-            ]
+  "response": {
+    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
+    "Documents": {
+      "ProParckReplacement": [
+        {
+          "GUIDDocument": "41ffdaf4-c4b4-11ed-81b7-00155df43005",
+          "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
+          "ClientObjectGUID": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
+          "Number": "РР-00000001",
+          "Date": "2023-03-17T14:10:00+03:00",
+          "GUIDRequest": "b681d4af-c4b3-11ed-81b7-00155df43005",
+          "Products": [
+            {
+              "GUIDProParck": "6444c088-bd12-11ed-81b6-00155df43005",
+              "NumberSub": "РР-00000001",
+              "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
+              "Article": "D25153K-KS",
+              "Serial": "000007",
+              "ItemGUIDTo": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
+              "ArticleTo": "D25153K-KS",
+              "SerialTo": "000025",
+              "Quantity": 1
+            }
+          ]
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -1674,7 +1771,7 @@ https://<server>/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df430
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/new/{guid}
+https://<server>/PersAcc/proParck/new/{guid}</server>
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1688,38 +1785,38 @@ https://<server>/PersAcc/proParck/new/{guid}
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-proparcknew)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                         |           Тип            | Обязательный | Описание                       |
+| --------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-proparcknew) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                             |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                         |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (ProParckNew):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-proparcknew)    |   Объект    |      Да      | Данные документа    |
+| Параметры                           |     Тип     | Обязательный | Описание            |
+| ----------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                       | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                            | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-proparcknew) |   Объект    |      Да      | Данные документа    |
 
 #### **Documents (ProParckNew):**
 
-| Параметры   |  Тип   | Обязательный | Описание                                        |
-| ----------- | :----: | :----------: | :---------------------------------------------- |
+| Параметры                               |  Тип   | Обязательный | Описание                                        |
+| --------------------------------------- | :----: | :----------: | :---------------------------------------------- |
 | [ProParckNew](#proparcknew-proparcknew) | Массив |      Да      | Массив данных документов Подписка на инструмент |
 
 #### **ProParckNew (ProParckNew):**
 
-| Параметры        |             Тип             | Обязательный | Описание                                   |
-| ---------------- | :-------------------------: | :----------: | :----------------------------------------- |
-| GUIDDocument     |         Строка (36)         |      Да      | Уникальный GUID документа                  |
-| GUIDCustomer     |         Строка (36)         |      Да      | Уникальный GUID контрагента                |
-| ClientObjectGUID |         Строка (36)         |      Да      | Уникальный GUID объекта контрагента        |
-| NumberSub        |           Строка            |      Да      | Номер подписки                             |
-| Date             | Дата (строка в формате UTC) |      Да      | Дата документа                             |
-| StartDate        | Дата (строка в формате UTC) |      Да      | Дата начала действия подписки              |
-| GUIDRequest      |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
-| [Products](#products-proparcknew)         |           Массив            |      Да      | Данные табличной части                     |
+| Параметры                         |             Тип             | Обязательный | Описание                                   |
+| --------------------------------- | :-------------------------: | :----------: | :----------------------------------------- |
+| GUIDDocument                      |         Строка (36)         |      Да      | Уникальный GUID документа                  |
+| GUIDCustomer                      |         Строка (36)         |      Да      | Уникальный GUID контрагента                |
+| ClientObjectGUID                  |         Строка (36)         |      Да      | Уникальный GUID объекта контрагента        |
+| NumberSub                         |           Строка            |      Да      | Номер подписки                             |
+| Date                              | Дата (строка в формате UTC) |      Да      | Дата документа                             |
+| StartDate                         | Дата (строка в формате UTC) |      Да      | Дата начала действия подписки              |
+| GUIDRequest                       |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
+| [Products](#products-proparcknew) |           Массив            |      Да      | Данные табличной части                     |
 
 #### **Products (ProParckNew):**
 
@@ -1735,15 +1832,17 @@ https://<server>/PersAcc/proParck/new/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005
+https://<server
+  >/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
-{    
-    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c"
+{
+  "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+  "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c"
 }
 ```
 
@@ -1751,33 +1850,33 @@ https://<server>/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005
 
 ```json
 {
-    "response": {
-        "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-        "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
-        "Documents": {
-            "ProParckNew": [
-                {
-                    "GUIDDocument": "6444c088-bd12-11ed-81b6-00155df43005",
-                    "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
-                    "ClientObjectGUID": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
-                    "NumberSub": "РР-00000001",
-                    "Date": "2023-03-07T21:03:41+03:00",
-                    "StartDate": "2023-03-06T00:00:00+03:00",
-                    "GUIDRequest": "2ec2dff2-bd12-11ed-81b6-00155df43005",
-                    "Products": [
-                        {
-                            "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
-                            "Serial": "000007",
-                            "Article": "D25153K-KS",
-                            "Quantity": 1
-                        }
-                    ]
-                }
-            ]
+  "response": {
+    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
+    "Documents": {
+      "ProParckNew": [
+        {
+          "GUIDDocument": "6444c088-bd12-11ed-81b6-00155df43005",
+          "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
+          "ClientObjectGUID": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
+          "NumberSub": "РР-00000001",
+          "Date": "2023-03-07T21:03:41+03:00",
+          "StartDate": "2023-03-06T00:00:00+03:00",
+          "GUIDRequest": "2ec2dff2-bd12-11ed-81b6-00155df43005",
+          "Products": [
+            {
+              "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
+              "Serial": "000007",
+              "Article": "D25153K-KS",
+              "Quantity": 1
+            }
+          ]
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -1796,28 +1895,28 @@ https://<server>/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/moving
+https://<server>/PersAcc/proParck/moving</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры     |     Тип     | Обязательный | Описание                  |
-| ------------- | :---------: | :----------: | :------------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее)       |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее)       |
-| GUIDCustomer  | Строка (36) |      Да      | GUID клиента              |
-| [Request](#request-proparckmoving)       |   Объект    |      Да      | Информация по перемещению |
+| Параметры                          |     Тип     | Обязательный | Описание                  |
+| ---------------------------------- | :---------: | :----------: | :------------------------ |
+| TransactionID                      | Строка (36) |     Нет      | [См. общее](#общее)       |
+| SourceID                           | Строка (36) |      Да      | [См. общее](#общее)       |
+| GUIDCustomer                       | Строка (36) |      Да      | GUID клиента              |
+| [Request](#request-proparckmoving) |   Объект    |      Да      | Информация по перемещению |
 
 #### **Request (ProParckMoving):**
 
-| Параметры            |             Тип             | Обязательный | Описание                                            |
-| -------------------- | :-------------------------: | :----------: | :-------------------------------------------------- |
-| Date                 | Дата (строка в формате UTC) |      Да      | Дата перемещения                                    |
-| Number               |           Строка            |      Да      | Номер перемещения  на сайте                         |
-| ClientObjectGUIDFrom |         Строка (36)         |      Да      | Идентификатор объекта клиента (откуда перемещается) |
-| ClientObjectGUIDTo   |         Строка (36)         |      Да      | Идентификатор объекта клиента (куда перемещается)   |
-| Comment              |           Строка            |      Да      | Комментарий                                         |
-| [Products](#products-proparckmoving)             |           Массив            |      Да      | Данные по инструменту                               |
+| Параметры                            |             Тип             | Обязательный | Описание                                            |
+| ------------------------------------ | :-------------------------: | :----------: | :-------------------------------------------------- |
+| Date                                 | Дата (строка в формате UTC) |      Да      | Дата перемещения                                    |
+| Number                               |           Строка            |      Да      | Номер перемещения на сайте                          |
+| ClientObjectGUIDFrom                 |         Строка (36)         |      Да      | Идентификатор объекта клиента (откуда перемещается) |
+| ClientObjectGUIDTo                   |         Строка (36)         |      Да      | Идентификатор объекта клиента (куда перемещается)   |
+| Comment                              |           Строка            |      Да      | Комментарий                                         |
+| [Products](#products-proparckmoving) |           Массив            |      Да      | Данные по инструменту                               |
 
 #### **Products (ProParckMoving):**
 
@@ -1831,11 +1930,11 @@ https://<server>/PersAcc/proParck/moving
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-proparckmoving)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                            |           Тип            | Обязательный | Описание                       |
+| ------------------------------------ | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-proparckmoving) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                            |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (ProParckMoving):**
 
@@ -1850,32 +1949,32 @@ https://<server>/PersAcc/proParck/moving
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/moving
+https://<server>/PersAcc/proParck/moving</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
-{    
-    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
-    "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
-    "Request": {
-        "Date": "2023-03-08T11:04:24+03:00",
-        "Number": "N3322",
-        "ClientObjectGUIDFrom": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
-        "ClientObjectGUIDTo": "b8fc64af-3adc-11eb-b990-04d9f5ae0304",
-        "Comment": "Ком#",
-        "Products": [
-            {
-                "GUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
-                "Serial": "000007",
-                "NumberSub": "РР-00000001",
-                "Article": "D25153K-KS",
-                "Quantity": "1"
-            }
-        ]
-    }
+{
+  "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+  "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
+  "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
+  "Request": {
+    "Date": "2023-03-08T11:04:24+03:00",
+    "Number": "N3322",
+    "ClientObjectGUIDFrom": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
+    "ClientObjectGUIDTo": "b8fc64af-3adc-11eb-b990-04d9f5ae0304",
+    "Comment": "Ком#",
+    "Products": [
+      {
+        "GUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
+        "Serial": "000007",
+        "NumberSub": "РР-00000001",
+        "Article": "D25153K-KS",
+        "Quantity": "1"
+      }
+    ]
+  }
 }
 ```
 
@@ -1883,13 +1982,13 @@ https://<server>/PersAcc/proParck/moving
 
 ```json
 {
-    "response": {
-        "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-        "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
-        "Notice": "Выполнено успешно"
-    },
-    "error": null,
-    "errorCode": null
+  "response": {
+    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
+    "Notice": "Выполнено успешно"
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -1908,29 +2007,29 @@ https://<server>/PersAcc/proParck/moving
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/request
+https://<server>/PersAcc/proParck/request</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры     |     Тип     | Обязательный | Описание                           |
-| ------------- | :---------: | :----------: | :--------------------------------- |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее)                |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее)                |
-| GUIDCustomer  | Строка (36) |      Да      | GUID клиента для оформления заказа |
-| [Request](#response-proparckrequest)       |   Объект    |      Да      | Информация по заявке               |
+| Параметры                            |     Тип     | Обязательный | Описание                           |
+| ------------------------------------ | :---------: | :----------: | :--------------------------------- |
+| TransactionID                        | Строка (36) |     Нет      | [См. общее](#общее)                |
+| SourceID                             | Строка (36) |      Да      | [См. общее](#общее)                |
+| GUIDCustomer                         | Строка (36) |      Да      | GUID клиента для оформления заказа |
+| [Request](#response-proparckrequest) |   Объект    |      Да      | Информация по заявке               |
 
 #### **Request (ProParckRequest):**
 
-| Параметры        |             Тип             | Обязательный | Описание                                                                                                      |
-| ---------------- | :-------------------------: | :----------: | :------------------------------------------------------------------------------------------------------------ |
-| Type             |           Строка            |      Да      | Тип документа, варианты: New (новая подписка), return (возврат из подписки), swap (замена инструмента)        |
-| Date             | Дата (строка в формате UTC) |      Да      | Дата заявки                                                                                                   |
-| DatePP           | Дата (строка в формате UTC) |      Да      | Дата начала/окончаний действия подписки. С какого числа нужен инструмент или когда планируют вернуть/заменить |
-| Number           |           Строка            |      Да      | Номер заявки в ProParсk                                                                                       |
-| ClientObjectGUID |         Строка (36)         |      Да      | Идентификатор объекта клиента                                                                                 |
-| Comment          |           Строка            |      Да      | Комментарий                                                                                                   |
-| [Products](#products-proparckrequest)         |           Массив            |      Да      | Данные по инструменту                                                                                         |
+| Параметры                             |             Тип             | Обязательный | Описание                                                                                                      |
+| ------------------------------------- | :-------------------------: | :----------: | :------------------------------------------------------------------------------------------------------------ |
+| Type                                  |           Строка            |      Да      | Тип документа, варианты: New (новая подписка), return (возврат из подписки), swap (замена инструмента)        |
+| Date                                  | Дата (строка в формате UTC) |      Да      | Дата заявки                                                                                                   |
+| DatePP                                | Дата (строка в формате UTC) |      Да      | Дата начала/окончаний действия подписки. С какого числа нужен инструмент или когда планируют вернуть/заменить |
+| Number                                |           Строка            |      Да      | Номер заявки в ProParсk                                                                                       |
+| ClientObjectGUID                      |         Строка (36)         |      Да      | Идентификатор объекта клиента                                                                                 |
+| Comment                               |           Строка            |      Да      | Комментарий                                                                                                   |
+| [Products](#products-proparckrequest) |           Массив            |      Да      | Данные по инструменту                                                                                         |
 
 #### **Products (ProParckRequest):**
 
@@ -1946,11 +2045,11 @@ https://<server>/PersAcc/proParck/request
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-proparckrequest)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                             |           Тип            | Обязательный | Описание                       |
+| ------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-proparckrequest) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                 |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                             |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (ProParckRequest):**
 
@@ -1965,13 +2064,13 @@ https://<server>/PersAcc/proParck/request
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/request
+https://<server>/PersAcc/proParck/request</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
-{    
+{
     "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
     "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
     "GUIDCustomer": "cbd1d77f-3933-11eb-b990-04d9f5ae0304",
@@ -1999,11 +2098,11 @@ https://<server>/PersAcc/proParck/request
 
 ```json
 {
-    "response": {
-        "Number1C": "000000004"
-    },
-    "error": null,
-    "errorCode": null
+  "response": {
+    "Number1C": "000000004"
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -2035,7 +2134,7 @@ https://<server>/PersAcc/proParck/request
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/
+https://<server>/PersAcc/sales/</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2048,56 +2147,56 @@ https://<server>/PersAcc/sales/
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-databysalesall)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                            |           Тип            | Обязательный | Описание                       |
+| ------------------------------------ | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-databysalesall) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                            |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (DataBySalesAll):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-databysalesall)     |   Объект    |      Да      | Данные документов   |
+| Параметры                              |     Тип     | Обязательный | Описание            |
+| -------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                          | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                               | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-databysalesall) |   Объект    |      Да      | Данные документов   |
 
 #### **Documents (DataBySalesAll):**
 
-| Параметры |  Тип   | Обязательный | Описание                          |
-| --------- | :----: | :----------: | :-------------------------------- |
-| [Sales](#sales-databysalesall)     | Массив |      Да      | Массив данных расходных накладных |
+| Параметры                      |  Тип   | Обязательный | Описание                          |
+| ------------------------------ | :----: | :----------: | :-------------------------------- |
+| [Sales](#sales-databysalesall) | Массив |      Да      | Массив данных расходных накладных |
 
 #### **Sales (DataBySalesAll):**
 
-| Параметры       |             Тип             | Обязательный | Описание                           |
-| --------------- | :-------------------------: | :----------: | :--------------------------------- |
-| GUIDDocument    |         Строка (36)         |      Да      | Уникальный GUID документа          |
-| GUIDCustomer    |         Строка (36)         |      Да      | Уникальный GUID контрагента        |
-| GUIDOrders      |         Строка (36)         |      Да      | Массив GUID-ов заказов покупателей |
-| OrderNumber     |           Строка            |      Да      | Номер документа                    |
-| OrderDate       | Дата (строка в формате UTC) |      Да      | Дата документа                     |
-| DocumentAmount  |            Число            |      Да      | Сумма документа                    |
-| DeliveryAddress |           Строка            |      Да      | Адрес доставки                     |
-| DateOfReceiving | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки            |
-| Comment         |           Строка            |      Да      | Комментарий                        |
-| [ContactPerson](#contactperson-documents)   |           Объект            |      Да      | Данные контактного лица            |
+| Параметры                                 |             Тип             | Обязательный | Описание                           |
+| ----------------------------------------- | :-------------------------: | :----------: | :--------------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа          |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента        |
+| GUIDOrders                                |         Строка (36)         |      Да      | Массив GUID-ов заказов покупателей |
+| OrderNumber                               |           Строка            |      Да      | Номер документа                    |
+| OrderDate                                 | Дата (строка в формате UTC) |      Да      | Дата документа                     |
+| DocumentAmount                            |            Число            |      Да      | Сумма документа                    |
+| DeliveryAddress                           |           Строка            |      Да      | Адрес доставки                     |
+| DateOfReceiving                           | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки            |
+| Comment                                   |           Строка            |      Да      | Комментарий                        |
+| [ContactPerson](#contactperson-documents) |           Объект            |      Да      | Данные контактного лица            |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/
+https://<server>/PersAcc/sales/</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
 }
 ```
 
@@ -2105,54 +2204,50 @@ https://<server>/PersAcc/sales/
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Documents": {
-            "Sales": [
-                {
-                    "GUIDDocument": "52d728fa-941a-11ea-b980-04d9f5ae0304",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "GUIDOrders": [
-                        "26e692f9-903c-11ea-b980-04d9f5ae0304"
-                    ],
-                    "OrderNumber": "00НФ-001188",
-                    "OrderDate": "2020-05-12T09:32:17+03:00",
-                    "DocumentAmount": 6000,
-                    "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
-                    "DateOfReceiving": "0001-01-01T00:00:00+00:00",
-                    "Comment": "",
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    }
-                },
-                {
-                    "GUIDDocument": "c82a13e4-8f2b-11ec-b9bd-001b21b3a70e",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "GUIDOrders": [
-                        "290f6f33-8f1a-11ec-b9bd-001b21b3a70e"
-                    ],
-                    "OrderNumber": "00НФ-000902",
-                    "OrderDate": "2022-02-16T16:24:35+03:00",
-                    "DocumentAmount": 1633,
-                    "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
-                    "DateOfReceiving": "0001-01-01T00:00:00+00:00",
-                    "Comment": "",
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    }
-                }
-            ]
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Documents": {
+      "Sales": [
+        {
+          "GUIDDocument": "52d728fa-941a-11ea-b980-04d9f5ae0304",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "GUIDOrders": ["26e692f9-903c-11ea-b980-04d9f5ae0304"],
+          "OrderNumber": "00НФ-001188",
+          "OrderDate": "2020-05-12T09:32:17+03:00",
+          "DocumentAmount": 6000,
+          "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
+          "DateOfReceiving": "0001-01-01T00:00:00+00:00",
+          "Comment": "",
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          }
+        },
+        {
+          "GUIDDocument": "c82a13e4-8f2b-11ec-b9bd-001b21b3a70e",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "GUIDOrders": ["290f6f33-8f1a-11ec-b9bd-001b21b3a70e"],
+          "OrderNumber": "00НФ-000902",
+          "OrderDate": "2022-02-16T16:24:35+03:00",
+          "DocumentAmount": 1633,
+          "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
+          "DateOfReceiving": "0001-01-01T00:00:00+00:00",
+          "Comment": "",
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          }
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -2171,7 +2266,7 @@ https://<server>/PersAcc/sales/
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/forperiod/
+https://<server>/PersAcc/sales/forperiod/</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2186,58 +2281,58 @@ https://<server>/PersAcc/sales/forperiod/
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-databysalesallforperiod)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                                     |           Тип            | Обязательный | Описание                       |
+| --------------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-databysalesallforperiod) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                         |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                                     |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (DataBySalesAllForPeriod):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-databysalesallforperiod)     |   Объект    |      Да      | Данные документов   |
+| Параметры                                       |     Тип     | Обязательный | Описание            |
+| ----------------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                                   | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                        | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-databysalesallforperiod) |   Объект    |      Да      | Данные документов   |
 
 #### **Documents (DataBySalesAllForPeriod):**
 
-| Параметры |  Тип   | Обязательный | Описание                          |
-| --------- | :----: | :----------: | :-------------------------------- |
-| [Sales](#sales-databysalesallforperiod)     | Массив |      Да      | Массив данных расходных накладных |
+| Параметры                               |  Тип   | Обязательный | Описание                          |
+| --------------------------------------- | :----: | :----------: | :-------------------------------- |
+| [Sales](#sales-databysalesallforperiod) | Массив |      Да      | Массив данных расходных накладных |
 
 #### **Sales (DataBySalesAllForPeriod):**
 
-| Параметры       |             Тип             | Обязательный | Описание                           |
-| --------------- | :-------------------------: | :----------: | :--------------------------------- |
-| GUIDDocument    |         Строка (36)         |      Да      | Уникальный GUID документа          |
-| GUIDCustomer    |         Строка (36)         |      Да      | Уникальный GUID контрагента        |
-| GUIDOrders      |         Строка (36)         |      Да      | Массив GUID-ов заказов покупателей |
-| OrderNumber     |           Строка            |      Да      | Номер документа                    |
-| OrderDate       | Дата (строка в формате UTC) |      Да      | Дата документа                     |
-| DocumentAmount  |            Число            |      Да      | Сумма документа                    |
-| DeliveryAddress |           Строка            |      Да      | Адрес доставки                     |
-| DateOfReceiving | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки            |
-| Comment         |           Строка            |      Да      | Комментарий                        |
-| [ContactPerson](#contactperson-documents)   |           Объект            |      Да      | Данные контактного лица            |
+| Параметры                                 |             Тип             | Обязательный | Описание                           |
+| ----------------------------------------- | :-------------------------: | :----------: | :--------------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа          |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента        |
+| GUIDOrders                                |         Строка (36)         |      Да      | Массив GUID-ов заказов покупателей |
+| OrderNumber                               |           Строка            |      Да      | Номер документа                    |
+| OrderDate                                 | Дата (строка в формате UTC) |      Да      | Дата документа                     |
+| DocumentAmount                            |            Число            |      Да      | Сумма документа                    |
+| DeliveryAddress                           |           Строка            |      Да      | Адрес доставки                     |
+| DateOfReceiving                           | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки            |
+| Comment                                   |           Строка            |      Да      | Комментарий                        |
+| [ContactPerson](#contactperson-documents) |           Объект            |      Да      | Данные контактного лица            |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/forperiod/
+https://<server>/PersAcc/sales/forperiod/</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d",
-    "BeginningOfPeriod": "2022-01-01T00:00:00+03:00",
-    "EndOfPeriod": "2022-04-01T00:00:00+03:00"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d",
+  "BeginningOfPeriod": "2022-01-01T00:00:00+03:00",
+  "EndOfPeriod": "2022-04-01T00:00:00+03:00"
 }
 ```
 
@@ -2245,35 +2340,33 @@ https://<server>/PersAcc/sales/forperiod/
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Documents": {
-            "Sales": [
-                {
-                    "GUIDDocument": "c82a13e4-8f2b-11ec-b9bd-001b21b3a70e",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "GUIDOrders": [
-                        "290f6f33-8f1a-11ec-b9bd-001b21b3a70e"
-                    ],
-                    "OrderNumber": "00НФ-000902",
-                    "OrderDate": "2022-02-16T16:24:35+03:00",
-                    "DocumentAmount": 1633,
-                    "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
-                    "DateOfReceiving": "0001-01-01T00:00:00+00:00",
-                    "Comment": "",
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    }
-                }
-            ]
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Documents": {
+      "Sales": [
+        {
+          "GUIDDocument": "c82a13e4-8f2b-11ec-b9bd-001b21b3a70e",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "GUIDOrders": ["290f6f33-8f1a-11ec-b9bd-001b21b3a70e"],
+          "OrderNumber": "00НФ-000902",
+          "OrderDate": "2022-02-16T16:24:35+03:00",
+          "DocumentAmount": 1633,
+          "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
+          "DateOfReceiving": "0001-01-01T00:00:00+00:00",
+          "Comment": "",
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          }
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -2292,7 +2385,7 @@ https://<server>/PersAcc/sales/forperiod/
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/{guid}
+https://<server>/PersAcc/sales/{guid}</server>
 ```
 
 где guid уникальный идентификатор расходной накладной (строка 36)
@@ -2307,56 +2400,56 @@ https://<server>/PersAcc/sales/{guid}
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-databysalesbyguid)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                               |           Тип            | Обязательный | Описание                       |
+| --------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-databysalesbyguid) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                   |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                               |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (DataBySalesByGuid):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-databysalesbyguid)     |   Объект    |      Да      | Данные документов   |
+| Параметры                                 |     Тип     | Обязательный | Описание            |
+| ----------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                             | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                  | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-databysalesbyguid) |   Объект    |      Да      | Данные документов   |
 
 #### **Documents (DataBySalesByGuid):**
 
-| Параметры |  Тип   | Обязательный | Описание                          |
-| --------- | :----: | :----------: | :-------------------------------- |
-| [Sales](#sales-databysalesbyguid)     | Массив |      Да      | Массив данных расходных накладных |
+| Параметры                         |  Тип   | Обязательный | Описание                          |
+| --------------------------------- | :----: | :----------: | :-------------------------------- |
+| [Sales](#sales-databysalesbyguid) | Массив |      Да      | Массив данных расходных накладных |
 
 #### **Sales (DataBySalesByGuid):**
 
-| Параметры       |             Тип             | Обязательный | Описание                           |
-| --------------- | :-------------------------: | :----------: | :--------------------------------- |
-| GUIDDocument    |         Строка (36)         |      Да      | Уникальный GUID документа          |
-| GUIDCustomer    |         Строка (36)         |      Да      | Уникальный GUID контрагента        |
-| GUIDOrders      |         Строка (36)         |      Да      | Массив GUID-ов заказов покупателей |
-| OrderNumber     |           Строка            |      Да      | Номер документа                    |
-| OrderDate       | Дата (строка в формате UTC) |      Да      | Дата документа                     |
-| DocumentAmount  |            Число            |      Да      | Сумма документа                    |
-| DeliveryAddress |           Строка            |      Да      | Адрес доставки                     |
-| DateOfReceiving | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки            |
-| Comment         |           Строка            |      Да      | Комментарий                        |
-| [ContactPerson](#contactperson-documents)   |           Объект            |      Да      | Данные контактного лица            |
+| Параметры                                 |             Тип             | Обязательный | Описание                           |
+| ----------------------------------------- | :-------------------------: | :----------: | :--------------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа          |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента        |
+| GUIDOrders                                |         Строка (36)         |      Да      | Массив GUID-ов заказов покупателей |
+| OrderNumber                               |           Строка            |      Да      | Номер документа                    |
+| OrderDate                                 | Дата (строка в формате UTC) |      Да      | Дата документа                     |
+| DocumentAmount                            |            Число            |      Да      | Сумма документа                    |
+| DeliveryAddress                           |           Строка            |      Да      | Адрес доставки                     |
+| DateOfReceiving                           | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки            |
+| Comment                                   |           Строка            |      Да      | Комментарий                        |
+| [ContactPerson](#contactperson-documents) |           Объект            |      Да      | Данные контактного лица            |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/41361a1d-dded-11ea-b98b-04d9f5ae0304/
+https://<server>/PersAcc/sales/41361a1d-dded-11ea-b98b-04d9f5ae0304/</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
 }
 ```
 
@@ -2364,35 +2457,33 @@ https://<server>/PersAcc/sales/41361a1d-dded-11ea-b98b-04d9f5ae0304/
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Documents": {
-            "Sales": [
-                {
-                    "GUIDDocument": "41361a1d-dded-11ea-b98b-04d9f5ae0304",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "GUIDOrders": [
-                        "ab4956d9-dd4e-11ea-b98b-04d9f5ae0304"
-                    ],
-                    "OrderNumber": "00НФ-02559 ",
-                    "OrderDate": "2020-08-14T08:16:06+03:00",
-                    "DocumentAmount": 14868,
-                    "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
-                    "DateOfReceiving": "0001-01-01T00:00:00+00:00",
-                    "Comment": "Самовывоз",
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    }
-                }
-            ]
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Documents": {
+      "Sales": [
+        {
+          "GUIDDocument": "41361a1d-dded-11ea-b98b-04d9f5ae0304",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "GUIDOrders": ["ab4956d9-dd4e-11ea-b98b-04d9f5ae0304"],
+          "OrderNumber": "00НФ-02559 ",
+          "OrderDate": "2020-08-14T08:16:06+03:00",
+          "DocumentAmount": 14868,
+          "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
+          "DateOfReceiving": "0001-01-01T00:00:00+00:00",
+          "Comment": "Самовывоз",
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          }
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -2411,7 +2502,7 @@ https://<server>/PersAcc/sales/41361a1d-dded-11ea-b98b-04d9f5ae0304/
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders
+https://<server>/PersAcc/orders</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2424,57 +2515,57 @@ https://<server>/PersAcc/orders
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-databyordersall)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                             |           Тип            | Обязательный | Описание                       |
+| ------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-databyordersall) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                 |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                             |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (DataByOrdersAll):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-databyordersall)     |   Объект    |      Да      | Данные документов   |
+| Параметры                               |     Тип     | Обязательный | Описание            |
+| --------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                           | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-databyordersall) |   Объект    |      Да      | Данные документов   |
 
 #### **Documents (DataByOrdersAll):**
 
-| Параметры |  Тип   | Обязательный | Описание                          |
-| --------- | :----: | :----------: | :-------------------------------- |
-| [Orders](#orders-databyordersall)    | Массив |      Да      | Массив данных заказов покупателей |
+| Параметры                         |  Тип   | Обязательный | Описание                          |
+| --------------------------------- | :----: | :----------: | :-------------------------------- |
+| [Orders](#orders-databyordersall) | Массив |      Да      | Массив данных заказов покупателей |
 
 #### **Orders (DataByOrdersAll):**
 
-| Параметры          |             Тип             | Обязательный | Описание                    |
-| ------------------ | :-------------------------: | :----------: | :-------------------------- |
-| GUIDDocument       |         Строка (36)         |      Да      | Уникальный GUID документа   |
-| GUIDCustomer       |         Строка (36)         |      Да      | Уникальный GUID контрагента |
-| OrderNumber        |           Строка            |      Да      | Номер документа             |
-| OrderNumberWebsite |           Строка            |      Да      | Номер документа на сайте    |
-| OrderDate          | Дата (строка в формате UTC) |      Да      | Дата документа              |
-| OrderStatus        |           Строка            |      Да      | Статус заказа               |
-| DocumentAmount     |            Число            |      Да      | Сумма документа             |
-| DeliveryAddress    |           Строка            |      Да      | Адрес доставки              |
-| DateOfReceiving    | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки     |
-| Comment            |           Строка            |      Да      | Комментарий                 |
-| [ContactPerson](#contactperson-documents)      |           Объект            |      Да      | Данные контактного лица     |
+| Параметры                                 |             Тип             | Обязательный | Описание                    |
+| ----------------------------------------- | :-------------------------: | :----------: | :-------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа   |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента |
+| OrderNumber                               |           Строка            |      Да      | Номер документа             |
+| OrderNumberWebsite                        |           Строка            |      Да      | Номер документа на сайте    |
+| OrderDate                                 | Дата (строка в формате UTC) |      Да      | Дата документа              |
+| OrderStatus                               |           Строка            |      Да      | Статус заказа               |
+| DocumentAmount                            |            Число            |      Да      | Сумма документа             |
+| DeliveryAddress                           |           Строка            |      Да      | Адрес доставки              |
+| DateOfReceiving                           | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки     |
+| Comment                                   |           Строка            |      Да      | Комментарий                 |
+| [ContactPerson](#contactperson-documents) |           Объект            |      Да      | Данные контактного лица     |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/
+https://<server>/PersAcc/orders/</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
 }
 ```
 
@@ -2482,54 +2573,54 @@ https://<server>/PersAcc/orders/
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Documents": {
-            "Orders": [
-                {
-                    "GUIDDocument": "26e692f9-903c-11ea-b980-04d9f5ae0304",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "OrderNumber": "00НФ-001725",
-                    "OrderNumberWebsite": "",
-                    "OrderDate": "2020-05-07T11:24:22+03:00",
-                    "OrderStatus": "В работе",
-                    "DocumentAmount": 6000,
-                    "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
-                    "DateOfReceiving": "0001-01-01T00:00:00+00:00",
-                    "TheContactPerson": "",
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    },
-                    "Comment": ""
-                },
-                {
-                    "GUIDDocument": "284ce228-95d2-11ea-b981-04d9f5ae0304",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "OrderNumber": "00НФ-001788",
-                    "OrderNumberWebsite": "",
-                    "OrderDate": "2020-05-14T14:00:44+03:00",
-                    "OrderStatus": "В работе",
-                    "DocumentAmount": 12210,
-                    "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
-                    "DateOfReceiving": "0001-01-01T00:00:00+00:00",
-                    "TheContactPerson": "",
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    },
-                    "Comment": ""
-                }
-            ]
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Documents": {
+      "Orders": [
+        {
+          "GUIDDocument": "26e692f9-903c-11ea-b980-04d9f5ae0304",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "OrderNumber": "00НФ-001725",
+          "OrderNumberWebsite": "",
+          "OrderDate": "2020-05-07T11:24:22+03:00",
+          "OrderStatus": "В работе",
+          "DocumentAmount": 6000,
+          "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
+          "DateOfReceiving": "0001-01-01T00:00:00+00:00",
+          "TheContactPerson": "",
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          },
+          "Comment": ""
+        },
+        {
+          "GUIDDocument": "284ce228-95d2-11ea-b981-04d9f5ae0304",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "OrderNumber": "00НФ-001788",
+          "OrderNumberWebsite": "",
+          "OrderDate": "2020-05-14T14:00:44+03:00",
+          "OrderStatus": "В работе",
+          "DocumentAmount": 12210,
+          "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
+          "DateOfReceiving": "0001-01-01T00:00:00+00:00",
+          "TheContactPerson": "",
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          },
+          "Comment": ""
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -2548,7 +2639,7 @@ https://<server>/PersAcc/orders/
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/forperiod/
+https://<server>/PersAcc/orders/forperiod/</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2563,59 +2654,59 @@ https://<server>/PersAcc/orders/forperiod/
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-databyordersallforperiod)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                                      |           Тип            | Обязательный | Описание                       |
+| ---------------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-databyordersallforperiod) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                          |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                                      |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (DataByOrdersAllForPeriod):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-databyordersallforperiod)     |   Объект    |      Да      | Данные документов   |
+| Параметры                                        |     Тип     | Обязательный | Описание            |
+| ------------------------------------------------ | :---------: | :----------: | :------------------ |
+| TransactionID                                    | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                         | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-databyordersallforperiod) |   Объект    |      Да      | Данные документов   |
 
 #### **Documents (DataByOrdersAllForPeriod):**
 
-| Параметры |  Тип   | Обязательный | Описание                          |
-| --------- | :----: | :----------: | :-------------------------------- |
-| [Orders](#orders-databyordersallforperiod)    | Массив |      Да      | Массив данных заказов покупателей |
+| Параметры                                  |  Тип   | Обязательный | Описание                          |
+| ------------------------------------------ | :----: | :----------: | :-------------------------------- |
+| [Orders](#orders-databyordersallforperiod) | Массив |      Да      | Массив данных заказов покупателей |
 
 #### **Orders (DataByOrdersAllForPeriod):**
 
-| Параметры          |             Тип             | Обязательный | Описание                    |
-| ------------------ | :-------------------------: | :----------: | :-------------------------- |
-| GUIDDocument       |         Строка (36)         |      Да      | Уникальный GUID документа   |
-| GUIDCustomer       |         Строка (36)         |      Да      | Уникальный GUID контрагента |
-| OrderNumber        |           Строка            |      Да      | Номер документа             |
-| OrderNumberWebsite |           Строка            |      Да      | Номер документа на сайте    |
-| OrderDate          | Дата (строка в формате UTC) |      Да      | Дата документа              |
-| OrderStatus        |           Строка            |      Да      | Статус заказа               |
-| DocumentAmount     |            Число            |      Да      | Сумма документа             |
-| DeliveryAddress    |           Строка            |      Да      | Адрес доставки              |
-| DateOfReceiving    | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки     |
-| Comment            |           Строка            |      Да      | Комментарий                 |
-| [ContactPerson](#contactperson-documents)      |           Объект            |      Да      | Данные контактного лица     |
+| Параметры                                 |             Тип             | Обязательный | Описание                    |
+| ----------------------------------------- | :-------------------------: | :----------: | :-------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа   |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента |
+| OrderNumber                               |           Строка            |      Да      | Номер документа             |
+| OrderNumberWebsite                        |           Строка            |      Да      | Номер документа на сайте    |
+| OrderDate                                 | Дата (строка в формате UTC) |      Да      | Дата документа              |
+| OrderStatus                               |           Строка            |      Да      | Статус заказа               |
+| DocumentAmount                            |            Число            |      Да      | Сумма документа             |
+| DeliveryAddress                           |           Строка            |      Да      | Адрес доставки              |
+| DateOfReceiving                           | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки     |
+| Comment                                   |           Строка            |      Да      | Комментарий                 |
+| [ContactPerson](#contactperson-documents) |           Объект            |      Да      | Данные контактного лица     |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/forperiod/
+https://<server>/PersAcc/orders/forperiod/</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d",
-    "BeginningOfPeriod": "2022-01-01T00:00:00+03:00",
-    "EndOfPeriod": "2022-04-01T00:00:00+03:00"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d",
+  "BeginningOfPeriod": "2022-01-01T00:00:00+03:00",
+  "EndOfPeriod": "2022-04-01T00:00:00+03:00"
 }
 ```
 
@@ -2623,54 +2714,54 @@ https://<server>/PersAcc/orders/forperiod/
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Documents": {
-            "Orders": [
-                {
-                    "GUIDDocument": "290f6f33-8f1a-11ec-b9bd-001b21b3a70e",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "OrderNumber": "00НФ-001580",
-                    "OrderNumberWebsite": "",
-                    "OrderDate": "2022-02-16T14:18:24+03:00",
-                    "OrderStatus": "Завершен",
-                    "DocumentAmount": 1633,
-                    "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
-                    "DateOfReceiving": "0001-01-01T00:00:00+00:00",
-                    "TheContactPerson": "",
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    },
-                    "Comment": ""
-                },
-                {
-                    "GUIDDocument": "f7de2702-93b4-11ec-b9bd-001b21b3a70e",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "OrderNumber": "00НФ-001779",
-                    "OrderNumberWebsite": "",
-                    "OrderDate": "2022-02-22T10:56:41+03:00",
-                    "OrderStatus": "В работе",
-                    "DocumentAmount": 224814.65,
-                    "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
-                    "DateOfReceiving": "0001-01-01T00:00:00+00:00",
-                    "TheContactPerson": "",
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    },
-                    "Comment": ""
-                }
-            ]
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Documents": {
+      "Orders": [
+        {
+          "GUIDDocument": "290f6f33-8f1a-11ec-b9bd-001b21b3a70e",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "OrderNumber": "00НФ-001580",
+          "OrderNumberWebsite": "",
+          "OrderDate": "2022-02-16T14:18:24+03:00",
+          "OrderStatus": "Завершен",
+          "DocumentAmount": 1633,
+          "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
+          "DateOfReceiving": "0001-01-01T00:00:00+00:00",
+          "TheContactPerson": "",
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          },
+          "Comment": ""
+        },
+        {
+          "GUIDDocument": "f7de2702-93b4-11ec-b9bd-001b21b3a70e",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "OrderNumber": "00НФ-001779",
+          "OrderNumberWebsite": "",
+          "OrderDate": "2022-02-22T10:56:41+03:00",
+          "OrderStatus": "В работе",
+          "DocumentAmount": 224814.65,
+          "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
+          "DateOfReceiving": "0001-01-01T00:00:00+00:00",
+          "TheContactPerson": "",
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          },
+          "Comment": ""
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -2689,7 +2780,7 @@ https://<server>/PersAcc/orders/forperiod/
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/{guid}
+https://<server>/PersAcc/orders/{guid}</server>
 ```
 
 где guid уникальный идентификатор заказа покупателя (строка 36)
@@ -2704,58 +2795,57 @@ https://<server>/PersAcc/orders/{guid}
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-databyordersbyguid)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                                |           Тип            | Обязательный | Описание                       |
+| ---------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-databyordersbyguid) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                    |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                                |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (DataByOrdersByGuid):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-databyordersbyguid)     |   Объект    |      Да      | Данные документов   |
+| Параметры                                  |     Тип     | Обязательный | Описание            |
+| ------------------------------------------ | :---------: | :----------: | :------------------ |
+| TransactionID                              | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                   | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-databyordersbyguid) |   Объект    |      Да      | Данные документов   |
 
 #### **Documents (DataByOrdersByGuid):**
 
-| Параметры |  Тип   | Обязательный | Описание                          |
-| --------- | :----: | :----------: | :-------------------------------- |
-| [Orders](#orders-databyordersbyguid)    | Массив |      Да      | Массив данных заказов покупателей |
+| Параметры                            |  Тип   | Обязательный | Описание                          |
+| ------------------------------------ | :----: | :----------: | :-------------------------------- |
+| [Orders](#orders-databyordersbyguid) | Массив |      Да      | Массив данных заказов покупателей |
 
 #### **Orders (DataByOrdersByGuid):**
 
-| Параметры          |             Тип             | Обязательный | Описание                    |
-| ------------------ | :-------------------------: | :----------: | :-------------------------- |
-| GUIDDocument       |         Строка (36)         |      Да      | Уникальный GUID документа   |
-| GUIDCustomer       |         Строка (36)         |      Да      | Уникальный GUID контрагента |
-| OrderNumber        |           Строка            |      Да      | Номер документа             |
-| OrderNumberWebsite |           Строка            |      Да      | Номер документа на сайте    |
-| OrderDate          | Дата (строка в формате UTC) |      Да      | Дата документа              |
-| OrderStatus        |           Строка            |      Да      | Статус заказа               |
-| DocumentAmount     |            Число            |      Да      | Сумма документа             |
-| DeliveryAddress    |           Строка            |      Да      | Адрес доставки              |
-| DateOfReceiving    | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки     |
-| Comment            |           Строка            |      Да      | Комментарий                 |
-| [ContactPerson](#contactperson-documents)      |           Объект            |      Да      | Данные контактного лица     |
-
+| Параметры                                 |             Тип             | Обязательный | Описание                    |
+| ----------------------------------------- | :-------------------------: | :----------: | :-------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа   |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента |
+| OrderNumber                               |           Строка            |      Да      | Номер документа             |
+| OrderNumberWebsite                        |           Строка            |      Да      | Номер документа на сайте    |
+| OrderDate                                 | Дата (строка в формате UTC) |      Да      | Дата документа              |
+| OrderStatus                               |           Строка            |      Да      | Статус заказа               |
+| DocumentAmount                            |            Число            |      Да      | Сумма документа             |
+| DeliveryAddress                           |           Строка            |      Да      | Адрес доставки              |
+| DateOfReceiving                           | Дата (строка в формате UTC) |      Да      | Ожидаемая дата доставки     |
+| Comment                                   |           Строка            |      Да      | Комментарий                 |
+| [ContactPerson](#contactperson-documents) |           Объект            |      Да      | Данные контактного лица     |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/f7de2702-93b4-11ec-b9bd-001b21b3a70e
+https://<server>/PersAcc/orders/f7de2702-93b4-11ec-b9bd-001b21b3a70e</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
 }
 ```
 
@@ -2763,35 +2853,35 @@ https://<server>/PersAcc/orders/f7de2702-93b4-11ec-b9bd-001b21b3a70e
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Documents": {
-            "Orders": [
-                {
-                    "GUIDDocument": "f7de2702-93b4-11ec-b9bd-001b21b3a70e",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "OrderNumber": "00НФ-001779",
-                    "OrderNumberWebsite": "",
-                    "OrderDate": "2022-02-22T10:56:41+03:00",
-                    "OrderStatus": "В работе",
-                    "DocumentAmount": 224814.65,
-                    "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
-                    "DateOfReceiving": "0001-01-01T00:00:00+00:00",
-                    "TheContactPerson": "",
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    },
-                    "Comment": ""
-                }
-            ]
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Documents": {
+      "Orders": [
+        {
+          "GUIDDocument": "f7de2702-93b4-11ec-b9bd-001b21b3a70e",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "OrderNumber": "00НФ-001779",
+          "OrderNumberWebsite": "",
+          "OrderDate": "2022-02-22T10:56:41+03:00",
+          "OrderStatus": "В работе",
+          "DocumentAmount": 224814.65,
+          "DeliveryAddress": "455034, Челябинская обл, Магнитогорск г, Жукова ул, дом 12",
+          "DateOfReceiving": "0001-01-01T00:00:00+00:00",
+          "TheContactPerson": "",
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          },
+          "Comment": ""
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -2810,7 +2900,7 @@ https://<server>/PersAcc/orders/f7de2702-93b4-11ec-b9bd-001b21b3a70e
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/
+https://<server>/PersAcc/repairs/</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2823,64 +2913,64 @@ https://<server>/PersAcc/repairs/
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-databyrepairsall)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                              |           Тип            | Обязательный | Описание                       |
+| -------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-databyrepairsall) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                  |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                              |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (DataByRepairsAll):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-databyrepairsall)     |   Объект    |      Да      | Данные документов   |
+| Параметры                                |     Тип     | Обязательный | Описание            |
+| ---------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                            | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                 | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-databyrepairsall) |   Объект    |      Да      | Данные документов   |
 
 #### **Documents (DataByRepairsAll):**
 
-| Параметры      |  Тип   | Обязательный | Описание                    |
-| -------------- | :----: | :----------: | :-------------------------- |
+| Параметры                                          |  Тип   | Обязательный | Описание                    |
+| -------------------------------------------------- | :----: | :----------: | :-------------------------- |
 | [PurchaseOrders](#purchaseorders-databyrepairsall) | Массив |      Да      | Массив данных заказ-нарядов |
 
 #### **PurchaseOrders (DataByRepairsAll):**
 
-| Параметры           |             Тип             | Обязательный | Описание                             |
-| ------------------- | :-------------------------: | :----------: | :----------------------------------- |
-| GUIDDocument        |         Строка (36)         |      Да      | Уникальный GUID документа            |
-| GUIDRelatedDocument |         Строка (36)         |      Да      | Уникальный GUID связанного документа |
-| GUIDCustomer        |         Строка (36)         |      Да      | Уникальный GUID контрагента          |
-| GUIDProduct         |         Строка (36)         |      Да      | Уникальный GUID инструмента          |
-| OrderNumber         |           Строка            |      Да      | Номер документа                      |
-| OrderDate           | Дата (строка в формате UTC) |      Да      | Дата документа                       |
-| OrderStatus         |           Строка            |      Да      | Статус заказа                        |
-| TypeOfWork          |           Строка            |      Да      | Вид работ                            |
-| Product             |           Строка            |      Да      | Наименование инструмента             |
-| ProductSKU          |           Строка            |      Да      | Артикул инструмента                  |
-| Shipped             |           Булево            |      Да      | Признак Отгружен / Не отгружен       |
-| DaysInRepair        |            Число            |      Да      | Количество дней в ремонте            |
-| SerialNumber        |           Строка            |      Да      | Серийный номер                       |
-| DocumentAmount      |            Число            |      Да      | Сумма документа                      |
-| DeliveryAddress     |           Строка            |      Да      | Адрес доставки                       |
-| RepairCostPercent   |            Число            |      Да      | Процент стоимости ремонта            |
-| Comment             |           Строка            |      Да      | Комментарий                          |
-| [ContactPerson](#contactperson-documents)       |           Объект            |      Да      | Данные контактного лица              |
+| Параметры                                 |             Тип             | Обязательный | Описание                             |
+| ----------------------------------------- | :-------------------------: | :----------: | :----------------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа            |
+| GUIDRelatedDocument                       |         Строка (36)         |      Да      | Уникальный GUID связанного документа |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента          |
+| GUIDProduct                               |         Строка (36)         |      Да      | Уникальный GUID инструмента          |
+| OrderNumber                               |           Строка            |      Да      | Номер документа                      |
+| OrderDate                                 | Дата (строка в формате UTC) |      Да      | Дата документа                       |
+| OrderStatus                               |           Строка            |      Да      | Статус заказа                        |
+| TypeOfWork                                |           Строка            |      Да      | Вид работ                            |
+| Product                                   |           Строка            |      Да      | Наименование инструмента             |
+| ProductSKU                                |           Строка            |      Да      | Артикул инструмента                  |
+| Shipped                                   |           Булево            |      Да      | Признак Отгружен / Не отгружен       |
+| DaysInRepair                              |            Число            |      Да      | Количество дней в ремонте            |
+| SerialNumber                              |           Строка            |      Да      | Серийный номер                       |
+| DocumentAmount                            |            Число            |      Да      | Сумма документа                      |
+| DeliveryAddress                           |           Строка            |      Да      | Адрес доставки                       |
+| RepairCostPercent                         |            Число            |      Да      | Процент стоимости ремонта            |
+| Comment                                   |           Строка            |      Да      | Комментарий                          |
+| [ContactPerson](#contactperson-documents) |           Объект            |      Да      | Данные контактного лица              |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/
+https://<server>/PersAcc/repairs/</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
 }
 ```
 
@@ -2888,66 +2978,66 @@ https://<server>/PersAcc/repairs/
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Documents": {
-            "PurchaseOrders": [
-                {
-                    "GUIDDocument": "00ee0e6a-c818-11ea-b98b-04d9f5ae0304",
-                    "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "GUIDProduct": "36b2cb39-6382-11ea-b97b-04d9f5ae0304",
-                    "OrderNumber": "00НФ-003087",
-                    "OrderDate": "2020-07-17T13:26:41+03:00",
-                    "OrderStatus": "Завершен",
-                    "TypeOfWork": "Ремонт",
-                    "Product": "Перфоратор SDS-max, 1250 Вт, 2 режима, 12 Дж, 6.9 кг D25614K-QS",
-                    "ProductSKU": "D25614K-QS",
-                    "Shipped": false,
-                    "DaysInRepair": 0,
-                    "SerialNumber": "015212",
-                    "DocumentAmount": 1145,
-                    "DeliveryAddress": "",
-                    "Comment": "",
-                    "RepairCostPercent": 15.30,
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    }
-                },
-                {
-                    "GUIDDocument": "4d2cb6f9-9c72-11ec-819f-00155df43005",
-                    "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "GUIDProduct": "24c99a25-7729-11ea-b97f-04d9f5ae0304",
-                    "OrderNumber": "00НФ-002342",
-                    "OrderDate": "2022-03-05T13:52:08+03:00",
-                    "OrderStatus": "На согласовании",
-                    "TypeOfWork": "",
-                    "Product": "Отбойный молоток SDS-max, 1350 Вт, 10.5 Дж,  1450-2900 уд./мин., D25832K-QS",
-                    "ProductSKU": "D25832K-QS",
-                    "Shipped": false,
-                    "DaysInRepair": 191,
-                    "SerialNumber": "000114",
-                    "DocumentAmount": 33458.78,
-                    "DeliveryAddress": "",
-                    "Comment": "",
-                    "RepairCostPercent": 5.15,
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    }
-                }
-            ]
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Documents": {
+      "PurchaseOrders": [
+        {
+          "GUIDDocument": "00ee0e6a-c818-11ea-b98b-04d9f5ae0304",
+          "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "GUIDProduct": "36b2cb39-6382-11ea-b97b-04d9f5ae0304",
+          "OrderNumber": "00НФ-003087",
+          "OrderDate": "2020-07-17T13:26:41+03:00",
+          "OrderStatus": "Завершен",
+          "TypeOfWork": "Ремонт",
+          "Product": "Перфоратор SDS-max, 1250 Вт, 2 режима, 12 Дж, 6.9 кг D25614K-QS",
+          "ProductSKU": "D25614K-QS",
+          "Shipped": false,
+          "DaysInRepair": 0,
+          "SerialNumber": "015212",
+          "DocumentAmount": 1145,
+          "DeliveryAddress": "",
+          "Comment": "",
+          "RepairCostPercent": 15.3,
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          }
+        },
+        {
+          "GUIDDocument": "4d2cb6f9-9c72-11ec-819f-00155df43005",
+          "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "GUIDProduct": "24c99a25-7729-11ea-b97f-04d9f5ae0304",
+          "OrderNumber": "00НФ-002342",
+          "OrderDate": "2022-03-05T13:52:08+03:00",
+          "OrderStatus": "На согласовании",
+          "TypeOfWork": "",
+          "Product": "Отбойный молоток SDS-max, 1350 Вт, 10.5 Дж,  1450-2900 уд./мин., D25832K-QS",
+          "ProductSKU": "D25832K-QS",
+          "Shipped": false,
+          "DaysInRepair": 191,
+          "SerialNumber": "000114",
+          "DocumentAmount": 33458.78,
+          "DeliveryAddress": "",
+          "Comment": "",
+          "RepairCostPercent": 5.15,
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          }
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -2966,7 +3056,7 @@ https://<server>/PersAcc/repairs/
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/forperiod/
+https://<server>/PersAcc/repairs/forperiod/</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2981,66 +3071,66 @@ https://<server>/PersAcc/repairs/forperiod/
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-databyrepairsallforperiod)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                                       |           Тип            | Обязательный | Описание                       |
+| ----------------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-databyrepairsallforperiod) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                           |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                                       |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (DataByRepairsAllForPeriod):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-databyrepairsallforperiod)     |   Объект    |      Да      | Данные документов   |
+| Параметры                                         |     Тип     | Обязательный | Описание            |
+| ------------------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                                     | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                          | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-databyrepairsallforperiod) |   Объект    |      Да      | Данные документов   |
 
 #### **Documents (DataByRepairsAllForPeriod):**
 
-| Параметры      |  Тип   | Обязательный | Описание                    |
-| -------------- | :----: | :----------: | :-------------------------- |
+| Параметры                                                   |  Тип   | Обязательный | Описание                    |
+| ----------------------------------------------------------- | :----: | :----------: | :-------------------------- |
 | [PurchaseOrders](#purchaseorders-databyrepairsallforperiod) | Массив |      Да      | Массив данных заказ-нарядов |
 
 #### **PurchaseOrders (DataByRepairsAllForPeriod):**
 
-| Параметры           |             Тип             | Обязательный | Описание                             |
-| ------------------- | :-------------------------: | :----------: | :----------------------------------- |
-| GUIDDocument        |         Строка (36)         |      Да      | Уникальный GUID документа            |
-| GUIDRelatedDocument |         Строка (36)         |      Да      | Уникальный GUID связанного документа |
-| GUIDCustomer        |         Строка (36)         |      Да      | Уникальный GUID контрагента          |
-| GUIDProduct         |         Строка (36)         |      Да      | Уникальный GUID инструмента          |
-| OrderNumber         |           Строка            |      Да      | Номер документа                      |
-| OrderDate           | Дата (строка в формате UTC) |      Да      | Дата документа                       |
-| OrderStatus         |           Строка            |      Да      | Статус заказа                        |
-| TypeOfWork          |           Строка            |      Да      | Вид работ                            |
-| Product             |           Строка            |      Да      | Наименование инструмента             |
-| ProductSKU          |           Строка            |      Да      | Артикул инструмента                  |
-| Shipped             |           Булево            |      Да      | Признак Отгружен / Не отгружен       |
-| DaysInRepair        |            Число            |      Да      | Количество дней в ремонте            |
-| SerialNumber        |           Строка            |      Да      | Серийный номер                       |
-| DocumentAmount      |            Число            |      Да      | Сумма документа                      |
-| DeliveryAddress     |           Строка            |      Да      | Адрес доставки                       |
-| RepairCostPercent   |            Число            |      Да      | Процент стоимости ремонта            |
-| Comment             |           Строка            |      Да      | Комментарий                          |
-| [ContactPerson](#contactperson-documents)       |           Объект            |      Да      | Данные контактного лица              |
+| Параметры                                 |             Тип             | Обязательный | Описание                             |
+| ----------------------------------------- | :-------------------------: | :----------: | :----------------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа            |
+| GUIDRelatedDocument                       |         Строка (36)         |      Да      | Уникальный GUID связанного документа |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента          |
+| GUIDProduct                               |         Строка (36)         |      Да      | Уникальный GUID инструмента          |
+| OrderNumber                               |           Строка            |      Да      | Номер документа                      |
+| OrderDate                                 | Дата (строка в формате UTC) |      Да      | Дата документа                       |
+| OrderStatus                               |           Строка            |      Да      | Статус заказа                        |
+| TypeOfWork                                |           Строка            |      Да      | Вид работ                            |
+| Product                                   |           Строка            |      Да      | Наименование инструмента             |
+| ProductSKU                                |           Строка            |      Да      | Артикул инструмента                  |
+| Shipped                                   |           Булево            |      Да      | Признак Отгружен / Не отгружен       |
+| DaysInRepair                              |            Число            |      Да      | Количество дней в ремонте            |
+| SerialNumber                              |           Строка            |      Да      | Серийный номер                       |
+| DocumentAmount                            |            Число            |      Да      | Сумма документа                      |
+| DeliveryAddress                           |           Строка            |      Да      | Адрес доставки                       |
+| RepairCostPercent                         |            Число            |      Да      | Процент стоимости ремонта            |
+| Comment                                   |           Строка            |      Да      | Комментарий                          |
+| [ContactPerson](#contactperson-documents) |           Объект            |      Да      | Данные контактного лица              |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/forperiod/
+https://<server>/PersAcc/repairs/forperiod/</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d",
-    "BeginningOfPeriod": "2022-01-01T00:00:00+03:00",
-    "EndOfPeriod": "2022-04-01T00:00:00+03:00"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d",
+  "BeginningOfPeriod": "2022-01-01T00:00:00+03:00",
+  "EndOfPeriod": "2022-04-01T00:00:00+03:00"
 }
 ```
 
@@ -3048,66 +3138,66 @@ https://<server>/PersAcc/repairs/forperiod/
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Documents": {
-            "PurchaseOrders": [
-                {
-                    "GUIDDocument": "f6a244e3-8d77-11ec-b9bd-001b21b3a70e",
-                    "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "GUIDProduct": "b1c2b864-2a26-11e9-80e7-0050569161b9",
-                    "OrderNumber": "00НФ-001449",
-                    "OrderDate": "2022-02-14T12:24:52+03:00",
-                    "OrderStatus": "Завершен",
-                    "TypeOfWork": "",
-                    "Product": "Отбойный молоток SDS-max 1600 Вт DeWalt D25951K-QS",
-                    "ProductSKU": "D25951K-QS",
-                    "Shipped": true,
-                    "DaysInRepair": 9,
-                    "SerialNumber": "328110",
-                    "DocumentAmount": 9426.3,
-                    "DeliveryAddress": "",
-                    "Comment": "",
-                    "RepairCostPercent": 10,
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    }
-                },
-                {
-                    "GUIDDocument": "4d2cb6f9-9c72-11ec-819f-00155df43005",
-                    "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "GUIDProduct": "24c99a25-7729-11ea-b97f-04d9f5ae0304",
-                    "OrderNumber": "00НФ-002342",
-                    "OrderDate": "2022-03-05T13:52:08+03:00",
-                    "OrderStatus": "На согласовании",
-                    "TypeOfWork": "",
-                    "Product": "Отбойный молоток SDS-max, 1350 Вт, 10.5 Дж,  1450-2900 уд./мин., D25832K-QS",
-                    "ProductSKU": "D25832K-QS",
-                    "Shipped": false,
-                    "DaysInRepair": 191,
-                    "SerialNumber": "000114",
-                    "DocumentAmount": 33458.78,
-                    "DeliveryAddress": "",
-                    "Comment": "",
-                    "RepairCostPercent": 27.6,
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    }
-                }
-            ]
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Documents": {
+      "PurchaseOrders": [
+        {
+          "GUIDDocument": "f6a244e3-8d77-11ec-b9bd-001b21b3a70e",
+          "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "GUIDProduct": "b1c2b864-2a26-11e9-80e7-0050569161b9",
+          "OrderNumber": "00НФ-001449",
+          "OrderDate": "2022-02-14T12:24:52+03:00",
+          "OrderStatus": "Завершен",
+          "TypeOfWork": "",
+          "Product": "Отбойный молоток SDS-max 1600 Вт DeWalt D25951K-QS",
+          "ProductSKU": "D25951K-QS",
+          "Shipped": true,
+          "DaysInRepair": 9,
+          "SerialNumber": "328110",
+          "DocumentAmount": 9426.3,
+          "DeliveryAddress": "",
+          "Comment": "",
+          "RepairCostPercent": 10,
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          }
+        },
+        {
+          "GUIDDocument": "4d2cb6f9-9c72-11ec-819f-00155df43005",
+          "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "GUIDProduct": "24c99a25-7729-11ea-b97f-04d9f5ae0304",
+          "OrderNumber": "00НФ-002342",
+          "OrderDate": "2022-03-05T13:52:08+03:00",
+          "OrderStatus": "На согласовании",
+          "TypeOfWork": "",
+          "Product": "Отбойный молоток SDS-max, 1350 Вт, 10.5 Дж,  1450-2900 уд./мин., D25832K-QS",
+          "ProductSKU": "D25832K-QS",
+          "Shipped": false,
+          "DaysInRepair": 191,
+          "SerialNumber": "000114",
+          "DocumentAmount": 33458.78,
+          "DeliveryAddress": "",
+          "Comment": "",
+          "RepairCostPercent": 27.6,
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          }
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -3126,7 +3216,7 @@ https://<server>/PersAcc/repairs/forperiod/
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/{guid}
+https://<server>/PersAcc/repairs/{guid}</server>
 ```
 
 где guid уникальный идентификатор заказ-наряда (строка 36)
@@ -3141,64 +3231,64 @@ https://<server>/PersAcc/repairs/{guid}
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-databyrepairsbyguid)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                                 |           Тип            | Обязательный | Описание                       |
+| ----------------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-databyrepairsbyguid) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                     |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                                 |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (DataByRepairsByGuid):**
 
-| Параметры     |     Тип     | Обязательный | Описание            |
-| ------------- | :---------: | :----------: | :------------------ |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-databyrepairsbyguid)     |   Объект    |      Да      | Данные документов   |
+| Параметры                                   |     Тип     | Обязательный | Описание            |
+| ------------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                               | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                    | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-databyrepairsbyguid) |   Объект    |      Да      | Данные документов   |
 
 #### **Documents (DataByRepairsByGuid):**
 
-| Параметры      |  Тип   | Обязательный | Описание                    |
-| -------------- | :----: | :----------: | :-------------------------- |
+| Параметры                                             |  Тип   | Обязательный | Описание                    |
+| ----------------------------------------------------- | :----: | :----------: | :-------------------------- |
 | [PurchaseOrders](#purchaseorders-databyrepairsbyguid) | Массив |      Да      | Массив данных заказ-нарядов |
 
 #### **PurchaseOrders (DataByRepairsByGuid):**
 
-| Параметры           |             Тип             | Обязательный | Описание                             |
-| ------------------- | :-------------------------: | :----------: | :----------------------------------- |
-| GUIDDocument        |         Строка (36)         |      Да      | Уникальный GUID документа            |
-| GUIDRelatedDocument |         Строка (36)         |      Да      | Уникальный GUID связанного документа |
-| GUIDCustomer        |         Строка (36)         |      Да      | Уникальный GUID контрагента          |
-| GUIDProduct         |         Строка (36)         |      Да      | Уникальный GUID инструмента          |
-| OrderNumber         |           Строка            |      Да      | Номер документа                      |
-| OrderDate           | Дата (строка в формате UTC) |      Да      | Дата документа                       |
-| OrderStatus         |           Строка            |      Да      | Статус заказа                        |
-| TypeOfWork          |           Строка            |      Да      | Вид работ                            |
-| Product             |           Строка            |      Да      | Наименование инструмента             |
-| ProductSKU          |           Строка            |      Да      | Артикул инструмента                  |
-| Shipped             |           Булево            |      Да      | Признак Отгружен / Не отгружен       |
-| DaysInRepair        |            Число            |      Да      | Количество дней в ремонте            |
-| SerialNumber        |           Строка            |      Да      | Серийный номер                       |
-| DocumentAmount      |            Число            |      Да      | Сумма документа                      |
-| DeliveryAddress     |           Строка            |      Да      | Адрес доставки                       |
-| RepairCostPercent   |            Число            |      Да      | Процент стоимости ремонта            |
-| Comment             |           Строка            |      Да      | Комментарий                          |
-| [ContactPerson](#contactperson-documents)       |           Объект            |      Да      | Данные контактного лица              |
+| Параметры                                 |             Тип             | Обязательный | Описание                             |
+| ----------------------------------------- | :-------------------------: | :----------: | :----------------------------------- |
+| GUIDDocument                              |         Строка (36)         |      Да      | Уникальный GUID документа            |
+| GUIDRelatedDocument                       |         Строка (36)         |      Да      | Уникальный GUID связанного документа |
+| GUIDCustomer                              |         Строка (36)         |      Да      | Уникальный GUID контрагента          |
+| GUIDProduct                               |         Строка (36)         |      Да      | Уникальный GUID инструмента          |
+| OrderNumber                               |           Строка            |      Да      | Номер документа                      |
+| OrderDate                                 | Дата (строка в формате UTC) |      Да      | Дата документа                       |
+| OrderStatus                               |           Строка            |      Да      | Статус заказа                        |
+| TypeOfWork                                |           Строка            |      Да      | Вид работ                            |
+| Product                                   |           Строка            |      Да      | Наименование инструмента             |
+| ProductSKU                                |           Строка            |      Да      | Артикул инструмента                  |
+| Shipped                                   |           Булево            |      Да      | Признак Отгружен / Не отгружен       |
+| DaysInRepair                              |            Число            |      Да      | Количество дней в ремонте            |
+| SerialNumber                              |           Строка            |      Да      | Серийный номер                       |
+| DocumentAmount                            |            Число            |      Да      | Сумма документа                      |
+| DeliveryAddress                           |           Строка            |      Да      | Адрес доставки                       |
+| RepairCostPercent                         |            Число            |      Да      | Процент стоимости ремонта            |
+| Comment                                   |           Строка            |      Да      | Комментарий                          |
+| [ContactPerson](#contactperson-documents) |           Объект            |      Да      | Данные контактного лица              |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
+https://<server>/PersAcc/repairs/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "GUIDPersonalAccount": "9eb6e451-a000-4c40-b346-5615e0856e2d"
 }
 ```
 
@@ -3206,41 +3296,41 @@ https://<server>/PersAcc/repairs/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "Documents": {
-            "PurchaseOrders": [
-                {
-                    "GUIDDocument": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                    "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-                    "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
-                    "GUIDProduct": "cdd214ee-3f63-11e9-80ea-0050569101f6",
-                    "OrderNumber": "00НФ-003937",
-                    "OrderDate": "2021-07-13T12:41:19+03:00",
-                    "OrderStatus": "Завершен",
-                    "TypeOfWork": "",
-                    "Product": "18.0 В XR бесщеточный перфоратор SDS-Plus DeWalt DCH133N-XJ",
-                    "ProductSKU": "DCH133N-XJ",
-                    "Shipped": true,
-                    "DaysInRepair": 125,
-                    "SerialNumber": "121488",
-                    "DocumentAmount": 1782.08,
-                    "DeliveryAddress": "",
-                    "Comment": "зч заказаны 23.07\nзч дозаказаны 07.09",
-                    "RepairCostPercent": 15.3,
-                    "ContactPerson": {
-                        "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
-                        "Name": "Виктор",
-                        "Phone": "+ 7 (917) ...",
-                        "Email": "mail@mail.ru"
-                    }
-                }
-            ]
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "Documents": {
+      "PurchaseOrders": [
+        {
+          "GUIDDocument": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+          "GUIDRelatedDocument": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+          "GUIDCustomer": "d2ef78e4-7e5f-11ea-b97f-04d9f5ae0304",
+          "GUIDProduct": "cdd214ee-3f63-11e9-80ea-0050569101f6",
+          "OrderNumber": "00НФ-003937",
+          "OrderDate": "2021-07-13T12:41:19+03:00",
+          "OrderStatus": "Завершен",
+          "TypeOfWork": "",
+          "Product": "18.0 В XR бесщеточный перфоратор SDS-Plus DeWalt DCH133N-XJ",
+          "ProductSKU": "DCH133N-XJ",
+          "Shipped": true,
+          "DaysInRepair": 125,
+          "SerialNumber": "121488",
+          "DocumentAmount": 1782.08,
+          "DeliveryAddress": "",
+          "Comment": "зч заказаны 23.07\nзч дозаказаны 07.09",
+          "RepairCostPercent": 15.3,
+          "ContactPerson": {
+            "GUID": "79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304",
+            "Name": "Виктор",
+            "Phone": "+ 7 (917) ...",
+            "Email": "mail@mail.ru"
+          }
         }
-    },
-    "error": null,
-    "errorCode": null
+      ]
+    }
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -3259,7 +3349,7 @@ https://<server>/PersAcc/repairs/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/details/{guid}
+https://<server>/PersAcc/orders/details/{guid}</server>
 ```
 
 где guid уникальный идентификатор заказа покупателя (строка 36)
@@ -3273,19 +3363,19 @@ https://<server>/PersAcc/orders/details/{guid}
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-orders)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                    |           Тип            | Обязательный | Описание                       |
+| ---------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-orders) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                        |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                    |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (Orders):**
 
-| Параметры     |     Тип     | Обязательный | Описание               |
-| ------------- | :---------: | :----------: | :--------------------- |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее)    |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее)    |
-| [ProductItems](#productitems-orders)  |   Массив    |      Да      | Данные по номенклатуре |
+| Параметры                            |     Тип     | Обязательный | Описание               |
+| ------------------------------------ | :---------: | :----------: | :--------------------- |
+| TransactionID                        | Строка (36) |     Нет      | [См. общее](#общее)    |
+| SourceID                             | Строка (36) |      Да      | [См. общее](#общее)    |
+| [ProductItems](#productitems-orders) |   Массив    |      Да      | Данные по номенклатуре |
 
 #### **ProductItems (Orders):**
 
@@ -3306,15 +3396,17 @@ https://<server>/PersAcc/orders/details/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e
+https://<server
+  >/PersAcc/orders/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64"
 }
 ```
 
@@ -3322,36 +3414,36 @@ https://<server>/PersAcc/orders/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "ProductItems": [
-            {
-                "ItemGUID": "d45fa969-81e4-11e9-80e9-005056913c8e",
-                "Article_Number": "125х1х22,23",
-                "Code": "00-00001551",
-                "Full_Name": "Круг отрезной бак. 41 125х1х22,23 A 30 R BF 2 кл 80м/с DCUT",
-                "Quantity": 1,
-                "Price": 49.66,
-                "Sum": 39.73,
-                "SizeVAT": 20,
-                "SumVAT": 6.62
-            },
-            {
-                "ItemGUID": "c97092b1-8316-11eb-b998-04d9f5ae0304",
-                "Article_Number": "HR4511C",
-                "Code": "НФ-00180155",
-                "Full_Name": "Перфоратор,SDS-max,1300Вт,2реж,2.7-13Дж,1250-2750у\\м,7.8кг, HR4511C ",
-                "Quantity": 1,
-                "Price": 85386,
-                "Sum": 85386,
-                "SizeVAT": 20,
-                "SumVAT": 14231
-            }
-        ]
-    },
-    "error": null,
-    "errorCode": null
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "ProductItems": [
+      {
+        "ItemGUID": "d45fa969-81e4-11e9-80e9-005056913c8e",
+        "Article_Number": "125х1х22,23",
+        "Code": "00-00001551",
+        "Full_Name": "Круг отрезной бак. 41 125х1х22,23 A 30 R BF 2 кл 80м/с DCUT",
+        "Quantity": 1,
+        "Price": 49.66,
+        "Sum": 39.73,
+        "SizeVAT": 20,
+        "SumVAT": 6.62
+      },
+      {
+        "ItemGUID": "c97092b1-8316-11eb-b998-04d9f5ae0304",
+        "Article_Number": "HR4511C",
+        "Code": "НФ-00180155",
+        "Full_Name": "Перфоратор,SDS-max,1300Вт,2реж,2.7-13Дж,1250-2750у\\м,7.8кг, HR4511C ",
+        "Quantity": 1,
+        "Price": 85386,
+        "Sum": 85386,
+        "SizeVAT": 20,
+        "SumVAT": 14231
+      }
+    ]
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -3370,7 +3462,7 @@ https://<server>/PersAcc/orders/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairssales/details/{guid}
+https://<server>/PersAcc/repairssales/details/{guid}</server>
 ```
 
 где guid уникальный идентификатор заказ-наряда (строка 36)
@@ -3384,20 +3476,20 @@ https://<server>/PersAcc/repairssales/details/{guid}
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-repairs)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                     |           Тип            | Обязательный | Описание                       |
+| ----------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-repairs) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                         |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                     |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (Repairs):**
 
-| Параметры     |     Тип     | Обязательный | Описание               |
-| ------------- | :---------: | :----------: | :--------------------- |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее)    |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее)    |
-| [ProductItems](#productitems-repairs)  |   Массив    |      Да      | Данные по номенклатуре |
-| [WorkItems](#workitems-repairs)     |   Массив    |      Да      | Данные по работам      |
+| Параметры                             |     Тип     | Обязательный | Описание               |
+| ------------------------------------- | :---------: | :----------: | :--------------------- |
+| TransactionID                         | Строка (36) |     Нет      | [См. общее](#общее)    |
+| SourceID                              | Строка (36) |      Да      | [См. общее](#общее)    |
+| [ProductItems](#productitems-repairs) |   Массив    |      Да      | Данные по номенклатуре |
+| [WorkItems](#workitems-repairs)       |   Массив    |      Да      | Данные по работам      |
 
 #### **ProductItems (Repairs):**
 
@@ -3432,15 +3524,17 @@ https://<server>/PersAcc/repairssales/details/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairssales/details/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
+https://<server
+  >/PersAcc/repairssales/details/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64"
 }
 ```
 
@@ -3448,60 +3542,60 @@ https://<server>/PersAcc/repairssales/details/79ad8c9e-e3be-11eb-b9a8-04d9f5ae03
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "ProductItems": [
-            {
-                "ItemGUID": "e830d20a-a358-11e9-80d9-0050569133d8",
-                "Article_Number": "N487311",
-                "Code": "НФ-00091614",
-                "Full_Name": "ПРОКЛАДКА",
-                "Quantity": 2,
-                "Price": 42.71,
-                "Sum": 85.42,
-                "SizeVAT": 20,
-                "SumVAT": 14.24
-            },
-            {
-                "ItemGUID": "01ebbf18-cac2-11ea-b98b-04d9f5ae0304",
-                "Article_Number": "N728012",
-                "Code": "НФ-00152234",
-                "Full_Name": "ВСТАВКА",
-                "Quantity": 1,
-                "Price": 57.11,
-                "Sum": 57.11,
-                "SizeVAT": 20,
-                "SumVAT": 9.52
-            },
-            {
-                "ItemGUID": "181205d5-a359-11e9-80d9-0050569133d8",
-                "Article_Number": "N535834",
-                "Code": "НФ-00093314",
-                "Full_Name": "КОРПУС В КОМПЛЕКТЕ",
-                "Quantity": 1,
-                "Price": 719.44,
-                "Sum": 719.44,
-                "SizeVAT": 20,
-                "SumVAT": 119.91
-            }
-        ],
-        "WorkItems": [
-            {
-                "ItemGUID": "e88206e7-4758-11eb-b990-04d9f5ae0304",
-                "Article_Number": "",
-                "Code": "НФ-00174416",
-                "Full_Name": "Обслуживание инструмента",
-                "Quantity": 1,
-                "Price": 863,
-                "Sum": 863,
-                "SizeVAT": 20,
-                "SumVAT": 143.83
-            }
-        ]
-    },
-    "error": null,
-    "errorCode": null
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "ProductItems": [
+      {
+        "ItemGUID": "e830d20a-a358-11e9-80d9-0050569133d8",
+        "Article_Number": "N487311",
+        "Code": "НФ-00091614",
+        "Full_Name": "ПРОКЛАДКА",
+        "Quantity": 2,
+        "Price": 42.71,
+        "Sum": 85.42,
+        "SizeVAT": 20,
+        "SumVAT": 14.24
+      },
+      {
+        "ItemGUID": "01ebbf18-cac2-11ea-b98b-04d9f5ae0304",
+        "Article_Number": "N728012",
+        "Code": "НФ-00152234",
+        "Full_Name": "ВСТАВКА",
+        "Quantity": 1,
+        "Price": 57.11,
+        "Sum": 57.11,
+        "SizeVAT": 20,
+        "SumVAT": 9.52
+      },
+      {
+        "ItemGUID": "181205d5-a359-11e9-80d9-0050569133d8",
+        "Article_Number": "N535834",
+        "Code": "НФ-00093314",
+        "Full_Name": "КОРПУС В КОМПЛЕКТЕ",
+        "Quantity": 1,
+        "Price": 719.44,
+        "Sum": 719.44,
+        "SizeVAT": 20,
+        "SumVAT": 119.91
+      }
+    ],
+    "WorkItems": [
+      {
+        "ItemGUID": "e88206e7-4758-11eb-b990-04d9f5ae0304",
+        "Article_Number": "",
+        "Code": "НФ-00174416",
+        "Full_Name": "Обслуживание инструмента",
+        "Quantity": 1,
+        "Price": 863,
+        "Sum": 863,
+        "SizeVAT": 20,
+        "SumVAT": 143.83
+      }
+    ]
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -3520,7 +3614,7 @@ https://<server>/PersAcc/repairssales/details/79ad8c9e-e3be-11eb-b9a8-04d9f5ae03
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/details/{guid}
+https://<server>/PersAcc/sales/details/{guid}</server>
 ```
 
 где guid уникальный идентификатор расходной накладной (строка 36)
@@ -3534,19 +3628,19 @@ https://<server>/PersAcc/sales/details/{guid}
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-sales)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                   |           Тип            | Обязательный | Описание                       |
+| --------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-sales) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                       |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                   |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (Sales):**
 
-| Параметры     |     Тип     | Обязательный | Описание               |
-| ------------- | :---------: | :----------: | :--------------------- |
-| TransactionID | Строка (36) |     Нет      | [См. общее](#общее)    |
-| SourceID      | Строка (36) |      Да      | [См. общее](#общее)    |
-| [ProductItems](#productitems-sales)  |   Массив    |      Да      | Данные по номенклатуре |
+| Параметры                           |     Тип     | Обязательный | Описание               |
+| ----------------------------------- | :---------: | :----------: | :--------------------- |
+| TransactionID                       | Строка (36) |     Нет      | [См. общее](#общее)    |
+| SourceID                            | Строка (36) |      Да      | [См. общее](#общее)    |
+| [ProductItems](#productitems-sales) |   Массив    |      Да      | Данные по номенклатуре |
 
 #### **ProductItems (Sales):**
 
@@ -3567,15 +3661,17 @@ https://<server>/PersAcc/sales/details/{guid}
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e
+https://<server
+  >/PersAcc/sales/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e</server
+>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64"
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64"
 }
 ```
 
@@ -3583,25 +3679,25 @@ https://<server>/PersAcc/sales/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e
 
 ```json
 {
-    "response": {
-        "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-        "ProductItems": [
-            {
-                "ItemGUID": "4143a22c-5d1d-11e9-80ee-0050569101f6",
-                "Article_Number": "DT2976-QZ",
-                "Code": "00-00000852",
-                "Full_Name": "Полотно Alligator,POROTON20.д/DWE397/8/9 DeWalt DT2976-QZ",
-                "Quantity": 2,
-                "Price": 11650,
-                "Sum": 19805,
-                "SizeVAT": 20,
-                "SumVAT": 3300.83
-            }
-        ]
-    },
-    "error": null,
-    "errorCode": null
+  "response": {
+    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+    "ProductItems": [
+      {
+        "ItemGUID": "4143a22c-5d1d-11e9-80ee-0050569101f6",
+        "Article_Number": "DT2976-QZ",
+        "Code": "00-00000852",
+        "Full_Name": "Полотно Alligator,POROTON20.д/DWE397/8/9 DeWalt DT2976-QZ",
+        "Quantity": 2,
+        "Price": 11650,
+        "Sum": 19805,
+        "SizeVAT": 20,
+        "SumVAT": 3300.83
+      }
+    ]
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
 
@@ -3620,30 +3716,30 @@ https://<server>/PersAcc/sales/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/customerorders
+https://<server>/PersAcc/customerorders</server>
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры           |     Тип     | Обязательный | Описание                           |
-| ------------------- | :---------: | :----------: | :--------------------------------- |
-| TransactionID       | Строка (36) |     Нет      | [См. общее](#общее)                |
-| SourceID            | Строка (36) |      Да      | [См. общее](#общее)                |
-| GUIDPersonalAccount |   Строка    |      Да      | GUID личного кабинета клиента      |
-| GUIDCustomer        |   Строка    |      Да      | GUID клиента для оформления заказа |
-| [Order](#order-customerorders)               |   Объект    |      Да      | Информация по заказу               |
+| Параметры                      |     Тип     | Обязательный | Описание                           |
+| ------------------------------ | :---------: | :----------: | :--------------------------------- |
+| TransactionID                  | Строка (36) |     Нет      | [См. общее](#общее)                |
+| SourceID                       | Строка (36) |      Да      | [См. общее](#общее)                |
+| GUIDPersonalAccount            |   Строка    |      Да      | GUID личного кабинета клиента      |
+| GUIDCustomer                   |   Строка    |      Да      | GUID клиента для оформления заказа |
+| [Order](#order-customerorders) |   Объект    |      Да      | Информация по заказу               |
 
 #### **Order (CustomerOrders):**
 
-| Параметры   |             Тип             | Обязательный | Описание                                     |
-| ----------- | :-------------------------: | :----------: | :------------------------------------------- |
-| DateOrder   | Дата (строка в формате UTC) |      Да      | Дата заказа                                  |
-| NumberOrder |           Строка            |      Да      | Номер заказа на сайте                        |
-| Comment     |           Строка            |      Да      | Комментарий к заказу                         |
-| Sum         |            Число            |      Да      | Сумма документа                              |
-| VAT         |            Число            |      Да      | 0 - без ндс; 1 - ндс в сумме; 2 - ндс сверху |
-| SizeVAT     |            Число            |      Да      | Ставка НДС                                   |
-| [Products](#products-customerorders)    |           Массив            |      Да      | Данные по номенклатуре                       |
+| Параметры                            |             Тип             | Обязательный | Описание                                     |
+| ------------------------------------ | :-------------------------: | :----------: | :------------------------------------------- |
+| DateOrder                            | Дата (строка в формате UTC) |      Да      | Дата заказа                                  |
+| NumberOrder                          |           Строка            |      Да      | Номер заказа на сайте                        |
+| Comment                              |           Строка            |      Да      | Комментарий к заказу                         |
+| Sum                                  |            Число            |      Да      | Сумма документа                              |
+| VAT                                  |            Число            |      Да      | 0 - без ндс; 1 - ндс в сумме; 2 - ндс сверху |
+| SizeVAT                              |            Число            |      Да      | Ставка НДС                                   |
+| [Products](#products-customerorders) |           Массив            |      Да      | Данные по номенклатуре                       |
 
 #### **Products (CustomerOrders):**
 
@@ -3657,11 +3753,11 @@ https://<server>/PersAcc/customerorders
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-customerorders)  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                            |           Тип            | Обязательный | Описание                       |
+| ------------------------------------ | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-customerorders) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                            |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (CustomerOrders):**
 
@@ -3676,34 +3772,34 @@ https://<server>/PersAcc/customerorders
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/customerorders
+https://<server>/PersAcc/customerorders</server>
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
-{    
-    "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
-    "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c65",
-    "GUIDPersonalAccount": "0d2fd304-07ef-4f32-9a76-2b7d820e2c65",
-    "GUIDCustomer": "0d2fd304-07ef-4f32-9a76-2b7d820e2c65", 
-    "Order": {
-        "DateOrder": "2021-11-18T10:52:35+03:00",
-        "NumberOrder": "С001",
-        "Comment": "Загружено из сайта",
-        "Sum": 3600,
-        "VAT": 1,
-        "SizeVAT": 20,
-        "Products": [
-            {
-                "GUID": "6c20e5f0-4033-11ea-80ee-0050569133d8",
-                "Article": "DT5123-QZ",
-                "Quantity": "12",
-                "Price": "300",
-                "Sum": "3600"
-            }            
-        ]
-    }
+{
+  "TransactionID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c64",
+  "SourceID": "0d2fd304-07ef-4f32-9a76-2b7d820e2c65",
+  "GUIDPersonalAccount": "0d2fd304-07ef-4f32-9a76-2b7d820e2c65",
+  "GUIDCustomer": "0d2fd304-07ef-4f32-9a76-2b7d820e2c65",
+  "Order": {
+    "DateOrder": "2021-11-18T10:52:35+03:00",
+    "NumberOrder": "С001",
+    "Comment": "Загружено из сайта",
+    "Sum": 3600,
+    "VAT": 1,
+    "SizeVAT": 20,
+    "Products": [
+      {
+        "GUID": "6c20e5f0-4033-11ea-80ee-0050569133d8",
+        "Article": "DT5123-QZ",
+        "Quantity": "12",
+        "Price": "300",
+        "Sum": "3600"
+      }
+    ]
+  }
 }
 ```
 
@@ -3711,10 +3807,10 @@ https://<server>/PersAcc/customerorders
 
 ```json
 {
-    "response": {
-        "Number1C": "00-0000001"
-    },
-    "error": null,
-    "errorCode": null
+  "response": {
+    "Number1C": "00-0000001"
+  },
+  "error": null,
+  "errorCode": null
 }
 ```
