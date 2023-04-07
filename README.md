@@ -1,6 +1,8 @@
-# HTTP-services Personal аccount (1.1.4.1)
+# HTTP-services Personal аccount (1.1.5.1)
 
 ## Оглавление
+
+[Изменения](#изменения)
 
 - [Общее](#общее)
 
@@ -74,6 +76,10 @@
 
 ---
 
+## Изменения
+
+Изменения в описании отменчены следующим образом (\*)
+
 ## Общее
 
 Во всех сервисах:
@@ -95,7 +101,7 @@
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/ping/</server>
+https://server.ru/PersAcc/ping/
 ```
 
 Возвращает _JSON_ с следующими параметрами элемента _response_:
@@ -133,7 +139,7 @@ https://<server>/PersAcc/ping/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/approval/{guid}</server>
+https://server.ru/PersAcc/repairs/approval/{guid}
 ```
 
 где guid уникальный идентификатор заказ-наряда (строка 36 знаков)
@@ -160,9 +166,7 @@ https://<server>/PersAcc/repairs/approval/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/repairs/approval/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304</server
->
+https://server.ru/PersAcc/repairs/approval/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -205,7 +209,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/files/{type}/{guid}</server>
+https://server.ru/PersAcc/files/{type}/{guid}
 ```
 
 где guid уникальный идентификатор заказ-наряда (строка 36 знаков)
@@ -230,9 +234,7 @@ https://<server>/PersAcc/files/{type}/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df43007</server
->
+https://server.ru/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df43007
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -401,7 +403,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/IndicatorsInfo</server>
+https://server.ru/PersAcc/IndicatorsInfo
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -442,7 +444,7 @@ https://<server>/PersAcc/IndicatorsInfo</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/IndicatorsInfo</server>
+https://server.ru/PersAcc/IndicatorsInfo
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -498,7 +500,7 @@ https://<server>/PersAcc/IndicatorsInfo</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/customer/objects/{guid}</server>
+https://server.ru/PersAcc/customer/objects/{guid}
 ```
 
 где guid - уникальный идентификатор клиента
@@ -511,6 +513,8 @@ https://<server>/PersAcc/customer/objects/{guid}</server>
 | SourceID                                        | Строка (36)  |      Да      | [См. общее](#общее)                |
 | Name                                            | Строка (150) |      Да      | Наименование объекта клиента       |
 | Adress                                          | Строка (500) |      Да      | Адрес объекта клиента              |
+| LATITUDE (\*)                                   | Строка (10)  |      Да      | Широта                             |
+| LONGITUDE (\*)                                  | Строка (10)  |      Да      | Долгота                            |
 | [ContactPerson](#contactperson-customerobjects) |    Объект    |      Да      | Контактное лицо по объекту клиента |
 
 #### **ContactPerson (CustomerObjects):**
@@ -543,9 +547,7 @@ https://<server>/PersAcc/customer/objects/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/customer/objects/49eafec7-9772-11e9-80d7-0050569133d8</server
->
+https://server.ru/PersAcc/customer/objects/49eafec7-9772-11e9-80d7-0050569133d8
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -556,6 +558,8 @@ https://<server
   "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
   "Name": "Объект на Арбате",
   "Adress": "Москва, ул. Арбат ...",
+  "LATITUDE": "55.820526",
+  "LONGITUDE": "49.062280",
   "ContactPerson": {
     "Name": "Иванов Иван Иванович",
     "Post": "Директор",
@@ -594,7 +598,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/indicators/{guid}</server>
+https://server.ru/PersAcc/indicators/{guid}
 ```
 
 где guid - уникальный идентификатор личного кабинета, строка (36)
@@ -637,9 +641,7 @@ https://<server>/PersAcc/indicators/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d</server
->
+https://server.ru/PersAcc/indicators/9eb6e451-a000-4c40-b346-5615e0856e2d
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -764,16 +766,16 @@ https://<server
 
 #### **Customers (PersonalAcc):**
 
-| Параметры                                   |     Тип     | Обязательный | Описание                   |
-| ------------------------------------------- | :---------: | :----------: | :------------------------- |
-| GUID                                        | Строка (36) |      Да      | Идентификатор контрагента  |
-| Name                                        |   Строка    |      Да      | Наименование               |
-| INN                                         |   Строка    |      Да      | ИНН                        |
-| KPP                                         |   Строка    |      Да      | КПП                        |
-| MAIN                                        |   Булево    |      Да      | Признак основного клиента  |
-| [Manager](#manager-personalacc)             |   Объект    |      Да      | Данные по менеджеру        |
-| [ClientObject](#clientobject-personalacc)   |   Массив    |      Да      | Данные по объектам         |
-| [ContactPerson](#contactperson-personalacc) |   Объект    |      Да      | Данные по контактному лицу |
+| Параметры                                      |     Тип     | Обязательный | Описание                   |
+| ---------------------------------------------- | :---------: | :----------: | :------------------------- |
+| GUID                                           | Строка (36) |      Да      | Идентификатор контрагента  |
+| Name                                           |   Строка    |      Да      | Наименование               |
+| INN                                            |   Строка    |      Да      | ИНН                        |
+| KPP                                            |   Строка    |      Да      | КПП                        |
+| MAIN                                           |   Булево    |      Да      | Признак основного клиента  |
+| [Manager](#manager-personalacc)                |   Объект    |      Да      | Данные по менеджеру        |
+| [ClientObject](#clientobject-personalacc) (\*) |   Массив    |      Да      | Данные по объектам         |
+| [ContactPerson](#contactperson-personalacc)    |   Объект    |      Да      | Данные по контактному лицу |
 
 #### **Manager (PersonalAcc):**
 
@@ -791,6 +793,8 @@ https://<server
 | GUID                                         | Строка (36) |      Да      | Идентификатор объекта         |
 | Name                                         |   Строка    |      Да      | Наименование объекта          |
 | Adress                                       |   Строка    |      Да      | Адрес объекта                 |
+| LATITUDE (\*)                                | Строка (10) |      Да      | Широта                        |
+| LONGITUDE (\*)                               | Строка (10) |      Да      | Долгота                       |
 | [ContactPersons](#contactperson-personalacc) |   Массив    |      Да      | Массив контактов объекта      |
 | [Files](#files-personalacc)                  |   Массив    |      Да      | Массив изображений по объекту |
 
@@ -931,7 +935,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/priceconditions</server>
+https://server.ru/PersAcc/priceconditions
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -981,7 +985,7 @@ https://<server>/PersAcc/priceconditions</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/priceconditions</server>
+https://server.ru/PersAcc/priceconditions
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1511,7 +1515,7 @@ https://<server>/PersAcc/priceconditions</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/refund/{guid}</server>
+https://server.ru/PersAcc/proParck/refund/{guid}
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1560,23 +1564,21 @@ https://<server>/PersAcc/proParck/refund/{guid}</server>
 
 #### **Products (ProParckRefund):**
 
-| Параметры    |     Тип     | Обязательный | Описание                                         |
-| ------------ | :---------: | :----------: | :----------------------------------------------- |
-| GUIDProParck | Строка (36) |      Да      | Уникальный GUID документа Подписка на инструмент |
-| NumberSub    |   Строка    |      Да      | Номер документа Подписка на инструмент           |
-| ItemGUID     | Строка (36) |      Да      | Уникальный GUID номенклатуры (инструмента)       |
-| Article      |   Строка    |      Да      | Артикул                                          |
-| Serial       |   Строка    |      Да      | Серийный номер                                   |
-| Quantity     |    Число    |      Да      | Количество                                       |
+| Параметры         |     Тип     | Обязательный | Описание                                         |
+| ----------------- | :---------: | :----------: | :----------------------------------------------- |
+| GUIDProParck      | Строка (36) |      Да      | Уникальный GUID документа Подписка на инструмент |
+| NumberSub         |   Строка    |      Да      | Номер документа Подписка на инструмент           |
+| ItemGUID          | Строка (36) |      Да      | Уникальный GUID номенклатуры (инструмента)       |
+| Article           |   Строка    |      Да      | Артикул                                          |
+| SerialNumber (\*) |   Строка    |      Да      | Серийный номер                                   |
+| Quantity          |    Число    |      Да      | Количество                                       |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005</server
->
+https://server.ru/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1610,7 +1612,7 @@ https://<server
               "NumberSub": "РР-00000001",
               "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
               "Article": "D25153K-KS",
-              "Serial": "000025",
+              "SerialNumber": "000025",
               "Quantity": 1
             }
           ]
@@ -1638,7 +1640,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/replacement/{guid}</server>
+https://server.ru/PersAcc/proParck/replacement/{guid}
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1687,26 +1689,32 @@ https://<server>/PersAcc/proParck/replacement/{guid}</server>
 
 #### **Products (ProParckReplacement):**
 
-| Параметры    |     Тип     | Обязательный | Описание                                                           |
-| ------------ | :---------: | :----------: | :----------------------------------------------------------------- |
-| GUIDProParck | Строка (36) |      Да      | Уникальный GUID документа Подписка на инструмент                   |
-| NumberSub    |   Строка    |      Да      | Номер документа Подписка на инструмент                             |
-| ItemGUID     | Строка (36) |      Да      | Уникальный GUID номенклатуры (инструмента) которая заменяется      |
-| Article      |   Строка    |      Да      | Артикул (который заменяется)                                       |
-| Serial       |   Строка    |      Да      | Серийный номер (который заменяется)                                |
-| ItemGUIDTo   | Строка (36) |      Да      | Уникальный GUID номенклатуры (инструмента) на который будет замена |
-| ArticleTo    |   Строка    |      Да      | Артикул (на который заменяется)                                    |
-| SerialTo     |   Строка    |      Да      | Серийный номер (на который заменяется)                             |
-| Quantity     |    Число    |      Да      | Количество                                                         |
+| Параметры                                      |     Тип     | Обязательный | Описание                                                           |
+| ---------------------------------------------- | :---------: | :----------: | :----------------------------------------------------------------- |
+| GUIDProParck                                   | Строка (36) |      Да      | Уникальный GUID документа Подписка на инструмент                   |
+| NumberSub                                      |   Строка    |      Да      | Номер документа Подписка на инструмент                             |
+| ItemGUID                                       | Строка (36) |      Да      | Уникальный GUID номенклатуры (инструмента) которая заменяется      |
+| Article                                        |   Строка    |      Да      | Артикул (который заменяется)                                       |
+| SerialNumber (\*)                              |   Строка    |      Да      | Серийный номер (который заменяется)                                |
+| ItemGUIDTo                                     | Строка (36) |      Да      | Уникальный GUID номенклатуры (инструмента) на который будет замена |
+| ArticleTo                                      |   Строка    |      Да      | Артикул (на который заменяется)                                    |
+| [SerialTo](#serialto-proparckreplacement) (\*) |   Строка    |      Да      | Данные серийного номера (на который заменяется)                    |
+| Quantity                                       |    Число    |      Да      | Количество                                                         |
+
+#### **SerialTo (ProParckReplacement):**
+
+| Параметры |     Тип      | Обязательный | Описание       |
+| --------- | :----------: | :----------: | :------------- |
+| Number    | Строка (150) |      Да      | Серийный номер |
+| TID       | Строка (24)  |      Да      | Метка TID      |
+| EPC       | Строка (30)  |      Да      | Метка EPC      |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43005</server
->
+https://server.ru/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43005
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1740,10 +1748,14 @@ https://<server
               "NumberSub": "РР-00000001",
               "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
               "Article": "D25153K-KS",
-              "Serial": "000007",
+              "SerialNumber": "000007",
               "ItemGUIDTo": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
               "ArticleTo": "D25153K-KS",
-              "SerialTo": "000025",
+              "SerialTo": {
+                "Number": "000025",
+                "TID": "E20060031D******",
+                "EPC": ""
+              },
               "Quantity": 1
             }
           ]
@@ -1771,7 +1783,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/new/{guid}</server>
+https://server.ru/PersAcc/proParck/new/{guid}
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1820,21 +1832,27 @@ https://<server>/PersAcc/proParck/new/{guid}</server>
 
 #### **Products (ProParckNew):**
 
-| Параметры |     Тип     | Обязательный | Описание                                   |
-| --------- | :---------: | :----------: | :----------------------------------------- |
-| ItemGUID  | Строка (36) |      Да      | уникальный GUID номенклатуры (инструмента) |
-| Serial    |   Строка    |      Да      | Серийный номер                             |
-| Article   |   Строка    |      Да      | Артикул                                    |
-| Quantity  |    Число    |      Да      | Количество                                 |
+| Параметры                          |     Тип     | Обязательный | Описание                                   |
+| ---------------------------------- | :---------: | :----------: | :----------------------------------------- |
+| ItemGUID                           | Строка (36) |      Да      | уникальный GUID номенклатуры (инструмента) |
+| [Serial](#serial-proparcknew) (\*) |   Объект    |      Да      | Данные по серийному номеру                 |
+| Article                            |   Строка    |      Да      | Артикул                                    |
+| Quantity                           |    Число    |      Да      | Количество                                 |
+
+#### **Serial (ProParckNew):**
+
+| Параметры |     Тип      | Обязательный | Описание       |
+| --------- | :----------: | :----------: | :------------- |
+| Number    | Строка (150) |      Да      | Серийный номер |
+| TID       | Строка (24)  |      Да      | Метка TID      |
+| EPC       | Строка (30)  |      Да      | Метка EPC      |
 
 ### Пример
 
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005</server
->
+https://server.ru/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1866,8 +1884,22 @@ https://<server
           "Products": [
             {
               "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
-              "Serial": "000007",
+              "Serial": {
+                "Number": "000007",
+                "TID": "E20060031*******",
+                "EPC": ""
+              },
               "Article": "D25153K-KS",
+              "Quantity": 1
+            },
+            {
+              "ItemGUID": "d3fa562d-2f77-11e9-80d7-00505691a6db",
+              "Serial": {
+                "Number": "12345",
+                "TID": "E20060031*******",
+                "EPC": "3005FB63A*********************"
+              },
+              "Article": "D25333K-QS",
               "Quantity": 1
             }
           ]
@@ -1895,7 +1927,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/moving</server>
+https://server.ru/PersAcc/proParck/moving
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -1920,13 +1952,13 @@ https://<server>/PersAcc/proParck/moving</server>
 
 #### **Products (ProParckMoving):**
 
-| Параметры |     Тип     | Обязательный | Описание                   |
-| --------- | :---------: | :----------: | :------------------------- |
-| GUID      | Строка (36) |      Да      | Идентификатор инструмента  |
-| Serial    |   Строка    |      Да      | Серийный номер инструмента |
-| Article   |   Строка    |      Да      | Артикул                    |
-| NumberSub | Строка (36) |      Да      | Номер подписки 1С ProParck |
-| Quantity  |   Строка    |      Да      | Количество                 |
+| Параметры    |     Тип     | Обязательный | Описание                   |
+| ------------ | :---------: | :----------: | :------------------------- |
+| GUID         | Строка (36) |      Да      | Идентификатор инструмента  |
+| SerialNumber |   Строка    |      Да      | Серийный номер инструмента |
+| Article      |   Строка    |      Да      | Артикул                    |
+| NumberSub    | Строка (36) |      Да      | Номер подписки 1С ProParck |
+| Quantity     |   Строка    |      Да      | Количество                 |
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
@@ -1949,7 +1981,7 @@ https://<server>/PersAcc/proParck/moving</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/moving</server>
+https://server.ru/PersAcc/proParck/moving
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1968,7 +2000,7 @@ https://<server>/PersAcc/proParck/moving</server>
     "Products": [
       {
         "GUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
-        "Serial": "000007",
+        "SerialNumber": "000007",
         "NumberSub": "РР-00000001",
         "Article": "D25153K-KS",
         "Quantity": "1"
@@ -2007,7 +2039,7 @@ https://<server>/PersAcc/proParck/moving</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/request</server>
+https://server.ru/PersAcc/proParck/request
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2033,15 +2065,15 @@ https://<server>/PersAcc/proParck/request</server>
 
 #### **Products (ProParckRequest):**
 
-| Параметры |     Тип     | Обязательный | Описание                                                    |
-| --------- | :---------: | :----------: | :---------------------------------------------------------- |
-| GUID      | Строка (36) |      Да      | Идентификатор инструмента                                   |
-| Serial    |   Строка    |     Нет      | Серийный номер инструмента (только для типов return и swap) |
-| NumberSub | Строка (36) |     Нет      | Номер подписки 1С ProParck (только для типов return и swap) |
-| Article   |   Строка    |      Да      | Артикул                                                     |
-| Quantity  |   Строка    |      Да      | Количество                                                  |
-| Price     |   Строка    |     Нет      | Цена (только для типа New)                                  |
-| Sum       |   Строка    |     Нет      | Сумма в строке (только для типа New)                        |
+| Параметры    |     Тип     | Обязательный | Описание                                                    |
+| ------------ | :---------: | :----------: | :---------------------------------------------------------- |
+| GUID         | Строка (36) |      Да      | Идентификатор инструмента                                   |
+| SerialNumber |   Строка    |     Нет      | Серийный номер инструмента (только для типов return и swap) |
+| NumberSub    | Строка (36) |     Нет      | Номер подписки 1С ProParck (только для типов return и swap) |
+| Article      |   Строка    |      Да      | Артикул                                                     |
+| Quantity     |   Строка    |      Да      | Количество                                                  |
+| Price        |   Строка    |     Нет      | Цена (только для типа New)                                  |
+| Sum          |   Строка    |     Нет      | Сумма в строке (только для типа New)                        |
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
@@ -2064,33 +2096,33 @@ https://<server>/PersAcc/proParck/request</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/proParck/request</server>
+https://server.ru/PersAcc/proParck/request
 ```
 
 **Тело запроса в формате _JSON_**:
 
 ```json
 {
-    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
-    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
-    "GUIDCustomer": "cbd1d77f-3933-11eb-b990-04d9f5ae0304",
-    "Request": {
-        "Type": "new",
-        "Date": "2023-01-14T11:04:24+03:00",
-        "DatePP": "2023-01-16T11:04:24+03:00",
-        "Number": "1",
-        "ClientObjectGUID": "3a2db226-041a-11ed-81a0-00155df43005",
-        "Comment": "Комментарий",
-        "Products": [
-            {
-                "GUID": "b388af94-db3d-11ec-81a0-00155df43005",
-                "Article": "5009D-SP",
-                "Quantity": "1"
-                "Price": "17500",
-                "Sum": "17500"
-            }
-        ]
-    }
+  "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+  "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
+  "GUIDCustomer": "cbd1d77f-3933-11eb-b990-04d9f5ae0304",
+  "Request": {
+    "Type": "new",
+    "Date": "2023-01-14T11:04:24+03:00",
+    "DatePP": "2023-01-16T11:04:24+03:00",
+    "Number": "1",
+    "ClientObjectGUID": "3a2db226-041a-11ed-81a0-00155df43005",
+    "Comment": "Комментарий",
+    "Products": [
+      {
+        "GUID": "b388af94-db3d-11ec-81a0-00155df43005",
+        "Article": "5009D-SP",
+        "Quantity": "1",
+        "Price": "17500",
+        "Sum": "17500"
+      }
+    ]
+  }
 }
 ```
 
@@ -2134,7 +2166,7 @@ https://<server>/PersAcc/proParck/request</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/</server>
+https://server.ru/PersAcc/sales/
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2187,7 +2219,7 @@ https://<server>/PersAcc/sales/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/</server>
+https://server.ru/PersAcc/sales/
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -2266,7 +2298,7 @@ https://<server>/PersAcc/sales/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/forperiod/</server>
+https://server.ru/PersAcc/sales/forperiod/
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2321,7 +2353,7 @@ https://<server>/PersAcc/sales/forperiod/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/forperiod/</server>
+https://server.ru/PersAcc/sales/forperiod/
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -2385,7 +2417,7 @@ https://<server>/PersAcc/sales/forperiod/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/{guid}</server>
+https://server.ru/PersAcc/sales/{guid}
 ```
 
 где guid уникальный идентификатор расходной накладной (строка 36)
@@ -2440,7 +2472,7 @@ https://<server>/PersAcc/sales/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/41361a1d-dded-11ea-b98b-04d9f5ae0304/</server>
+https://server.ru/PersAcc/sales/41361a1d-dded-11ea-b98b-04d9f5ae0304/
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -2502,7 +2534,7 @@ https://<server>/PersAcc/sales/41361a1d-dded-11ea-b98b-04d9f5ae0304/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders</server>
+https://server.ru/PersAcc/orders
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2556,7 +2588,7 @@ https://<server>/PersAcc/orders</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/</server>
+https://server.ru/PersAcc/orders/
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -2639,7 +2671,7 @@ https://<server>/PersAcc/orders/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/forperiod/</server>
+https://server.ru/PersAcc/orders/forperiod/
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2695,7 +2727,7 @@ https://<server>/PersAcc/orders/forperiod/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/forperiod/</server>
+https://server.ru/PersAcc/orders/forperiod/
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -2780,7 +2812,7 @@ https://<server>/PersAcc/orders/forperiod/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/{guid}</server>
+https://server.ru/PersAcc/orders/{guid}
 ```
 
 где guid уникальный идентификатор заказа покупателя (строка 36)
@@ -2836,7 +2868,7 @@ https://<server>/PersAcc/orders/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/f7de2702-93b4-11ec-b9bd-001b21b3a70e</server>
+https://server.ru/PersAcc/orders/f7de2702-93b4-11ec-b9bd-001b21b3a70e
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -2900,7 +2932,7 @@ https://<server>/PersAcc/orders/f7de2702-93b4-11ec-b9bd-001b21b3a70e</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/</server>
+https://server.ru/PersAcc/repairs/
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2961,7 +2993,7 @@ https://<server>/PersAcc/repairs/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/</server>
+https://server.ru/PersAcc/repairs/
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -3056,7 +3088,7 @@ https://<server>/PersAcc/repairs/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/forperiod/</server>
+https://server.ru/PersAcc/repairs/forperiod/
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -3119,7 +3151,7 @@ https://<server>/PersAcc/repairs/forperiod/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/forperiod/</server>
+https://server.ru/PersAcc/repairs/forperiod/
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -3216,7 +3248,7 @@ https://<server>/PersAcc/repairs/forperiod/</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/{guid}</server>
+https://server.ru/PersAcc/repairs/{guid}
 ```
 
 где guid уникальный идентификатор заказ-наряда (строка 36)
@@ -3279,7 +3311,7 @@ https://<server>/PersAcc/repairs/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairs/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304</server>
+https://server.ru/PersAcc/repairs/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -3349,7 +3381,7 @@ https://<server>/PersAcc/repairs/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/orders/details/{guid}</server>
+https://server.ru/PersAcc/orders/details/{guid}
 ```
 
 где guid уникальный идентификатор заказа покупателя (строка 36)
@@ -3396,9 +3428,7 @@ https://<server>/PersAcc/orders/details/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/orders/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e</server
->
+https://server.ru/PersAcc/orders/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -3462,7 +3492,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/repairssales/details/{guid}</server>
+https://server.ru/PersAcc/repairssales/details/{guid}
 ```
 
 где guid уникальный идентификатор заказ-наряда (строка 36)
@@ -3524,9 +3554,7 @@ https://<server>/PersAcc/repairssales/details/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/repairssales/details/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304</server
->
+https://server.ru/PersAcc/repairssales/details/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -3614,7 +3642,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/sales/details/{guid}</server>
+https://server.ru/PersAcc/sales/details/{guid}
 ```
 
 где guid уникальный идентификатор расходной накладной (строка 36)
@@ -3661,9 +3689,7 @@ https://<server>/PersAcc/sales/details/{guid}</server>
 **_URL_**:
 
 ```html
-https://<server
-  >/PersAcc/sales/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e</server
->
+https://server.ru/PersAcc/sales/details/f7de2702-93b4-11ec-b9bd-001b21b3a70e
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -3716,7 +3742,7 @@ https://<server
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/customerorders</server>
+https://server.ru/PersAcc/customerorders
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -3772,7 +3798,7 @@ https://<server>/PersAcc/customerorders</server>
 **_URL_**:
 
 ```html
-https://<server>/PersAcc/customerorders</server>
+https://server.ru/PersAcc/customerorders
 ```
 
 **Тело запроса в формате _JSON_**:
