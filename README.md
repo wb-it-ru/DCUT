@@ -1,4 +1,4 @@
-# HTTP-services Personal аccount (1.1.5.1)
+# HTTP-services Personal аccount (1.1.5.2)
 
 ## Оглавление
 
@@ -34,17 +34,17 @@
 
   - [Stock](#stock)
 
-- [ProParck](#proparck)
+- [ProPark](#propark)
 
-  - [ProParckRefund](#proparckrefund)
+  - [ProParkRefund](#proparkrefund)
 
-  - [ProParckReplacement](#proparckreplacement)
+  - [ProParkReplacement](#proparkreplacement)
 
-  - [ProParckNew](#proparcknew)
+  - [ProParkNew](#proparknew)
 
-  - [ProParckMoving](#proparckmoving)
+  - [ProParkMoving](#proparkmoving)
 
-  - [ProParckRequest](#proparckrequest)
+  - [ProParkRequest](#proparkrequest)
 
 - [Documents](#documents)
 
@@ -79,6 +79,8 @@
 ## Изменения
 
 Изменения в описании отменчены следующим образом (\*)
+
+В версии 1.1.5.2 везде изменены названия ProParck на ProPark (убрали букву "c")
 
 ## Общее
 
@@ -277,11 +279,11 @@ https://server.ru/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df4300
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
-| Параметры          |  Тип   | Обязательный | Описание                                                                                                                                                                                                                                               |
-| ------------------ | :----: | :----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Type               | Строка |      Да      | Тип (Может быть: DataByRepairs - заказ наряды, DataByOrders - заказ клиента, DataBySales - реализация, proParck/new - подписка на инструмент, proParck/refund - возврат инструмента из подписки, proParck/replacement) - замена инструмента в подписке |
-| Event              | Строка |      Да      | Событие (Сейчас только Update, в будущем могут быть New, Delete)                                                                                                                                                                                       |
-| [Data](#data-push) | Массив |      Да      | Данные для обработки                                                                                                                                                                                                                                   |
+| Параметры          |  Тип   | Обязательный | Описание                                                                                                                                                                                                                                                 |
+| ------------------ | :----: | :----------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type               | Строка |      Да      | Тип (Может быть: DataByRepairs - заказ наряды, DataByOrders - заказ клиента, DataBySales - реализация, proPark/new - подписка на инструмент, proPark/refund - возврат инструмента из подписки, proPark/replacement) - замена инструмента в подписке |
+| Event              | Строка |      Да      | Событие (Сейчас только Update, в будущем могут быть New, Delete)                                                                                                                                                                                         |
+| [Data](#data-push) | Массив |      Да      | Данные для обработки                                                                                                                                                                                                                                     |
 
 #### **Data (push):**
 
@@ -1104,10 +1106,10 @@ https://server.ru/PersAcc/priceconditions
 | Category_GUID                     | Строка (36) |      Да      | Идентификатор категории            |
 | Price_Group                       |   Строка    |      Да      | Ценовая группа                     |
 | IsNew                             |   Булево    |      Да      | признак _Это новинка_ номенклатуры |
-| [ProParck](#proparck-product)     |   Объект    |     Нет      | Данные подписки ProParck           |
+| [ProPark](#propark-product)     |   Объект    |     Нет      | Данные подписки ProPark           |
 | [Properties](#properties-product) |   Объект    |      Да      | Свойства номенклатуры              |
 
-#### **ProParck (Product):**
+#### **ProPark (Product):**
 
 | Параметры |     Тип     | Обязательный | Описание                    |
 | --------- | :---------: | :----------: | :-------------------------- |
@@ -1172,7 +1174,7 @@ https://server.ru/PersAcc/priceconditions
         "Category_GUID": "6df736fa-51c4-11ec-b9ba-001b21b3a70e",
         "Price_Group": "Оснастка DCUT",
         "IsNew": true,
-        "ProParck": {
+        "ProPark": {
           "Phase": ["3", "5"]
         },
         "Properties": {
@@ -1498,11 +1500,11 @@ https://server.ru/PersAcc/priceconditions
 
 ---
 
-## ProParck
+## ProPark
 
 ---
 
-## ProParckRefund
+## ProParkRefund
 
 ### Описание
 
@@ -1515,7 +1517,7 @@ https://server.ru/PersAcc/priceconditions
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/refund/{guid}
+https://server.ru/PersAcc/proPark/refund/{guid}
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1535,22 +1537,22 @@ https://server.ru/PersAcc/proParck/refund/{guid}
 | error     |          Строка          |      Да      | Строка описания ошибки         |
 | errorCode |          Строка          |      Да      | Код ошибки в классификации API |
 
-#### **response (ProParckRefund):**
+#### **response (ProParkRefund):**
 
 | Параметры                              |     Тип     | Обязательный | Описание            |
 | -------------------------------------- | :---------: | :----------: | :------------------ |
 | TransactionID                          | Строка (36) |     Нет      | [См. общее](#общее) |
 | SourceID                               | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-proparckrefund) |   Объект    |      Да      | Данные документа    |
+| [Documents](#documents-proparkrefund) |   Объект    |      Да      | Данные документа    |
 
-#### **Documents (ProParckRefund):**
+#### **Documents (ProParkRefund):**
 
 | Параметры                                        |  Тип   |     | Обязательный | Описание                                                 |
 | ------------------------------------------------ | :----: | --- | :----------: | -------------------------------------------------------- |
-| [ProParckRefund](#proparckrefund-proparckrefund) | Массив |     |      Да      | Массив данных документов Возврат инструмента из подписки |
+| [ProParkRefund](#proparkrefund-proparkrefund) | Массив |     |      Да      | Массив данных документов Возврат инструмента из подписки |
 |                                                  |        |     |              |                                                          |
 
-#### **ProParckRefund (ProParckRefund):**
+#### **ProParkRefund (ProParkRefund):**
 
 | Параметры                            |             Тип             | Обязательный | Описание                                   |
 | ------------------------------------ | :-------------------------: | :----------: | :----------------------------------------- |
@@ -1560,13 +1562,13 @@ https://server.ru/PersAcc/proParck/refund/{guid}
 | Number                               |           Строка            |      Да      | Номер документа                            |
 | Date                                 | Дата (строка в формате UTC) |      Да      | Дата документа                             |
 | GUIDRequest                          |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
-| [Products](#products-proparckrefund) |           Массив            |      Да      | Данные табличной части                     |
+| [Products](#products-proparkrefund) |           Массив            |      Да      | Данные табличной части                     |
 
-#### **Products (ProParckRefund):**
+#### **Products (ProParkRefund):**
 
 | Параметры         |     Тип     | Обязательный | Описание                                         |
 | ----------------- | :---------: | :----------: | :----------------------------------------------- |
-| GUIDProParck      | Строка (36) |      Да      | Уникальный GUID документа Подписка на инструмент |
+| GUIDProPark      | Строка (36) |      Да      | Уникальный GUID документа Подписка на инструмент |
 | NumberSub         |   Строка    |      Да      | Номер документа Подписка на инструмент           |
 | ItemGUID          | Строка (36) |      Да      | Уникальный GUID номенклатуры (инструмента)       |
 | Article           |   Строка    |      Да      | Артикул                                          |
@@ -1578,7 +1580,7 @@ https://server.ru/PersAcc/proParck/refund/{guid}
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005
+https://server.ru/PersAcc/proPark/refund/6444c088-bd12-11ed-81b6-00155df43005
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1598,7 +1600,7 @@ https://server.ru/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005
     "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
     "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
     "Documents": {
-      "ProParckRefund": [
+      "ProParkRefund": [
         {
           "GUIDDocument": "6ae193de-c4b4-11ed-81b7-00155df43005",
           "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
@@ -1608,7 +1610,7 @@ https://server.ru/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005
           "GUIDRequest": "639d65d9-c4b4-11ed-81b7-00155df43005",
           "Products": [
             {
-              "GUIDProParck": "6444c088-bd12-11ed-81b6-00155df43005",
+              "GUIDProPark": "6444c088-bd12-11ed-81b6-00155df43005",
               "NumberSub": "РР-00000001",
               "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
               "Article": "D25153K-KS",
@@ -1627,7 +1629,7 @@ https://server.ru/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005
 
 ---
 
-## ProParckReplacement
+## ProParkReplacement
 
 ### Описание
 
@@ -1640,7 +1642,7 @@ https://server.ru/PersAcc/proParck/refund/6444c088-bd12-11ed-81b6-00155df43005
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/replacement/{guid}
+https://server.ru/PersAcc/proPark/replacement/{guid}
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1656,26 +1658,26 @@ https://server.ru/PersAcc/proParck/replacement/{guid}
 
 | Параметры                                 |           Тип            | Обязательный | Описание                       |
 | ----------------------------------------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-proparckreplacement) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| [response](#response-proparkreplacement) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
 | error                                     |          Строка          |      Да      | Строка описания ошибки         |
 | errorCode                                 |          Строка          |      Да      | Код ошибки в классификации API |
 
-#### **response (ProParckReplacement):**
+#### **response (ProParkReplacement):**
 
 | Параметры                                   |     Тип     | Обязательный | Описание            |
 | ------------------------------------------- | :---------: | :----------: | :------------------ |
 | TransactionID                               | Строка (36) |     Нет      | [См. общее](#общее) |
 | SourceID                                    | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-proparckreplacement) |   Объект    |      Да      | Данные документа    |
+| [Documents](#documents-proparkreplacement) |   Объект    |      Да      | Данные документа    |
 
-#### **Documents (ProParckReplacement):**
+#### **Documents (ProParkReplacement):**
 
 | Параметры                                                       |  Тип   |     | Обязательный | Описание                                               |
 | --------------------------------------------------------------- | :----: | --- | :----------: | ------------------------------------------------------ |
-| [ProParckReplacement](#proparckreplacement-proparckreplacement) | Массив |     |      Да      | Массив данных документов Замена инструмента в подписке |
+| [ProParkReplacement](#proparkreplacement-proparkreplacement) | Массив |     |      Да      | Массив данных документов Замена инструмента в подписке |
 |                                                                 |        |     |              |                                                        |
 
-#### **ProParckReplacement (ProParckReplacement):**
+#### **ProParkReplacement (ProParkReplacement):**
 
 | Параметры                                 |             Тип             | Обязательный | Описание                                   |
 | ----------------------------------------- | :-------------------------: | :----------: | :----------------------------------------- |
@@ -1685,23 +1687,23 @@ https://server.ru/PersAcc/proParck/replacement/{guid}
 | Number                                    |           Строка            |      Да      | Номер документа                            |
 | Date                                      | Дата (строка в формате UTC) |      Да      | Дата документа                             |
 | GUIDRequest                               |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
-| [Products](#products-proparckreplacement) |           Массив            |      Да      | Данные табличной части                     |
+| [Products](#products-proparkreplacement) |           Массив            |      Да      | Данные табличной части                     |
 
-#### **Products (ProParckReplacement):**
+#### **Products (ProParkReplacement):**
 
 | Параметры                                      |     Тип     | Обязательный | Описание                                                           |
 | ---------------------------------------------- | :---------: | :----------: | :----------------------------------------------------------------- |
-| GUIDProParck                                   | Строка (36) |      Да      | Уникальный GUID документа Подписка на инструмент                   |
+| GUIDProPark                                   | Строка (36) |      Да      | Уникальный GUID документа Подписка на инструмент                   |
 | NumberSub                                      |   Строка    |      Да      | Номер документа Подписка на инструмент                             |
 | ItemGUID                                       | Строка (36) |      Да      | Уникальный GUID номенклатуры (инструмента) которая заменяется      |
 | Article                                        |   Строка    |      Да      | Артикул (который заменяется)                                       |
 | SerialNumber (\*)                              |   Строка    |      Да      | Серийный номер (который заменяется)                                |
 | ItemGUIDTo                                     | Строка (36) |      Да      | Уникальный GUID номенклатуры (инструмента) на который будет замена |
 | ArticleTo                                      |   Строка    |      Да      | Артикул (на который заменяется)                                    |
-| [SerialTo](#serialto-proparckreplacement) (\*) |   Строка    |      Да      | Данные серийного номера (на который заменяется)                    |
+| [SerialTo](#serialto-proparkreplacement) (\*) |   Строка    |      Да      | Данные серийного номера (на который заменяется)                    |
 | Quantity                                       |    Число    |      Да      | Количество                                                         |
 
-#### **SerialTo (ProParckReplacement):**
+#### **SerialTo (ProParkReplacement):**
 
 | Параметры |     Тип      | Обязательный | Описание       |
 | --------- | :----------: | :----------: | :------------- |
@@ -1714,7 +1716,7 @@ https://server.ru/PersAcc/proParck/replacement/{guid}
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43005
+https://server.ru/PersAcc/proPark/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43005
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1734,7 +1736,7 @@ https://server.ru/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43
     "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
     "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
     "Documents": {
-      "ProParckReplacement": [
+      "ProParkReplacement": [
         {
           "GUIDDocument": "41ffdaf4-c4b4-11ed-81b7-00155df43005",
           "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
@@ -1744,7 +1746,7 @@ https://server.ru/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43
           "GUIDRequest": "b681d4af-c4b3-11ed-81b7-00155df43005",
           "Products": [
             {
-              "GUIDProParck": "6444c088-bd12-11ed-81b6-00155df43005",
+              "GUIDProPark": "6444c088-bd12-11ed-81b6-00155df43005",
               "NumberSub": "РР-00000001",
               "ItemGUID": "24c99a24-7729-11ea-b97f-04d9f5ae0304",
               "Article": "D25153K-KS",
@@ -1770,7 +1772,7 @@ https://server.ru/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43
 
 ---
 
-## ProParckNew
+## ProParkNew
 
 ### Описание
 
@@ -1783,7 +1785,7 @@ https://server.ru/PersAcc/proParck/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/new/{guid}
+https://server.ru/PersAcc/proPark/new/{guid}
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1799,25 +1801,25 @@ https://server.ru/PersAcc/proParck/new/{guid}
 
 | Параметры                         |           Тип            | Обязательный | Описание                       |
 | --------------------------------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-proparcknew) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| [response](#response-proparknew) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
 | error                             |          Строка          |      Да      | Строка описания ошибки         |
 | errorCode                         |          Строка          |      Да      | Код ошибки в классификации API |
 
-#### **response (ProParckNew):**
+#### **response (ProParkNew):**
 
 | Параметры                           |     Тип     | Обязательный | Описание            |
 | ----------------------------------- | :---------: | :----------: | :------------------ |
 | TransactionID                       | Строка (36) |     Нет      | [См. общее](#общее) |
 | SourceID                            | Строка (36) |      Да      | [См. общее](#общее) |
-| [Documents](#documents-proparcknew) |   Объект    |      Да      | Данные документа    |
+| [Documents](#documents-proparknew) |   Объект    |      Да      | Данные документа    |
 
-#### **Documents (ProParckNew):**
+#### **Documents (ProParkNew):**
 
 | Параметры                               |  Тип   | Обязательный | Описание                                        |
 | --------------------------------------- | :----: | :----------: | :---------------------------------------------- |
-| [ProParckNew](#proparcknew-proparcknew) | Массив |      Да      | Массив данных документов Подписка на инструмент |
+| [ProParkNew](#proparknew-proparknew) | Массив |      Да      | Массив данных документов Подписка на инструмент |
 
-#### **ProParckNew (ProParckNew):**
+#### **ProParkNew (ProParkNew):**
 
 | Параметры                         |             Тип             | Обязательный | Описание                                   |
 | --------------------------------- | :-------------------------: | :----------: | :----------------------------------------- |
@@ -1828,18 +1830,18 @@ https://server.ru/PersAcc/proParck/new/{guid}
 | Date                              | Дата (строка в формате UTC) |      Да      | Дата документа                             |
 | StartDate                         | Дата (строка в формате UTC) |      Да      | Дата начала действия подписки              |
 | GUIDRequest                       |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
-| [Products](#products-proparcknew) |           Массив            |      Да      | Данные табличной части                     |
+| [Products](#products-proparknew) |           Массив            |      Да      | Данные табличной части                     |
 
-#### **Products (ProParckNew):**
+#### **Products (ProParkNew):**
 
 | Параметры                          |     Тип     | Обязательный | Описание                                   |
 | ---------------------------------- | :---------: | :----------: | :----------------------------------------- |
 | ItemGUID                           | Строка (36) |      Да      | уникальный GUID номенклатуры (инструмента) |
-| [Serial](#serial-proparcknew) (\*) |   Объект    |      Да      | Данные по серийному номеру                 |
+| [Serial](#serial-proparknew) (\*) |   Объект    |      Да      | Данные по серийному номеру                 |
 | Article                            |   Строка    |      Да      | Артикул                                    |
 | Quantity                           |    Число    |      Да      | Количество                                 |
 
-#### **Serial (ProParckNew):**
+#### **Serial (ProParkNew):**
 
 | Параметры |     Тип      | Обязательный | Описание       |
 | --------- | :----------: | :----------: | :------------- |
@@ -1852,7 +1854,7 @@ https://server.ru/PersAcc/proParck/new/{guid}
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005
+https://server.ru/PersAcc/proPark/new/6444c088-bd12-11ed-81b6-00155df43005
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1872,7 +1874,7 @@ https://server.ru/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005
     "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
     "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
     "Documents": {
-      "ProParckNew": [
+      "ProParkNew": [
         {
           "GUIDDocument": "6444c088-bd12-11ed-81b6-00155df43005",
           "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
@@ -1914,7 +1916,7 @@ https://server.ru/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005
 
 ---
 
-## ProParckMoving
+## ProParkMoving
 
 ### Описание
 
@@ -1927,7 +1929,7 @@ https://server.ru/PersAcc/proParck/new/6444c088-bd12-11ed-81b6-00155df43005
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/moving
+https://server.ru/PersAcc/proPark/moving
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -1937,9 +1939,9 @@ https://server.ru/PersAcc/proParck/moving
 | TransactionID                      | Строка (36) |     Нет      | [См. общее](#общее)       |
 | SourceID                           | Строка (36) |      Да      | [См. общее](#общее)       |
 | GUIDCustomer                       | Строка (36) |      Да      | GUID клиента              |
-| [Request](#request-proparckmoving) |   Объект    |      Да      | Информация по перемещению |
+| [Request](#request-proparkmoving) |   Объект    |      Да      | Информация по перемещению |
 
-#### **Request (ProParckMoving):**
+#### **Request (ProParkMoving):**
 
 | Параметры                            |             Тип             | Обязательный | Описание                                            |
 | ------------------------------------ | :-------------------------: | :----------: | :-------------------------------------------------- |
@@ -1948,27 +1950,27 @@ https://server.ru/PersAcc/proParck/moving
 | ClientObjectGUIDFrom                 |         Строка (36)         |      Да      | Идентификатор объекта клиента (откуда перемещается) |
 | ClientObjectGUIDTo                   |         Строка (36)         |      Да      | Идентификатор объекта клиента (куда перемещается)   |
 | Comment                              |           Строка            |      Да      | Комментарий                                         |
-| [Products](#products-proparckmoving) |           Массив            |      Да      | Данные по инструменту                               |
+| [Products](#products-proparkmoving) |           Массив            |      Да      | Данные по инструменту                               |
 
-#### **Products (ProParckMoving):**
+#### **Products (ProParkMoving):**
 
 | Параметры    |     Тип     | Обязательный | Описание                   |
 | ------------ | :---------: | :----------: | :------------------------- |
 | GUID         | Строка (36) |      Да      | Идентификатор инструмента  |
 | SerialNumber |   Строка    |      Да      | Серийный номер инструмента |
 | Article      |   Строка    |      Да      | Артикул                    |
-| NumberSub    | Строка (36) |      Да      | Номер подписки 1С ProParck |
+| NumberSub    | Строка (36) |      Да      | Номер подписки 1С ProPark |
 | Quantity     |   Строка    |      Да      | Количество                 |
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
 | Параметры                            |           Тип            | Обязательный | Описание                       |
 | ------------------------------------ | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-proparckmoving) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| [response](#response-proparkmoving) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
 | error                                |          Строка          |      Да      | Строка описания ошибки         |
 | errorCode                            |          Строка          |      Да      | Код ошибки в классификации API |
 
-#### **response (ProParckMoving):**
+#### **response (ProParkMoving):**
 
 | Параметры     |     Тип     | Обязательный | Описание                              |
 | ------------- | :---------: | :----------: | :------------------------------------ |
@@ -1981,7 +1983,7 @@ https://server.ru/PersAcc/proParck/moving
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/moving
+https://server.ru/PersAcc/proPark/moving
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -2026,7 +2028,7 @@ https://server.ru/PersAcc/proParck/moving
 
 ---
 
-## ProParckRequest
+## ProParkRequest
 
 ### Описание
 
@@ -2039,7 +2041,7 @@ https://server.ru/PersAcc/proParck/moving
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/request
+https://server.ru/PersAcc/proPark/request
 ```
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -2049,9 +2051,9 @@ https://server.ru/PersAcc/proParck/request
 | TransactionID                        | Строка (36) |     Нет      | [См. общее](#общее)                |
 | SourceID                             | Строка (36) |      Да      | [См. общее](#общее)                |
 | GUIDCustomer                         | Строка (36) |      Да      | GUID клиента для оформления заказа |
-| [Request](#response-proparckrequest) |   Объект    |      Да      | Информация по заявке               |
+| [Request](#response-proparkrequest) |   Объект    |      Да      | Информация по заявке               |
 
-#### **Request (ProParckRequest):**
+#### **Request (ProParkRequest):**
 
 | Параметры                             |             Тип             | Обязательный | Описание                                                                                                      |
 | ------------------------------------- | :-------------------------: | :----------: | :------------------------------------------------------------------------------------------------------------ |
@@ -2061,15 +2063,15 @@ https://server.ru/PersAcc/proParck/request
 | Number                                |           Строка            |      Да      | Номер заявки в ProParсk                                                                                       |
 | ClientObjectGUID                      |         Строка (36)         |      Да      | Идентификатор объекта клиента                                                                                 |
 | Comment                               |           Строка            |      Да      | Комментарий                                                                                                   |
-| [Products](#products-proparckrequest) |           Массив            |      Да      | Данные по инструменту                                                                                         |
+| [Products](#products-proparkrequest) |           Массив            |      Да      | Данные по инструменту                                                                                         |
 
-#### **Products (ProParckRequest):**
+#### **Products (ProParkRequest):**
 
 | Параметры    |     Тип     | Обязательный | Описание                                                    |
 | ------------ | :---------: | :----------: | :---------------------------------------------------------- |
 | GUID         | Строка (36) |      Да      | Идентификатор инструмента                                   |
 | SerialNumber |   Строка    |     Нет      | Серийный номер инструмента (только для типов return и swap) |
-| NumberSub    | Строка (36) |     Нет      | Номер подписки 1С ProParck (только для типов return и swap) |
+| NumberSub    | Строка (36) |     Нет      | Номер подписки 1С ProPark (только для типов return и swap) |
 | Article      |   Строка    |      Да      | Артикул                                                     |
 | Quantity     |   Строка    |      Да      | Количество                                                  |
 | Price        |   Строка    |     Нет      | Цена (только для типа New)                                  |
@@ -2079,11 +2081,11 @@ https://server.ru/PersAcc/proParck/request
 
 | Параметры                             |           Тип            | Обязательный | Описание                       |
 | ------------------------------------- | :----------------------: | :----------: | :----------------------------- |
-| [response](#response-proparckrequest) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| [response](#response-proparkrequest) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
 | error                                 |          Строка          |      Да      | Строка описания ошибки         |
 | errorCode                             |          Строка          |      Да      | Код ошибки в классификации API |
 
-#### **response (ProParckRequest):**
+#### **response (ProParkRequest):**
 
 | Параметры     |     Тип     | Обязательный | Описание                           |
 | ------------- | :---------: | :----------: | :--------------------------------- |
@@ -2096,7 +2098,7 @@ https://server.ru/PersAcc/proParck/request
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proParck/request
+https://server.ru/PersAcc/proPark/request
 ```
 
 **Тело запроса в формате _JSON_**:
