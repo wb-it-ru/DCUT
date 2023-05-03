@@ -1,4 +1,4 @@
-# HTTP-services Personal аccount (1.1.5.4)
+# HTTP-services Personal аccount (1.1.5.6)
 
 ## Оглавление
 
@@ -46,6 +46,8 @@
 
   - [ProParkRequest](#proparkrequest)
 
+  - [ProParkRequestGetDoc](#proparkrequestgetdoc)
+
 - [Documents](#documents)
 
   - [DataBySalesAll](#databysalesall)
@@ -80,7 +82,10 @@
 
 Изменения в описании отменчены следующим образом (\*)
 
-В версии 1.1.5.2 везде изменены названия ProParck на ProPark (убрали букву "c")
+В версии 1.1.5.6 изменены сервисы [ProParkRefund](#proparkrefund), [ProParkReplacement](#proparkreplacement), [ProParkNew](#proparknew) (метод и способ передачи параметров в URL).
+Добавлен новый сервис [ProParkRequestGetDoc](#proparkrequestgetdoc).
+
+В версии 1.1.5.2 везде изменены названия ProParck на ProPark (убрали букву "c").
 
 ## Общее
 
@@ -1097,6 +1102,7 @@ https://server.ru/PersAcc/priceconditions
 | --------------------------------- | :---------: | :----------: | :--------------------------------- |
 | GUID                              | Строка (36) |      Да      | Массив номенклатур                 |
 | IsGroup                           |   Булево    |      Да      | Признак группы                     |
+| Group                             |   Строка    |      Да      | Наименование группы номенклатуры   |
 | Article_Number                    |   Строка    |      Да      | Артикул                            |
 | Code                              |   Строка    |      Да      | Код номенклатуры                   |
 | Name                              |   Строка    |      Да      | Наименование номенклатуры          |
@@ -1105,7 +1111,7 @@ https://server.ru/PersAcc/priceconditions
 | Section_GUID                      |   Массив    |      Да      | Массив идентификаторов Каталогов   |
 | Category_GUID                     | Строка (36) |      Да      | Идентификатор категории            |
 | Price_Group                       |   Строка    |      Да      | Ценовая группа                     |
-| IsNew                             |   Булево    |      Да      | признак _Это новинка_ номенклатуры |
+| IsNew                             |   Булево    |      Да      | Признак _Это новинка_ номенклатуры |
 | [ProPark](#propark-product)       |   Объект    |     Нет      | Данные подписки ProPark            |
 | [Properties](#properties-product) |   Объект    |      Да      | Свойства номенклатуры              |
 
@@ -1510,14 +1516,14 @@ https://server.ru/PersAcc/priceconditions
 
 Предназначен для получения данных документа Возврат инструмента из подписки
 
-Метод - **POST**
+Метод - **GET**
 
 ### Описание шаблона
 
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proPark/refund/{guid}
+https://server.ru/PersAcc/proPark/refund?guid={guid}
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1531,11 +1537,11 @@ https://server.ru/PersAcc/proPark/refund/{guid}
 
 Тело ответа содержит _JSON_ с следующими параметрами:
 
-| Параметры |           Тип            | Обязательный | Описание                       |
-| --------- | :----------------------: | :----------: | :----------------------------- |
-| response  | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
-| error     |          Строка          |      Да      | Строка описания ошибки         |
-| errorCode |          Строка          |      Да      | Код ошибки в классификации API |
+| Параметры                           |           Тип            | Обязательный | Описание                       |
+| ----------------------------------- | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-proparkrefund) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                               |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                           |          Строка          |      Да      | Код ошибки в классификации API |
 
 #### **response (ProParkRefund):**
 
@@ -1580,7 +1586,7 @@ https://server.ru/PersAcc/proPark/refund/{guid}
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proPark/refund/6444c088-bd12-11ed-81b6-00155df43005
+https://server.ru/PersAcc/proPark/refund?guid=6ae193de-c4b4-11ed-81b7-00155df43005
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1635,14 +1641,14 @@ https://server.ru/PersAcc/proPark/refund/6444c088-bd12-11ed-81b6-00155df43005
 
 Предназначен для получения данных документа Замена инструмента в подписке
 
-Метод - **POST**
+Метод - **GET**
 
 ### Описание шаблона
 
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proPark/replacement/{guid}
+https://server.ru/PersAcc/proPark/replacement?guid={guid}
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1716,7 +1722,7 @@ https://server.ru/PersAcc/proPark/replacement/{guid}
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proPark/replacement/41ffdaf4-c4b4-11ed-81b7-00155df43005
+https://server.ru/PersAcc/proPark/replacement?guid=41ffdaf4-c4b4-11ed-81b7-00155df43005
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -1778,14 +1784,14 @@ https://server.ru/PersAcc/proPark/replacement/41ffdaf4-c4b4-11ed-81b7-00155df430
 
 Предназначен для получения данных документа Подписка на инструмент
 
-Метод - **POST**
+Метод - **GET**
 
 ### Описание шаблона
 
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proPark/new/{guid}
+https://server.ru/PersAcc/proPark/new?guid={guid}
 ```
 
 где guid (строка 36) идентификатор документа
@@ -1855,7 +1861,7 @@ https://server.ru/PersAcc/proPark/new/{guid}
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/proPark/new/6444c088-bd12-11ed-81b6-00155df43005
+https://server.ru/PersAcc/proPark/new?guid=ad0a2703-e3fe-11ed-81bd-00155df43005
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -2093,8 +2099,8 @@ https://server.ru/PersAcc/proPark/request
 | ------------- | :---------: | :----------: | :--------------------------------- |
 | TransactionID | Строка (36) |     Нет      | [См. общее](#общее)                |
 | SourceID      | Строка (36) |      Да      | [См. общее](#общее)                |
-| Number1C      |   Строка (11) (\*)  |      Да      | Номер заявки в 1С (номер подписки) |
-| GUIDDocument (\*)  |   Строка (36)  |      Да      | Уникальный GUID документа |
+| Number1C      |   Строка    |      Да      | Номер заявки в 1С (номер подписки) |
+| GUIDDocument  | Строка (36) |      Да      | Уникальный GUID документа          |
 
 ### Пример
 
@@ -2137,6 +2143,101 @@ https://server.ru/PersAcc/proPark/request
 {
   "response": {
     "Number1C": "000000004"
+  },
+  "error": null,
+  "errorCode": null
+}
+```
+
+---
+
+## ProParkRequestGetDoc
+
+### Описание
+
+Предназначен для получения данных документа Заявка на подписку
+
+Метод - **GET**
+
+### Описание шаблона
+
+**_URL_**:
+
+```html
+https://server.ru/PersAcc/proPark/request?guid={guid}
+```
+
+где guid (строка 36) идентификатор документа
+
+Тело запроса содержит _JSON_ с следующими параметрами:
+
+| Параметры     |     Тип     | Обязательный | Описание            |
+| ------------- | :---------: | :----------: | :------------------ |
+| TransactionID | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID      | Строка (36) |      Да      | [См. общее](#общее) |
+
+Тело ответа содержит _JSON_ с следующими параметрами:
+
+| Параметры                                  |           Тип            | Обязательный | Описание                       |
+| ------------------------------------------ | :----------------------: | :----------: | :----------------------------- |
+| [response](#response-proparkrequestgetdoc) | Null, либо данные ответа |      Да      | Не заполняется при ошибке      |
+| error                                      |          Строка          |      Да      | Строка описания ошибки         |
+| errorCode                                  |          Строка          |      Да      | Код ошибки в классификации API |
+
+#### **response (ProParkRequestGetDoc):**
+
+| Параметры                                    |     Тип     | Обязательный | Описание            |
+| -------------------------------------------- | :---------: | :----------: | :------------------ |
+| TransactionID                                | Строка (36) |     Нет      | [См. общее](#общее) |
+| SourceID                                     | Строка (36) |      Да      | [См. общее](#общее) |
+| [Documents](#documents-proparkrequestgetdoc) |   Объект    |      Да      | Данные документа    |
+
+#### **Documents (ProParkRequestGetDoc):**
+
+| Параметры                                              |  Тип   |     | Обязательный | Описание                                                 |
+| ------------------------------------------------------ | :----: | --- | :----------: | -------------------------------------------------------- |
+| [ProParkRequest](#proparkrequest-proparkrequestgetdoc) | Массив |     |      Да      | Массив данных документов Возврат инструмента из подписки |
+|                                                        |        |     |              |                                                          |
+
+#### **ProParkRequest (ProParkRequestGetDoc):**
+
+| Параметры    |     Тип     | Обязательный | Описание                  |
+| ------------ | :---------: | :----------: | :------------------------ |
+| GUIDDocument | Строка (36) |      Да      | Уникальный GUID документа |
+| Status       |   Строка    |      Да      | Статус документа          |
+
+### Пример
+
+**_URL_**:
+
+```html
+https://server.ru/PersAcc/proPark/request?guid=639d65d9-c4b4-11ed-81b7-00155df43005
+```
+
+**Тело запроса в формате _JSON_**:
+
+```json
+{
+  "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+  "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c"
+}
+```
+
+**Ответ в формате _JSON_**:
+
+```json
+{
+  "response": {
+    "TransactionID": "C8110986-AB34-41A4-8592-03D90132FE82",
+    "SourceID": "90802caa-5c8d-4e9a-8147-b8f0a806093c",
+    "Documents": {
+      "ProParkRequest": [
+        {
+          "GUIDDocument": "639d65d9-c4b4-11ed-81b7-00155df43005",
+          "Status": "Закрыт"
+        }
+      ]
+    }
   },
   "error": null,
   "errorCode": null
