@@ -1,4 +1,4 @@
-# HTTP-services Personal аccount (1.1.6.1)
+# HTTP-services Personal аccount (1.1.6.2)
 
 ## Оглавление
 
@@ -1566,6 +1566,7 @@ https://server.ru/PersAcc/proPark/refund?guid={guid}
 | GUIDDocument                        |         Строка (36)         |      Да      | Уникальный GUID документа                  |
 | GUIDCustomer                        |         Строка (36)         |      Да      | Уникальный GUID контрагента                |
 | ClientObjectGUID                    |         Строка (36)         |      Да      | Уникальный GUID объекта контрагента        |
+| Status (\*)                         |           Строка            |      Да      | Статус документа                           |
 | Number                              |           Строка            |      Да      | Номер документа                            |
 | Date                                | Дата (строка в формате UTC) |      Да      | Дата документа                             |
 | GUIDRequest                         |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
@@ -1612,6 +1613,7 @@ https://server.ru/PersAcc/proPark/refund?guid=6ae193de-c4b4-11ed-81b7-00155df430
           "GUIDDocument": "6ae193de-c4b4-11ed-81b7-00155df43005",
           "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
           "ClientObjectGUID": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
+          "Status": "В работе",
           "Number": "РР-00000001",
           "Date": "2023-03-17T14:11:09+03:00",
           "GUIDRequest": "639d65d9-c4b4-11ed-81b7-00155df43005",
@@ -1690,6 +1692,7 @@ https://server.ru/PersAcc/proPark/replacement?guid={guid}
 | GUIDDocument                             |         Строка (36)         |      Да      | Уникальный GUID документа                  |
 | GUIDCustomer                             |         Строка (36)         |      Да      | Уникальный GUID контрагента                |
 | ClientObjectGUID                         |         Строка (36)         |      Да      | Уникальный GUID объекта контрагента        |
+| Status (\*)                              |           Строка            |      Да      | Статус документа                           |
 | Number                                   |           Строка            |      Да      | Номер документа                            |
 | Date                                     | Дата (строка в формате UTC) |      Да      | Дата документа                             |
 | GUIDRequest                              |         Строка (36)         |      Да      | Уникальный GUID документа основания Заявки |
@@ -1747,6 +1750,7 @@ https://server.ru/PersAcc/proPark/replacement?guid=41ffdaf4-c4b4-11ed-81b7-00155
           "GUIDDocument": "41ffdaf4-c4b4-11ed-81b7-00155df43005",
           "GUIDCustomer": "8aa517ea-cc24-11ea-b98b-04d9f5ae0304",
           "ClientObjectGUID": "a04bf661-3adc-11eb-b990-04d9f5ae0304",
+          "Status": "В работе",
           "Number": "РР-00000001",
           "Date": "2023-03-17T14:10:00+03:00",
           "GUIDRequest": "b681d4af-c4b3-11ed-81b7-00155df43005",
