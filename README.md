@@ -1,4 +1,4 @@
-# HTTP-services Personal аccount (1.1.6.3)
+# HTTP-services Personal аccount (1.1.6.4)
 
 ## Оглавление
 
@@ -1139,6 +1139,7 @@ https://server.ru/PersAcc/priceconditions
 | SecondPrice      |            Число            |     Нет      | Вторая цена (по второму выбранному виду цен в 1С) |
 | QuantityOfStock  |            Число            |     Нет      | Остаток                                           |
 | PathFTPImageFile |           Строка            |     Нет      | Файл в FTP                                        |
+| AllFiles (\*)    |           Массив            |     Нет      | Файлы в FTP (доп. картинки номенклатуры)          |
 
 #### **Products_Section (Product):**
 
@@ -1198,7 +1199,11 @@ https://server.ru/PersAcc/priceconditions
           "PriceDate": "2022-07-12T19:13:19+03:00",
           "SecondPrice": 500,
           "QuantityOfStock": 10,
-          "PathFTPImageFile": "11291255_e1c8_11ec_81a0_00155df43005__f85eab3c_ec12_11ec_81a0_00155df43005.jpg"
+          "PathFTPImageFile": "11291255_e1c8_11ec_81a0_00155df43005__f85eab3c_ec12_11ec_81a0_00155df43005.jpg",
+          "AllFiles": [
+            "11291255_e1c8_11ec_81a0_00155df43005__f85eab4c_ec12_11ec_81a0_00155df43005.jpg",
+            "11291255_e1c8_11ec_81a0_00155df43005__f85eab6c_ec12_11ec_81a0_00155df43005.jpg"
+          ]
         }
       },
       {
@@ -1304,9 +1309,10 @@ https://server.ru/PersAcc/priceconditions
 
 #### **Properties (Image):**
 
-| Параметры        |  Тип   | Обязательный | Описание   |
-| ---------------- | :----: | :----------: | :--------- |
-| PathFTPImageFile | Строка |      Да      | Файл в FTP |
+| Параметры        |  Тип   | Обязательный | Описание                                 |
+| ---------------- | :----: | :----------: | :--------------------------------------- |
+| PathFTPImageFile | Строка |      Да      | Файл в FTP                               |
+| AllFiles (\*)    | Массив |      Да      | Файлы в FTP (доп. картинки номенклатуры) |
 
 ### Пример
 
@@ -1324,19 +1330,24 @@ https://server.ru/PersAcc/priceconditions
       {
         "GUID": "300465dd-7de8-11ec-b9bc-001b21b3a70e",
         "Properties": {
-          "PathFTPImageFile": "300465dd_7de8_11ec_b9bc_001b21b3a70e__f0894933_ec0f_11ec_81a0_00155df43005.jpg"
+          "PathFTPImageFile": "300465dd_7de8_11ec_b9bc_001b21b3a70e__f0894933_ec0f_11ec_81a0_00155df43005.jpg",
+          "AllFiles": [
+            "dacba356_6162_11ec_b9bb_001b21b3a70e__0dbbf7ae_ebef_11ec_81a0_00155df43005.jpg"
+          ]
         }
       },
       {
         "GUID": "cc43494a-db3d-11ec-81a0-00155df43005",
         "Properties": {
-          "PathFTPImageFile": "cc43494a_db3d_11ec_81a0_00155df43005__a8681ed4_e0e1_11ec_81a0_00155df43005.jpg"
+          "PathFTPImageFile": "cc43494a_db3d_11ec_81a0_00155df43005__a8681ed4_e0e1_11ec_81a0_00155df43005.jpg",
+          "AllFiles": []
         }
       },
       {
         "GUID": "11291255-e1c8-11ec-81a0-00155df43005",
         "Properties": {
-          "PathFTPImageFile": "11291255_e1c8_11ec_81a0_00155df43005__f85eab3c_ec12_11ec_81a0_00155df43005.jpg"
+          "PathFTPImageFile": "11291255_e1c8_11ec_81a0_00155df43005__f85eab3c_ec12_11ec_81a0_00155df43005.jpg",
+          "AllFiles": []
         }
       }
     ]
@@ -2074,7 +2085,7 @@ https://server.ru/PersAcc/proPark/request
 | Type                                 |           Строка            |      Да      | Тип документа, варианты: New (новая подписка), return (возврат из подписки), swap (замена инструмента)        |
 | Date                                 | Дата (строка в формате UTC) |      Да      | Дата заявки                                                                                                   |
 | DatePP                               | Дата (строка в формате UTC) |      Да      | Дата начала/окончаний действия подписки. С какого числа нужен инструмент или когда планируют вернуть/заменить |
-| Number                               |           Строка            |      Да      | Номер заявки в ProParсk                                                                                       |
+| Number                               |           Строка            |      Да      | Номер заявки в ProParсk (если в 1С есть заявка с таким номером будет возращена ошибка) (\*)                   |
 | ClientObjectGUID                     |         Строка (36)         |      Да      | Идентификатор объекта клиента                                                                                 |
 | Comment                              |           Строка            |      Да      | Комментарий                                                                                                   |
 | [Products](#products-proparkrequest) |           Массив            |      Да      | Данные по инструменту                                                                                         |
