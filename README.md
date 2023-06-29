@@ -1,4 +1,4 @@
-# HTTP-services Personal аccount (1.1.6.5)
+# HTTP-services Personal аccount (1.1.6.6)
 
 ## Оглавление
 
@@ -225,7 +225,7 @@ https://server.ru/PersAcc/repairs/approval/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
 https://server.ru/PersAcc/files/{type}/{guid}
 ```
 
-где type - ClientObject (файл объекта контрагента), ManagerImage (Фотография менеджера), InvoiceRepair(Счет на оплату заказ наряда)
+где type - ClientObject (файл объекта контрагента), ManagerImage (Фотография менеджера), InvoiceRepair (Счет на оплату заказ наряда), \* InvoiceOrder (Счет на оплату заказ покупателя)
 где guid уникальный идентификатор объекта в зависимости от типа (строка 36 знаков)
 
 Тело запроса содержит _JSON_ с следующими параметрами:
@@ -249,10 +249,9 @@ https://server.ru/PersAcc/files/{type}/{guid}
 
 ```html
 https://server.ru/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df43007
-
 https://server.ru/PersAcc/files/ManagerImage/f41acb2d-79f8-11ed-81af-00155df43005
-
 https://server.ru/PersAcc/files/InvoiceRepair/f6a244e3-8d77-11ec-b9bd-001b21b3a70e
+https://server.ru/PersAcc/files/InvoiceOrder/f6a244e3-8d37-11ec-b9bd-001b21b3a70e
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -403,7 +402,6 @@ https://server.ru/PersAcc/files/InvoiceRepair/f6a244e3-8d77-11ec-b9bd-001b21b3a7
 ```
 
 ---
-
 
 ## Личный кабинет клиента
 
