@@ -1,4 +1,4 @@
-# HTTP-services Personal аccount (1.1.6.6)
+# HTTP-services Personal аccount (1.1.6.7)
 
 ## Оглавление
 
@@ -222,11 +222,11 @@ https://server.ru/PersAcc/repairs/approval/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/files/{type}/{guid}
+https://server.ru/PersAcc/files/{type}?guid={guid}
 ```
 
 где type - ClientObject (файл объекта контрагента), ManagerImage (Фотография менеджера), InvoiceRepair (Счет на оплату заказ наряда), \* InvoiceOrder (Счет на оплату заказ покупателя)
-где guid уникальный идентификатор объекта в зависимости от типа (строка 36 знаков)
+где guid уникальный идентификатор объекта в зависимости от типа (строка 36 знаков). \* Можно передать несколько guid-ов через запятую. См. примеры запроса ниже.
 
 Тело запроса содержит _JSON_ с следующими параметрами:
 
@@ -248,10 +248,10 @@ https://server.ru/PersAcc/files/{type}/{guid}
 **_URL_**:
 
 ```html
-https://server.ru/PersAcc/files/ClientObject/f41acb2d-79f8-11ed-81af-00155df43007
-https://server.ru/PersAcc/files/ManagerImage/f41acb2d-79f8-11ed-81af-00155df43005
-https://server.ru/PersAcc/files/InvoiceRepair/f6a244e3-8d77-11ec-b9bd-001b21b3a70e
-https://server.ru/PersAcc/files/InvoiceOrder/f6a244e3-8d37-11ec-b9bd-001b21b3a70e
+https://server.ru/PersAcc/files/ClientObject?guid=2d51050f-1b2a-11ee-81c6-00155df43005,1736b223-1b2b-11ee-81c6-00155df43005
+https://server.ru/PersAcc/files/ManagerImage?guid=8fdb38c8-3abf-11e9-80e2-005056916dad,bd1aff1f-87d2-11e9-80d6-0050569133d8
+https://server.ru/PersAcc/files/InvoiceRepair?guid=f6a244e3-8d77-11ec-b9bd-001b21b3a70e
+https://server.ru/PersAcc/files/InvoiceOrder?guid=1d60da16-0539-11ee-81c4-00155df43005,f6a244e3-8d37-11ec-b9bd-001b21b3a70e
 ```
 
 **Тело запроса в формате _JSON_**:
@@ -264,7 +264,7 @@ https://server.ru/PersAcc/files/InvoiceOrder/f6a244e3-8d37-11ec-b9bd-001b21b3a70
 ```
 
 **Ответ в формате _JSON_**:
-Двоичные данные или
+\* Двоичные данные (если передано несколько guid-ов, то возвращаются двоичные данные архива .zip) или
 
 ```json
 {
