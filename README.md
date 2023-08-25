@@ -227,7 +227,7 @@ https://server.ru/PersAcc/repairs/approval/79ad8c9e-e3be-11eb-b9a8-04d9f5ae0304
 https://server.ru/PersAcc/files/{type}?guid={guid}
 ```
 
-где type - ClientObject (файл объекта контрагента), ManagerImage (Фотография менеджера), InvoiceRepair (Счет на оплату заказ наряда), \* InvoiceOrder (Счет на оплату заказ покупателя) \* ScansSale (Документы расходной накладной)
+где type - ClientObject (файл объекта контрагента), ManagerImage (Фотография менеджера), InvoiceRepair (Счет на оплату заказ наряда), \* InvoiceOrder (Счет на оплату заказ покупателя), \* ScansSale (Документы расходной накладной)
 где guid уникальный идентификатор объекта в зависимости от типа (строка 36 знаков). \* Можно передать несколько guid-ов через запятую. См. примеры запроса ниже.
 
 Тело запроса содержит _JSON_ с следующими параметрами:
